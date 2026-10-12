@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Barra de progreso por bloques, como las de las utilidades de DOS: bloques apagados de fondo y encendidos al avanzar -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <bitmap
+            android:src="@drawable/crt_progress_tile"
+            android:tileModeX="repeat"
+            android:tileModeY="repeat"
+            android:tint="?attr/crtFaint73"
+            android:antialias="false"
+            android:filter="false" />
+    </item>
+    <item android:id="@android:id/progress">
+        <clip android:clipOrientation="horizontal" android:gravity="start">
+            <bitmap
+                android:src="@drawable/crt_progress_tile"
+                android:tileModeX="repeat"
+                android:tileModeY="repeat"
+                android:tint="?attr/crtHot"
+                android:antialias="false"
+                android:filter="false" />
+        </clip>
+    </item>
+</layer-list>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Fila de la lista de presets, al estilo de un listado de terminal: cursor ► en el activo, nombre, una línea de detalle y
+    <DIR> en las carpetas. El estado (activa, foco del mando) lo pinta bg_crt_row; los textos lo copian del padre.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_shader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/crt_gutter"
+    android:layout_marginTop="2dp"
+    android:layout_marginEnd="@dimen/crt_gutter"
+    android:layout_marginBottom="2dp"
+    android:background="@drawable/bg_crt_row"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:minHeight="52dp"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/crt_space_s"
+    android:paddingTop="@dimen/crt_space_s"
+    android:paddingEnd="@dimen/crt_space_m"
+    android:paddingBottom="@dimen/crt_space_s">
+
+    <TextView
+        android:id="@+id/txt_shader_marker"
+        style="@style/CrtText"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true"
+        android:gravity="center"
+        android:text="►"
+        android:textColor="?attr/crtHot"
+        android:shadowColor="?attr/crtGlowHot"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/crt_space_xs"
+        android:layout_weight="1"
+        android:duplicateParentState="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_shader_name"
+            style="@style/CrtText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/crt_text_row" />
+
+        <TextView
+            android:id="@+id/txt_shader_info"
+            style="@style/CrtText.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_shader_tag"
+        style="@style/CrtText.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/crt_space_s"
+        android:duplicateParentState="true"
+        android:text="@string/tag_dir" />
+
+</LinearLayout>

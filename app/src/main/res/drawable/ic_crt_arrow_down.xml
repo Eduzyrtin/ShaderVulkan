@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Flecha de desplegable dibujada a píxeles (escalera de 7x4), a juego con la fuente VGA -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="14dp"
+    android:height="8dp"
+    android:viewportWidth="7"
+    android:viewportHeight="4">
+    <path
+        android:fillColor="?attr/crtDim"
+        android:pathData="M0,0h7v1h-1v1h-1v1h-1v1h-1v-1h-1v-1h-1v-1h-1z" />
+</vector>

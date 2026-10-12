@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icono de la barra de estado: un monitor CRT con líneas de barrido. Solo importa la silueta (Android la pinta en blanco). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Marco de la pantalla -->
+    <path
+        android:fillColor="#ffffff"
+        android:fillType="evenOdd"
+        android:pathData="M3,4h18a1,1 0,0 1,1 1v11a1,1 0,0 1,-1 1H3a1,1 0,0 1,-1 -1V5a1,1 0,0 1,1 -1z M4.5,5.5v9h15v-9z"/>
+
+    <!-- Líneas de barrido -->
+    <path
+        android:fillColor="#ffffff"
+        android:pathData="M6.5,7h11v1.2h-11z M6.5,9.4h11v1.2h-11z M6.5,11.8h11v1.2h-11z"/>
+
+    <!-- Cuello y peana -->
+    <path
+        android:fillColor="#ffffff"
+        android:pathData="M10.5,17h3v1h-3z M8,18h8v2H8z"/>
+
+</vector>

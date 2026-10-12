@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cabecera de pantalla: transparente sobre el tubo, cerrada abajo por una línea de fósforo tenue (como la de una manpage) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:gravity="bottom" android:height="@dimen/crt_stroke">
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/crtFaint" />
+        </shape>
+    </item>
+</layer-list>

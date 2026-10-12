@@ -1,0 +1,3 @@
+[submodule "app/src/main/cpp/third_party/glslang"]
+	path = app/src/main/cpp/third_party/glslang
+	url = https://github.com/KhronosGroup/glslang.git

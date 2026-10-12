@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Tema único de ShaderVulkan: terminal CRT de fósforo (medidas en dimens.xml). Siempre oscuro: la app no tiene variante clara.
+    Los overlays (menú flotante, HUD, editor de zona) usan estos mismos estilos desde código (ui/CrtUi.kt), así que cambiar algo
+    aquí cambia toda la app.
+
+    Color: nada de aquí lleva un color fijo. Todo sale de atributos ?attr/crtX que da la paleta elegida en Ajustes: el tema hereda
+    de Theme.ShaderVulkan.Palette (la clásica, por defecto) y CrtTheme.applyTo() le aplica encima la paleta guardada
+    (CrtPalette_H0..H71, CrtPalette_Neutral). Se generan con tools/gen-crt-palettes.ps1 (crt_palettes.xml, no editar).
+
+    Glow: android:shadowRadius va en píxeles físicos (no admite dp). Los valores están pensados para ~2.6-3x (S24 Ultra, Thor);
+    el código usa los mismos, para que overlay y pantallas brillen igual en cada dispositivo. Tres tamaños (crtGlowS/M/L) que las
+    pantallas de Ajustes redefinen con CrtGlow_Off/Soft/Strong.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Intensidad del glow (Ajustes): se aplica encima del tema, igual que la paleta -->
+    <style name="CrtGlow_Off">
+        <item name="crtGlowS">0</item>
+        <item name="crtGlowM">0</item>
+        <item name="crtGlowL">0</item>
+    </style>
+    <style name="CrtGlow_Soft">
+        <item name="crtGlowS">6</item>
+        <item name="crtGlowM">9</item>
+        <item name="crtGlowL">13</item>
+    </style>
+    <style name="CrtGlow_Strong">
+        <item name="crtGlowS">9</item>
+        <item name="crtGlowM">14</item>
+        <item name="crtGlowL">20</item>
+    </style>
+
+    <style name="Theme.ShaderVulkan" parent="Theme.ShaderVulkan.Palette">
+        <item name="crtGlowS">6</item>
+        <item name="crtGlowM">9</item>
+        <item name="crtGlowL">13</item>
+        <item name="colorPrimary">?attr/crtPhosphor</item>
+        <item name="colorOnPrimary">?attr/crtInk</item>
+        <item name="colorPrimaryContainer">?attr/crtGhostStrong</item>
+        <item name="colorOnPrimaryContainer">?attr/crtHot</item>
+        <item name="colorSecondary">?attr/crtDim</item>
+        <item name="colorOnSecondary">?attr/crtInk</item>
+        <item name="colorTertiary">?attr/crtWarn</item>
+        <item name="colorError">?attr/crtAlert</item>
+        <item name="colorOnError">?attr/crtInk</item>
+        <item name="android:colorBackground">?attr/crtBg</item>
+        <item name="colorSurface">?attr/crtBg</item>
+        <item name="colorOnSurface">?attr/crtPhosphor</item>
+        <item name="colorOnSurfaceVariant">?attr/crtDim</item>
+        <item name="colorOutline">?attr/crtFaint</item>
+        <item name="colorControlNormal">?attr/crtDim</item>
+        <item name="colorControlActivated">?attr/crtPhosphor</item>
+        <item name="colorControlHighlight">?attr/crtGhostStrong</item>
+
+        <item name="android:textColorPrimary">?attr/crtPhosphor</item>
+        <item name="android:textColorSecondary">?attr/crtDim</item>
+        <item name="android:textColorHint">?attr/crtFaint</item>
+        <item name="android:textColorHighlight">?attr/crtGhostStrong</item>
+        <item name="android:fontFamily">@font/crt_font</item>
+        <item name="fontFamily">@font/crt_font</item>
+        <item name="android:textCursorDrawable">@drawable/crt_cursor</item>
+
+        <item name="android:windowBackground">@drawable/crt_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:scrollbarThumbVertical">@drawable/crt_scrollbar_thumb</item>
+
+        <item name="materialButtonStyle">@style/CrtButton</item>
+        <item name="materialButtonOutlinedStyle">@style/CrtButton</item>
+        <item name="android:buttonStyle">@style/CrtButton</item>
+        <item name="buttonStyle">@style/CrtButton</item>
+        <item name="sliderStyle">@style/CrtSlider</item>
+        <item name="android:spinnerStyle">@style/CrtSpinner</item>
+        <item name="spinnerStyle">@style/CrtSpinner</item>
+        <item name="android:editTextStyle">@style/CrtEditText</item>
+        <item name="editTextStyle">@style/CrtEditText</item>
+        <item name="alertDialogTheme">@style/CrtAlertDialog</item>
+        <item name="android:alertDialogTheme">@style/CrtAlertDialog</item>
+    </style>
+
+    <!-- ============================== Texto ============================== -->
+
+    <!-- Texto base: fósforo con glow suave (cuerpo, filas, valores) -->
+    <style name="CrtText" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/crt_font</item>
+        <item name="android:textColor">?attr/crtPhosphor</item>
+        <item name="android:textSize">@dimen/crt_text_body</item>
+        <item name="android:shadowColor">?attr/crtGlow</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">?attr/crtGlowM</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+
+    <!-- Título de pantalla: el fósforo más caliente, con el glow más ancho -->
+    <style name="CrtText.Display">
+        <item name="android:textColor">?attr/crtHot</item>
+        <item name="android:textSize">@dimen/crt_text_display</item>
+        <item name="android:shadowColor">?attr/crtGlowHot</item>
+        <item name="android:shadowRadius">?attr/crtGlowL</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <!-- Título de sección, diálogo o ventana flotante -->
+    <style name="CrtText.Title">
+        <item name="android:textColor">?attr/crtHot</item>
+        <item name="android:textSize">@dimen/crt_text_title</item>
+        <item name="android:shadowColor">?attr/crtGlowHot</item>
+        <item name="android:shadowRadius">?attr/crtGlowL</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+
+    <!-- Etiqueta de campo o cabecera de grupo (como "NAME" / "SYNOPSIS" en una manpage) -->
+    <style name="CrtText.Label">
+        <item name="android:textColor">?attr/crtDim</item>
+        <item name="android:textSize">@dimen/crt_text_label</item>
+        <item name="android:shadowColor">?attr/crtGlowDim</item>
+        <item name="android:shadowRadius">?attr/crtGlowS</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <!-- Letra pequeña: notas, información de la rejilla, descripciones -->
+    <style name="CrtText.Caption">
+        <item name="android:textColor">?attr/crtDim</item>
+        <item name="android:textSize">@dimen/crt_text_caption</item>
+        <item name="android:shadowColor">?attr/crtGlowDim</item>
+        <item name="android:shadowRadius">?attr/crtGlowS</item>
+        <item name="android:letterSpacing">0.03</item>
+    </style>
+
+    <!-- Línea de estado resaltada: tinta sobre barra de fósforo, como la línea inferior de la referencia -->
+    <style name="CrtText.Status">
+        <item name="android:textColor">?attr/crtInk</item>
+        <item name="android:textSize">@dimen/crt_text_label</item>
+        <item name="android:shadowColor">@android:color/transparent</item>
+        <item name="android:shadowRadius">0</item>
+        <item name="android:background">@drawable/bg_crt_status</item>
+        <item name="android:paddingStart">@dimen/crt_space_s</item>
+        <item name="android:paddingEnd">@dimen/crt_space_s</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+    </style>
+
+    <!-- ============================== Botones ============================== -->
+
+    <!-- Botón normal: filo de fósforo con halo. Base de todos los botones de la app (también los creados en código) -->
+    <style name="CrtButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:background">@drawable/bg_crt_button</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textColor">@color/crt_text_button</item>
+        <item name="android:fontFamily">@font/crt_font</item>
+        <item name="fontFamily">@font/crt_font</item>
+        <item name="android:textSize">@dimen/crt_text_body</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">@dimen/crt_touch</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">@dimen/crt_space_l</item>
+        <item name="android:paddingEnd">@dimen/crt_space_l</item>
+        <item name="android:paddingTop">@dimen/crt_space_xs</item>
+        <item name="android:paddingBottom">@dimen/crt_space_xs</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:shadowColor">?attr/crtGlow</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">?attr/crtGlowM</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <!-- Botón compacto (cabeceras, filas de opciones) -->
+    <style name="CrtButton.Small">
+        <item name="android:textSize">@dimen/crt_text_label</item>
+        <item name="android:minHeight">@dimen/crt_touch_compact</item>
+        <item name="android:paddingStart">@dimen/crt_space_m</item>
+        <item name="android:paddingEnd">@dimen/crt_space_m</item>
+    </style>
+
+    <!-- Acción principal: barra de fósforo encendida con tinta oscura -->
+    <style name="CrtButton.Primary">
+        <item name="android:background">@drawable/bg_crt_button_primary</item>
+        <item name="android:textColor">@color/crt_text_on_hot</item>
+        <item name="android:shadowColor">@android:color/transparent</item>
+        <item name="android:shadowRadius">0</item>
+    </style>
+
+    <!-- Acción destructiva (STOP, SHUTDOWN, borrar) -->
+    <style name="CrtButton.Alert">
+        <item name="android:background">@drawable/bg_crt_button_alert</item>
+        <item name="android:textColor">@color/crt_text_alert</item>
+        <item name="android:shadowColor">?attr/crtGlowAlert</item>
+    </style>
+
+    <!-- Acción con aviso (restaurar valores) -->
+    <style name="CrtButton.Warn">
+        <item name="android:background">@drawable/bg_crt_button_warn</item>
+        <item name="android:textColor">@color/crt_text_warn</item>
+        <item name="android:shadowColor">?attr/crtGlowWarn</item>
+    </style>
+
+    <!-- Interruptor: encendido con isSelected -->
+    <style name="CrtButton.Toggle">
+        <item name="android:background">@drawable/bg_crt_toggle</item>
+        <item name="android:textColor">@color/crt_text_toggle</item>
+        <item name="android:textSize">@dimen/crt_text_label</item>
+        <item name="android:minHeight">@dimen/crt_touch_compact</item>
+        <item name="android:paddingStart">@dimen/crt_space_s</item>
+        <item name="android:paddingEnd">@dimen/crt_space_s</item>
+        <item name="android:shadowRadius">0</item>
+    </style>
+
+    <!-- ============================== Controles ============================== -->
+
+    <style name="CrtSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/bg_crt_spinner</item>
+        <item name="android:popupBackground">@drawable/bg_crt_popup</item>
+        <item name="android:dropDownVerticalOffset">@dimen/crt_space_xs</item>
+        <item name="android:popupElevation">6dp</item>
+        <item name="android:minHeight">@dimen/crt_touch</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+    </style>
+
+    <!-- Slider de parámetros: pista fina y un bloque de cursor como mando -->
+    <style name="CrtSlider" parent="Widget.Material3.Slider">
+        <item name="thumbColor">?attr/crtHot</item>
+        <item name="thumbWidth">6dp</item>
+        <item name="thumbHeight">22dp</item>
+        <item name="thumbElevation">0dp</item>
+        <item name="thumbTrackGapSize">3dp</item>
+        <item name="trackColorActive">?attr/crtPhosphor</item>
+        <item name="trackColorInactive">?attr/crtFaint</item>
+        <item name="trackHeight">4dp</item>
+        <item name="trackInsideCornerSize">0dp</item>
+        <item name="trackStopIndicatorSize">0dp</item>
+        <item name="tickVisible">false</item>
+        <item name="haloColor">?attr/crtGhost</item>
+        <item name="haloRadius">12dp</item>
+        <item name="labelBehavior">gone</item>
+    </style>
+
+    <style name="CrtEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/bg_crt_edittext</item>
+        <item name="android:fontFamily">@font/crt_font</item>
+        <item name="android:textSize">@dimen/crt_text_body</item>
+        <item name="android:textColor">?attr/crtPhosphor</item>
+        <item name="android:textColorHint">?attr/crtFaint</item>
+        <item name="android:textCursorDrawable">@drawable/crt_cursor</item>
+        <item name="android:shadowColor">?attr/crtGlow</item>
+        <item name="android:shadowRadius">?attr/crtGlowS</item>
+        <item name="android:minHeight">@dimen/crt_touch</item>
+    </style>
+
+    <!-- ============================== Diálogos ============================== -->
+
+    <style name="CrtAlertDialog" parent="Theme.Material3.Dark.Dialog.Alert">
+        <!-- Un Builder con un contexto ya envuelto en este tema vuelve a resolver alertDialogTheme: que se resuelva a sí mismo -->
+        <item name="alertDialogTheme">@style/CrtAlertDialog</item>
+        <item name="android:alertDialogTheme">@style/CrtAlertDialog</item>
+        <item name="android:windowBackground">@drawable/bg_crt_dialog</item>
+        <item name="android:backgroundDimAmount">0.65</item>
+        <item name="colorPrimary">?attr/crtPhosphor</item>
+        <item name="colorAccent">?attr/crtPhosphor</item>
+        <item name="colorSurface">?attr/crtPanelSolid</item>
+        <item name="colorOnSurface">?attr/crtPhosphor</item>
+        <item name="colorControlNormal">?attr/crtDim</item>
+        <item name="colorControlActivated">?attr/crtPhosphor</item>
+        <item name="colorControlHighlight">?attr/crtGhostStrong</item>
+        <item name="android:textColorPrimary">?attr/crtPhosphor</item>
+        <item name="android:textColorSecondary">?attr/crtDim</item>
+        <item name="android:textColorHint">?attr/crtFaint</item>
+        <item name="android:textColorHighlight">?attr/crtGhostStrong</item>
+        <item name="android:fontFamily">@font/crt_font</item>
+        <item name="fontFamily">@font/crt_font</item>
+        <item name="android:windowTitleStyle">@style/CrtDialogTitle</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/CrtDialogTitle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/CrtDialogBody</item>
+        <item name="buttonBarPositiveButtonStyle">@style/CrtDialogButton</item>
+        <item name="buttonBarNeutralButtonStyle">@style/CrtDialogButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/CrtDialogButton.Negative</item>
+        <item name="sliderStyle">@style/CrtSlider</item>
+        <item name="android:editTextStyle">@style/CrtEditText</item>
+        <item name="editTextStyle">@style/CrtEditText</item>
+        <item name="android:textCursorDrawable">@drawable/crt_cursor</item>
+    </style>
+
+    <style name="CrtDialogTitle" parent="CrtText.Title">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="CrtDialogBody" parent="CrtText">
+        <item name="android:textColor">?attr/crtDim</item>
+        <item name="android:shadowColor">?attr/crtGlowDim</item>
+        <item name="android:shadowRadius">?attr/crtGlowS</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="CrtDialogButton" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:background">@drawable/bg_crt_button_flat</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textColor">?attr/crtHot</item>
+        <item name="android:fontFamily">@font/crt_font</item>
+        <item name="fontFamily">@font/crt_font</item>
+        <item name="android:textSize">@dimen/crt_text_body</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:minHeight">@dimen/crt_touch</item>
+        <item name="android:paddingStart">@dimen/crt_space_l</item>
+        <item name="android:paddingEnd">@dimen/crt_space_l</item>
+        <item name="android:shadowColor">?attr/crtGlowHot</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">?attr/crtGlowM</item>
+    </style>
+
+    <style name="CrtDialogButton.Negative">
+        <item name="android:textColor">?attr/crtDim</item>
+        <item name="android:shadowColor">?attr/crtGlowDim</item>
+    </style>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Campo de texto: solo una línea de fósforo debajo, como un prompt; se enciende al escribir -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="?attr/crtPhosphor0F" />
+                    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp" />
+                </shape>
+            </item>
+            <item android:gravity="bottom" android:height="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="?attr/crtHot" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="?attr/crtPhosphor0A" />
+                    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp" />
+                </shape>
+            </item>
+            <item android:gravity="bottom" android:height="@dimen/crt_stroke">
+                <shape android:shape="rectangle">
+                    <solid android:color="?attr/crtDim" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

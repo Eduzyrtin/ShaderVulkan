@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Primer plano del icono: el prompt ">_" en fósforo (crtPhosphor #C6F28E con núcleo crtHot #EEFC9C), como la línea de comandos de la
+    interfaz. El halo son tres pasadas del mismo trazo, cada vez más ancho y más transparente. Todo vive dentro de la zona segura
+    de 66 dp, así que ninguna máscara del launcher lo recorta. Las líneas de barrido cortan el brillo, como en el tubo.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group android:pivotX="54" android:pivotY="54" android:scaleX="1.12" android:scaleY="1.12" android:translateX="1.5">
+
+    <!-- Halo -->
+    <path android:pathData="M34,35L53,54L34,73" android:strokeColor="#1AC6F28E" android:strokeWidth="22" android:strokeLineJoin="round" android:strokeLineCap="round" />
+    <path android:pathData="M34,35L53,54L34,73" android:strokeColor="#2EC6F28E" android:strokeWidth="17" android:strokeLineJoin="round" android:strokeLineCap="round" />
+    <path android:pathData="M34,35L53,54L34,73" android:strokeColor="#4DC6F28E" android:strokeWidth="12.5" android:strokeLineJoin="round" android:strokeLineCap="round" />
+    <path android:pathData="M52,63h28v16h-28z" android:fillColor="#1AC6F28E" android:strokeColor="#1AC6F28E" android:strokeWidth="8" android:strokeLineJoin="round" />
+    <path android:pathData="M54,65h24v12h-24z" android:fillColor="#2EC6F28E" android:strokeColor="#2EC6F28E" android:strokeWidth="5" android:strokeLineJoin="round" />
+
+    <!-- Chevrón y cursor -->
+    <path android:pathData="M34,35L53,54L34,73" android:strokeColor="#FFC6F28E" android:strokeWidth="9" android:strokeLineJoin="miter" android:strokeMiterLimit="4" />
+    <path android:pathData="M34,35L53,54L34,73" android:strokeColor="#FFEEFC9C" android:strokeWidth="3.6" android:strokeLineJoin="miter" android:strokeMiterLimit="4" />
+    <path android:pathData="M56,67h20v8h-20z" android:fillColor="#FFC6F28E" />
+    <path android:pathData="M58,69h16v4h-16z" android:fillColor="#FFEEFC9C" />
+
+    </group>
+
+    <!-- Líneas de barrido sobre el brillo -->
+    <path
+        android:fillColor="#4D0B1008"
+        android:pathData="M24,30h64v1h-64z M24,33h64v1h-64z M24,36h64v1h-64z M24,39h64v1h-64z M24,42h64v1h-64z M24,45h64v1h-64z M24,48h64v1h-64z M24,51h64v1h-64z M24,54h64v1h-64z M24,57h64v1h-64z M24,60h64v1h-64z M24,63h64v1h-64z M24,66h64v1h-64z M24,69h64v1h-64z M24,72h64v1h-64z M24,75h64v1h-64z M24,78h64v1h-64z "/>
+
+</vector>

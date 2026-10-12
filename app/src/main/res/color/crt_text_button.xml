@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texto de botón normal: fósforo; apagado si está desactivado -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false" android:color="?attr/crtFaint" />
+    <item android:state_focused="true" android:color="?attr/crtHot" />
+    <item android:color="?attr/crtPhosphor" />
+</selector>

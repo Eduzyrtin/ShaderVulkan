@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Los colores de la interfaz CRT ya no son recursos @color: viven en atributos del tema (?attr/crtPhosphor, crtHot...) cuyo valor
+    pone la paleta elegida en Ajustes. Ver attrs de crt_palettes.xml (generado por tools/gen-crt-palettes.ps1) y PROYECTO.md, T60.
+    El fondo del icono del launcher (drawable/ic_launcher_background.xml) es un recurso fijo y no sigue a la paleta.
+-->
+<resources>
+</resources>

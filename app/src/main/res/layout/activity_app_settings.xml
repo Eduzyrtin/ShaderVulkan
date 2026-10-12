@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ajustes de la app en vertical: apariencia (tono, atajos, vista previa, glow) y comportamiento -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_settings_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/crt_background"
+    android:foreground="@drawable/bmp_scanlines"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_crt_header"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/crt_space_m">
+
+        <TextView
+            style="@style/CrtText.Display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/settings_title" />
+
+        <TextView
+            style="@style/CrtText.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_subtitle" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/crt_space_s">
+
+            <TextView
+                style="@style/CrtText.Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/crt_space_l"
+                android:text="@string/section_display" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/crt_space_s"
+                android:background="@drawable/bg_crt_panel"
+                android:orientation="vertical"
+                android:padding="@dimen/crt_space_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/CrtText.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_tone" />
+
+                    <TextView
+                        android:id="@+id/txt_tone_name"
+                        style="@style/CrtText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/crt_space_m"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:shadowColor="?attr/crtGlowHot"
+                        android:singleLine="true"
+                        android:textColor="?attr/crtHot" />
+                </LinearLayout>
+
+                <com.sanabria.shadervulkan.ui.HueSlider
+                    android:id="@+id/hue_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/crt_space_xs" />
+
+                <LinearLayout
+                    android:id="@+id/presets_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/crt_space_xs"
+                    android:orientation="vertical" />
+
+                <TextView
+                    style="@style/CrtText.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/crt_space_s"
+                    android:text="@string/tone_hint" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/preview_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/crt_space_m" />
+
+            <LinearLayout
+                android:id="@+id/look_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/crt_space_m"
+                android:background="@drawable/bg_crt_panel"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/crt_space_m"
+                android:paddingTop="@dimen/crt_space_xs"
+                android:paddingEnd="@dimen/crt_space_m"
+                android:paddingBottom="@dimen/crt_space_xs">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/crt_space_s"
+                    android:paddingBottom="@dimen/crt_space_s">
+
+                    <TextView
+                        style="@style/CrtText.Label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_glow" />
+
+                    <Button
+                        android:id="@+id/btn_glow_off"
+                        style="@style/CrtButton.Toggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="64dp"
+                        android:text="@string/glow_off" />
+
+                    <Button
+                        android:id="@+id/btn_glow_soft"
+                        style="@style/CrtButton.Toggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/crt_space_xs"
+                        android:minWidth="64dp"
+                        android:text="@string/glow_soft" />
+
+                    <Button
+                        android:id="@+id/btn_glow_strong"
+                        style="@style/CrtButton.Toggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/crt_space_xs"
+                        android:minWidth="64dp"
+                        android:text="@string/glow_strong" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/CrtText.Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/crt_space_l"
+                android:text="@string/section_behaviour" />
+
+            <LinearLayout
+                android:id="@+id/behaviour_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/crt_space_s"
+                android:background="@drawable/bg_crt_panel"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/crt_space_m"
+                android:paddingTop="@dimen/crt_space_xs"
+                android:paddingEnd="@dimen/crt_space_m"
+                android:paddingBottom="@dimen/crt_space_xs" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_close_app_settings"
+        style="@style/CrtButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/crt_space_m"
+        android:text="@string/btn_return" />
+
+</LinearLayout>

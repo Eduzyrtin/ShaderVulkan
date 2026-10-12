@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fila de la lista de apps automáticas (T62), creada por código -->
+    <item name="app_row_icon" type="id" />
+    <item name="app_row_label" type="id" />
+    <item name="app_row_summary" type="id" />
+    <!-- Controlador de la marquesina (ui/AutoScroll.kt) guardado como tag de la vista -->
+    <item name="auto_scroll_controller" type="id" />
+</resources>

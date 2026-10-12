@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla principal en horizontal: cabecera compacta, lista de presets a la izquierda y panel de control a la derecha -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/crt_background"
+    android:foreground="@drawable/bmp_scanlines">
+
+    <!-- Cabecera: título y subtítulo en la misma línea para ahorrar alto -->
+    <LinearLayout
+        android:id="@+id/header_bg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_crt_header"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/crt_gutter"
+        android:paddingTop="@dimen/crt_space_s"
+        android:paddingEnd="@dimen/crt_gutter"
+        android:paddingBottom="@dimen/crt_space_s"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_title"
+                style="@style/CrtText.Display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/main_title" />
+
+            <TextView
+                android:id="@+id/txt_subtitle"
+                style="@style/CrtText.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_m"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/main_subtitle" />
+
+            <TextView
+                android:id="@+id/txt_active_shader"
+                style="@style/CrtText.Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_m"
+                android:ellipsize="end"
+                android:maxWidth="240dp"
+                android:singleLine="true"
+                android:text="@string/active_module_none" />
+
+            <Button
+                android:id="@+id/btn_combine"
+                style="@style/CrtButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_m"
+                android:text="@string/btn_combine" />
+
+            <Button
+                android:id="@+id/btn_refresh_list"
+                style="@style/CrtButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_m"
+                android:text="@string/btn_rescan" />
+
+            <Button
+                android:id="@+id/btn_select_folder"
+                style="@style/CrtButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_s"
+                android:text="@string/btn_folder" />
+
+            <!-- En horizontal el panel de control no tiene alto para una segunda fila de botones: Ajustes va en la cabecera -->
+            <Button
+                android:id="@+id/btn_app_settings"
+                style="@style/CrtButton.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_s"
+                android:text="@string/btn_settings" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Izquierda: lista de presets -->
+    <LinearLayout
+        android:id="@+id/list_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/crt_gutter"
+        android:paddingTop="@dimen/crt_space_s"
+        android:paddingEnd="@dimen/crt_gutter"
+        android:paddingBottom="@dimen/crt_space_xs"
+        app:layout_constraintEnd_toStartOf="@id/card_controls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_bg">
+
+        <TextView
+            style="@style/CrtText.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_presets" />
+
+        <TextView
+            android:id="@+id/txt_list_path"
+            style="@style/CrtText.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/crt_space_m"
+            android:layout_weight="1"
+            android:ellipsize="start"
+            android:gravity="end"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_shaders_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/crt_space_xs"
+        android:paddingBottom="@dimen/crt_gutter"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card_controls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_header" />
+
+    <!-- Derecha: panel de control -->
+    <LinearLayout
+        android:id="@+id/card_controls"
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/crt_space_s"
+        android:layout_marginEnd="@dimen/crt_gutter"
+        android:layout_marginBottom="@dimen/crt_space_s"
+        android:background="@drawable/bg_crt_panel"
+        android:orientation="vertical"
+        android:padding="@dimen/crt_space_m"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_bg">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbarStyle="outsideOverlay">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/CrtText.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_content_res" />
+
+                <Spinner
+                    android:id="@+id/spinner_res_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" />
+
+                <!-- Segunda lista de CONTENT RES: solo cuando el modo es CONSOLE -->
+                <LinearLayout
+                    android:id="@+id/row_console"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/CrtText.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/crt_space_s"
+                        android:text="@string/label_console" />
+
+                    <Spinner
+                        android:id="@+id/spinner_console"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/CrtText.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/crt_space_s"
+                    android:text="@string/label_shader_zone" />
+
+                <Spinner
+                    android:id="@+id/spinner_aspect_ratio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" />
+
+                <TextView
+                    android:id="@+id/txt_grid_info"
+                    style="@style/CrtText.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/crt_space_xs" />
+
+                <!-- Modo de funcionamiento: Captura (el oficial) o Glass (compatibilidad, sin captura) -->
+                <TextView
+                    style="@style/CrtText.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/crt_space_s"
+                    android:text="@string/label_mode" />
+
+                <Spinner
+                    android:id="@+id/spinner_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" />
+
+                <TextView
+                    android:id="@+id/txt_mode_hint"
+                    style="@style/CrtText.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/crt_space_xs"
+                    android:text="@string/mode_glass_hint"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/crt_space_s"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_shader_settings"
+                style="@style/CrtButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_parameters" />
+
+            <Button
+                android:id="@+id/btn_toggle_shader"
+                style="@style/CrtButton.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_s"
+                android:layout_weight="1.2"
+                android:text="@string/btn_run_system" />
+
+            <Button
+                android:id="@+id/btn_close_system"
+                style="@style/CrtButton.Alert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_s"
+                android:layout_weight="1"
+                android:text="@string/btn_close_system"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Grano de fósforo animado por encima de todo (MainActivity.setupCrtOverlay) -->
+    <View
+        android:id="@+id/crt_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

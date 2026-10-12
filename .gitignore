@@ -1,0 +1,49 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/src/main/assets/shaders/crt/
+/app/src/main/assets/shaders/handheld/
+/app/src/main/resources/masters/
+
+# IDE, cachés y restos de herramientas (no son del proyecto)
+/.idea/
+/.kotlin/
+/.artifacts/
+/app/cache/
+/lint-baseline.xml
+
+# SPIRV-Cross: pruebas y herramientas de su repositorio original; el motor solo compila sus fuentes (CMake con tests y CLI apagados)
+/app/src/main/cpp/third_party/SPIRV-Cross/reference/
+/app/src/main/cpp/third_party/SPIRV-Cross/shaders*/
+/app/src/main/cpp/third_party/SPIRV-Cross/tests-other/
+/app/src/main/cpp/third_party/SPIRV-Cross/samples/
+/app/src/main/cpp/third_party/SPIRV-Cross/.github/
+/app/src/main/cpp/third_party/SPIRV-Cross/gn/
+/app/src/main/cpp/third_party/SPIRV-Cross/test_shaders.*
+/app/src/main/cpp/third_party/SPIRV-Cross/update_test_shaders.sh
+/app/src/main/cpp/third_party/SPIRV-Cross/build_glslang_spirv_tools.sh
+/app/src/main/cpp/third_party/SPIRV-Cross/checkout_glslang_spirv_tools.sh
+/app/src/main/cpp/third_party/SPIRV-Cross/format_all.sh
+/app/src/main/cpp/third_party/SPIRV-Cross/Makefile
+/app/src/main/cpp/third_party/SPIRV-Cross/appveyor.yml
+/app/src/main/cpp/third_party/SPIRV-Cross/Package.swift
+
+# Documentación interna (hoja de ruta, análisis de licencia y monetización, textos de promoción): solo en local, no se publica
+/app/src/main/cache/
+
+# T95: claves de firma (nunca al repositorio)
+keystore.properties
+*.jks
+*.keystore

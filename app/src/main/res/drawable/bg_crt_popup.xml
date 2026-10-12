@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lista desplegable de los selectores: tubo opaco con filo de fósforo -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/crtPanelSolid" />
+            <corners android:radius="@dimen/crt_corner" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <stroke android:width="@dimen/crt_stroke" android:color="?attr/crtDim" />
+            <corners android:radius="@dimen/crt_corner" />
+            <padding android:top="@dimen/crt_space_xs" android:bottom="@dimen/crt_space_xs" />
+        </shape>
+    </item>
+</layer-list>

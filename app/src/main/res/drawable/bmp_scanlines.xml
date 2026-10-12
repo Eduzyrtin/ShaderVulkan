@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Scanlines: una línea oscura cada 4 píxeles físicos. Suaves, como en la referencia: se notan sin ensuciar el texto. -->
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/crt_scanline_tile"
+    android:alpha="0.7"
+    android:tileModeX="repeat"
+    android:tileModeY="repeat"
+    android:antialias="false"
+    android:filter="false" />

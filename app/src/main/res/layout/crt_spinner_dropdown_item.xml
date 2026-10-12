@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Opción de la lista desplegable de los selectores -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="@style/CrtText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_crt_dropdown_item"
+    android:gravity="center_vertical"
+    android:maxLines="2"
+    android:minHeight="@dimen/crt_touch"
+    android:paddingStart="@dimen/crt_space_l"
+    android:paddingTop="@dimen/crt_space_s"
+    android:paddingEnd="@dimen/crt_space_l"
+    android:paddingBottom="@dimen/crt_space_s" />

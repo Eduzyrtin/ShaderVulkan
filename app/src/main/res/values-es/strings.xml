@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Castellano. Mayúsculas sin tildes (la fuente VGA no tiene todas las acentuadas). -->
+<resources>
+    <string name="accessibility_service_description">Servicio de accesibilidad que dibuja el overlay de shaders CRT sin bloquear la interacción táctil.</string>
+
+    <!-- Pantalla principal -->
+    <string name="main_subtitle">Motor CRT en tiempo real</string>
+    <string name="none">NINGUNO</string>
+    <string name="label_presets">PRESETS</string>
+    <string name="label_content_res">RES. CONTENIDO</string>
+    <string name="label_shader_zone">ZONA SHADER</string>
+    <string name="label_mode">MODO</string>
+    <string name="label_console">SISTEMA</string>
+    <string name="btn_rescan">REBUSCAR</string>
+    <string name="btn_folder">CARPETA</string>
+    <string name="btn_settings">AJUSTES</string>
+    <string name="btn_parameters">PARAMETROS</string>
+    <string name="btn_run_system">INICIAR</string>
+    <string name="btn_pause_system">PAUSAR</string>
+    <string name="btn_resume_system">REANUDAR</string>
+    <string name="btn_close_system">CERRAR</string>
+    <string name="list_external_folder">Carpeta externa</string>
+    <string name="list_external_folder_note">Explorar archivos externos</string>
+    <string name="list_folder_up_note">Carpeta superior</string>
+    <string name="list_folder_home_note">Volver a los presets internos</string>
+    <string name="list_info_up">Subir un nivel</string>
+    <string name="list_info_external_root">Carpeta de shaders elegida</string>
+    <string name="list_info_builtin">Preset interno · .slangp</string>
+    <string name="list_info_external">Preset externo · .slangp</string>
+    <string name="toast_folder_updated">Carpeta de shaders actualizada</string>
+    <string name="toast_list_refreshed">Lista refrescada</string>
+    <string name="toast_selected">Seleccionado: %1$s</string>
+    <string name="toast_capture_denied">Permiso de captura de pantalla denegado</string>
+    <string name="toast_notifications_needed">Se necesitan notificaciones para el servicio en primer plano</string>
+    <string name="toast_enable_accessibility">Activa \'ShaderVulkan Overlay Service\' en los ajustes de Accesibilidad</string>
+    <string name="toast_capture_failed">No se pudo iniciar la captura</string>
+
+    <!-- Resolución del contenido y zona -->
+    <string name="res_auto">Auto (pantalla nativa)</string>
+    <string name="res_scale">Escala (%1$d%%)</string>
+    <string name="res_custom">Personalizada (manual)</string>
+    <string name="res_console">Consola / sistema (lista)</string>
+    <string name="mode_capture">Captura</string>
+    <string name="mode_glass">Glass (compatibilidad + rendimiento)</string>
+    <string name="mode_glass_hint">Glass: capa transparente, sin captura de pantalla. Para apps que bloquean la captura (DRM) y dispositivos donde la captura falla. Funcionan mejor los presets de scanlines y máscaras. También es el modo de rendimiento: al no haber captura de por medio no se pierden fotogramas y el shader va al ritmo de refresco de la propia pantalla.</string>
+    <string name="toast_mode_glass">Modo Glass: capa sin captura de pantalla (compatible y sin pérdida de fotogramas)</string>
+    <string name="toast_mode_capture">Modo Captura</string>
+    <string name="toast_res_console">Consola: %1$s</string>
+    <string name="grid_info_glass_auto">Glass: una línea virtual cada 4 px de pantalla (rejilla %1$dx%2$d en zona %3$dx%4$d)</string>
+    <string name="grid_info_auto">Shader a la resolución de la zona: %1$dx%2$d</string>
+    <string name="grid_info_fixed">Shader %1$dx%2$d en zona %3$dx%4$d · píxel %5$sx%6$s</string>
+    <string name="grid_info_adapted_suffix"> · rejilla adaptada</string>
+    <string name="grid_info_distorted">(!) píxel deformado</string>
+    <string name="aspect_full">Pantalla completa (sin zona)</string>
+    <string name="aspect_auto_resolution">Auto (según resolución)</string>
+    <string name="aspect_manual">Manual (zona dibujada)</string>
+    <string name="aspect_auto_detect">Auto (detectar bandas negras)</string>
+    <string name="toast_res_profile">Perfil: %1$s</string>
+    <string name="toast_zone">Zona: %1$s</string>
+    <string name="toast_scale">Escala %1$d%%: %2$dx%3$d</string>
+    <string name="toast_custom">Personalizada: %1$dx%2$d</string>
+    <string name="hint_width">ANCHO</string>
+    <string name="hint_height">ALTO</string>
+    <string name="btn_apply">APLICAR</string>
+    <string name="btn_set">FIJAR</string>
+    <string name="btn_cancel">CANCELAR</string>
+    <string name="btn_save">GUARDAR</string>
+    <string name="btn_export">EXPORTAR</string>
+    <string name="btn_delete">BORRAR</string>
+
+    <!-- Parámetros y perfiles del preset -->
+    <string name="label_profile">PERFIL</string>
+    <string name="label_parameters">PARAMETROS</string>
+    <string name="toast_loading_settings">Cargando ajustes...</string>
+    <string name="toast_profile_changed">Perfil cambiado a: %1$s</string>
+    <string name="toast_profile_saved">Perfil \'%1$s\' guardado (parámetros, resolución y aspecto)</string>
+    <string name="toast_profile_deleted">Perfil eliminado</string>
+    <string name="toast_default_undeletable">No se puede eliminar el perfil Default</string>
+    <string name="toast_no_params">Este shader no tiene parámetros o aún se está cargando</string>
+    <string name="toast_settings_reset">Ajustes restablecidos</string>
+    <string name="toast_error">Error: %1$s</string>
+    <string name="toast_export_only_external">Solo se pueden exportar presets de la carpeta externa de shaders</string>
+    <string name="toast_export_no_folder">No se encontró la carpeta del preset original</string>
+    <string name="toast_export_create_failed">Error al crear el archivo</string>
+    <string name="toast_export_done">Exportado junto al original: %1$s (refresca la lista)</string>
+    <string name="hint_profile_name">Nombre del perfil</string>
+    <string name="hint_export_name">Nombre del archivo (sin .slangp)</string>
+    <string name="dialog_save_profile_message">Se guardan los ajustes actuales (parámetros, resolución y aspecto). Si el nombre ya existe, se sobrescribe ese perfil.</string>
+    <string name="dialog_export_message">Se creará un preset que referencia al actual y aplica tus ajustes, en la misma carpeta que el original.</string>
+    <string name="dialog_delete_profile_message">¿Seguro que quieres eliminar el perfil \'%1$s\'?</string>
+
+    <!-- Menú flotante -->
+    <string name="menu_module_unknown">Desconocido</string>
+    <string name="menu_tab_params">PARAMS</string>
+    <string name="menu_tab_options">OPCIONES</string>
+    <string name="menu_sec_shader">SHADER</string>
+    <string name="menu_sec_session">SESION</string>
+    <string name="menu_sec_zone">ZONA</string>
+    <string name="btn_pause">&gt;&gt; PAUSAR</string>
+    <string name="btn_resume">&gt;&gt; REANUDAR</string>
+    <string name="btn_shader_pick">SHADER: %1$s</string>
+    <string name="dialog_pick_shader_title">ELEGIR SHADER</string>
+    <string name="btn_close_confirm">CERRAR: ¿SEGURO?</string>
+    <string name="btn_zone_edit">EDITAR ZONA SHADER</string>
+    <string name="label_bars">BARRAS</string>
+    <string name="label_detect">DETECTAR</string>
+    <string name="btn_auto">AUTO</string>
+    <string name="side_left">IZQ</string>
+    <string name="side_right">DER</string>
+    <string name="side_top">ARR</string>
+    <string name="side_bottom">ABA</string>
+    <string name="toast_bars_no_zone">BARRAS: no hay zona (elige un aspecto o edita la zona del shader)</string>
+    <string name="toast_detect_hint">DETECTAR: pulsa AUTO para activar la detección</string>
+    <string name="hint_name">NOMBRE...</string>
+
+    <!-- Editor de la zona del shader -->
+    <string name="zone_hint_landscape">ZONA HORIZONTAL · arrastra esquinas, bordes o el interior</string>
+    <string name="zone_hint_portrait">ZONA VERTICAL · arrastra esquinas, bordes o el interior</string>
+    <string name="btn_full">TODO</string>
+    <string name="btn_ok">OK</string>
+    <string name="zone_lock_on">BLOQ. SI</string>
+    <string name="zone_lock_off">BLOQ. NO</string>
+    <string name="zone_grid_adapted">REJILLA: ADAPTADA (el píxel conserva su forma)</string>
+    <string name="zone_grid_fixed">REJILLA: FIJA (la de la resolución)</string>
+    <string name="zone_size_locked">%1$dx%2$d  ·  bloq.</string>
+    <string name="zone_inner_adapted">shader %1$dx%2$d (adaptada)</string>
+    <string name="zone_inner_fixed">shader %1$dx%2$d</string>
+    <string name="zone_inner_auto">shader %1$dx%2$d (auto)</string>
+    <string name="zone_distorted">(!) píxel deformado</string>
+    <string name="mode_glass_short">Glass</string>
+    <string name="settings_toggle_closed">[+] AJUSTES</string>
+    <string name="settings_toggle_open">[-] AJUSTES</string>
+    <string name="btn_dual_off">DUAL: NO</string>
+    <string name="btn_dual_on">DUAL: SI</string>
+    <string name="btn_dual_black">FONDO NEGRO</string>
+    <string name="label_screens">PANTALLAS</string>
+    <string name="screens_single_hint">Solo hay una pantalla.</string>
+    <string name="label_app">APP</string>
+    <string name="label_app_profiles">PERFILES POR APP</string>
+    <string name="app_profiles_description">Al abrir una app con perfil, el shader se pone solo: Glass directo, Captura pidiendo compartir pantalla. Al salir pregunta si pausar o cerrar.</string>
+    <string name="btn_app_profiles">APPS AUTOMATICAS</string>
+    <string name="apps_title">APPS AUTOMATICAS</string>
+    <string name="apps_subtitle">Qué hace el shader en cada app. Guarda lo que ves ahora con GUARDAR APP en el menú flotante.</string>
+    <string name="apps_loading">Buscando apps…</string>
+    <string name="apps_none">No se encontraron apps</string>
+    <string name="apps_no_profile">sin perfil</string>
+    <string name="apps_mode_capture">CAPTURA</string>
+    <string name="apps_mode_glass">GLASS</string>
+    <string name="apps_mode_off">SIN SHADER</string>
+    <string name="apps_pick_shader">SHADER: %1$s</string>
+    <string name="apps_pick_profile">AJUSTES: %1$s</string>
+    <string name="apps_profile_active">perfil activo del shader</string>
+    <string name="apps_profile_title">Ajustes del shader</string>
+    <string name="apps_hint_none">Elige qué hace el shader en esta app.</string>
+    <string name="apps_hint_capture">Al abrir la app pide compartir pantalla y pone el shader encima.</string>
+    <string name="apps_hint_glass">Al abrir la app pone el shader encima, sin pedir nada. Sirve para apps con DRM. Además evita el retardo de la captura: no se pierden fotogramas.</string>
+    <string name="apps_hint_off">Mientras esta app esté delante, el shader se oculta.</string>
+    <string name="label_app_front">Delante: %1$s</string>
+    <string name="btn_app_save">GUARDAR APP</string>
+    <string name="btn_app_update">ACTUALIZAR APP</string>
+    <string name="btn_app_remove">QUITAR</string>
+    <string name="toast_app_none">No sé qué app está delante</string>
+    <string name="toast_app_no_shader">Elige un shader primero</string>
+    <string name="toast_app_saved">OK: %1$s guardada (%2$s, %3$s). Se activará sola al abrirla.</string>
+    <string name="toast_app_updated">OK: %1$s actualizada (%2$s, %3$s)</string>
+    <string name="toast_app_removed">OK: %1$s ya no activa el shader sola</string>
+    <string name="exit_dialog_title">Saliste de la app</string>
+    <string name="exit_dialog_message">El shader de %1$s sigue activo. ¿Qué hago con él?</string>
+    <string name="btn_exit_pause">PAUSAR</string>
+    <string name="btn_exit_close">CERRAR</string>
+    <string name="btn_exit_keep">SEGUIR</string>
+    <string name="notif_channel_app_hint">Aviso de perfil por app</string>
+    <string name="notif_app_hint_title">Activar el shader en %1$s</string>
+    <string name="notif_app_hint_text">Toca para activarlo</string>
+    <string name="zone_screen_top">EDITANDO: ARRIBA (ir a ABAJO)</string>
+    <string name="zone_screen_bottom">EDITANDO: ABAJO (ir a ARRIBA)</string>
+    <string name="screen_top">ARRIBA</string>
+    <string name="screen_bottom">ABAJO</string>
+    <string name="screen_both">LAS DOS</string>
+    <string name="toast_screens_glass">La segunda pantalla solo funciona en modo Glass: la captura no llega a ella.</string>
+    <string name="zone_add_b">+ ZONA B</string>
+    <string name="zone_remove_b">QUITAR B</string>
+    <string name="zone_equalize">IGUALAR</string>
+    <string name="zone_fine">FINO</string>
+    <string name="zone_fine_move">MOVER</string>
+    <string name="zone_fine_size">TAM</string>
+    <string name="zone_pos">en %1$d,%2$d</string>
+    <string name="zone_equalize_no_fit">B no cabe con el tamaño de A</string>
+    <string name="zone_hint_dual">TOCA A O B PARA ELEGIR · EL BLOQUEO ACTUA SOBRE LA ELEGIDA</string>
+
+    <!-- Notificación de la sesión -->
+    <string name="notif_channel_status">Estado de la captura</string>
+    <string name="notif_channel_status_description">Muestra si el shader está activo o en pausa, con los botones para detenerlo y cerrarlo.</string>
+    <string name="notif_channel_alert">Captura interrumpida</string>
+    <string name="notif_channel_alert_description">Avisa una vez cuando Android corta la captura (por ejemplo al bloquear la pantalla).</string>
+    <string name="notif_active_title">ShaderVulkan activo</string>
+    <string name="notif_active_text">El shader se está aplicando a la pantalla.</string>
+    <string name="notif_paused_title">ShaderVulkan en pausa</string>
+    <string name="notif_paused_text">La pantalla se ve sin procesar. Reanudar es instantáneo.</string>
+    <string name="notif_glass_active_title">ShaderVulkan Glass activo</string>
+    <string name="notif_glass_active_text">Capa encima de la pantalla, sin captura.</string>
+    <string name="notif_glass_paused_title">ShaderVulkan Glass en pausa</string>
+    <string name="notif_glass_paused_text">La capa está oculta. Reanudar es instantáneo.</string>
+    <string name="notif_interrupted_title">Captura interrumpida</string>
+    <string name="notif_interrupted_text">Android cortó la captura. Toca para dar el permiso otra vez y volver al shader.</string>
+    <string name="notif_action_pause">PAUSAR</string>
+    <string name="notif_action_resume">REANUDAR</string>
+    <string name="notif_action_close">CERRAR</string>
+
+    <!-- Ajustes de la app -->
+    <string name="settings_subtitle">Apariencia y comportamiento de la app</string>
+    <string name="section_display">PANTALLA</string>
+    <string name="section_behaviour">COMPORTAMIENTO</string>
+    <string name="label_tone">TONO</string>
+    <string name="label_glow">BRILLO</string>
+    <string name="label_grain">GRANO</string>
+    <string name="label_auto_pause">PAUSA AUTO</string>
+    <string name="label_floating_button">BOTON FLOTANTE</string>
+    <string name="tone_custom">PERSONALIZADO</string>
+    <string name="tone_hint">Desliza el tono o elige un atajo. La app se repinta al soltar.</string>
+    <string name="hue_slider_description">Tono de color de la interfaz</string>
+    <string name="glow_off">NO</string>
+    <string name="glow_soft">SUAVE</string>
+    <string name="glow_strong">FUERTE</string>
+    <string name="state_on">SI</string>
+    <string name="state_off">NO</string>
+    <string name="grain_description">Grano de fósforo que tiembla en las pantallas de la app. Apagado ahorra batería.</string>
+    <string name="auto_pause_description">Oculta el shader mientras la barra de estado o las notificaciones están desplegadas.</string>
+    <string name="floating_button_description">El punto sobre la pantalla que abre el menú. Sin él no se puede abrir el menú: quedan la notificación y esta app.</string>
+    <string name="btn_return">VOLVER</string>
+    <string name="label_language">IDIOMA</string>
+    <string name="language_system">SISTEMA</string>
+    <string name="language_description">Idioma de la app. SISTEMA sigue el idioma del mÃ³vil.</string>
+    <string name="cd_save_profile">Guardar perfil</string>
+    <string name="cd_export_preset">Exportar preset</string>
+    <string name="cd_delete_profile">Eliminar perfil</string>
+
+    <!-- Atajos de color -->
+    <string name="preset_classic">CLASICO</string>
+    <string name="preset_amber">AMBAR</string>
+    <string name="preset_red">ROJO</string>
+    <string name="preset_magenta">MAGENTA</string>
+    <string name="preset_ice">HIELO</string>
+    <string name="preset_cyan">CIAN</string>
+    <string name="preset_neutral">NEUTRO</string>
+
+    <!-- T18 (preset propio de la zona B), T60 (perfil por defecto, renombrar perfiles) -->
+    <string name="label_edit_zone">EDITANDO</string>
+    <string name="btn_shader_pick_b">SHADER B: %1$s</string>
+    <string name="shader_same_as_a">igual que A</string>
+    <string name="btn_zone_b_same">IGUAL QUE A</string>
+    <string name="zone_tag_b"> [ZONA B]</string>
+    <string name="label_app_default">DEFECTO</string>
+    <string name="btn_app_default_save">GUARDAR DEFECTO</string>
+    <string name="btn_app_default_update">ACTUALIZAR DEFECTO</string>
+    <string name="apps_default_label">Todas las demás apps</string>
+    <string name="toast_app_default_removed">OK: se quitó el perfil por defecto</string>
+    <string name="btn_rename">RENOMB.</string>
+    <string name="toast_profile_renamed">Perfil renombrado a: %1$s</string>
+    <string name="toast_profile_exists">Ya existe un perfil llamado \'%1$s\'</string>
+    <string name="toast_default_unrenamable">No se puede renombrar el perfil Default</string>
+
+    <!-- T45 (combinar presets: añadir encima / debajo) -->
+    <string name="btn_combine">COMBINAR</string>
+    <string name="stack_help">La lista se ejecuta de arriba abajo: el primer shader procesa la captura y cada siguiente procesa el resultado del anterior. Los cambios se cargan al pulsar APLICAR.</string>
+    <string name="stack_empty">Todavía no hay ningún shader. Añade uno.</string>
+    <string name="btn_stack_above">AÑADIR ENCIMA</string>
+    <string name="btn_stack_below">AÑADIR DEBAJO</string>
+    <string name="btn_stack_apply">APLICAR</string>
+
+    <!-- T66 (contador de FPS, tope de FPS, botón flotante) -->
+    <string name="settings_sec_perf">&gt; RENDIMIENTO</string>
+    <string name="menu_sec_perf">RENDIMIENTO</string>
+    <string name="label_fps_counter">Contador de FPS</string>
+    <string name="fps_counter_description">Muestra los frames por segundo que llegan de la captura (IN) y los que se renderizan tras el shader (OUT).</string>
+    <string name="btn_fps_on">FPS: SÍ</string>
+    <string name="btn_fps_off">FPS: NO</string>
+    <string name="label_fps_corner">Esquina del contador</string>
+    <string name="fps_corner_tl">ARR-IZQ</string>
+    <string name="fps_corner_tr">ARR-DER</string>
+    <string name="fps_corner_bl">ABA-IZQ</string>
+    <string name="fps_corner_br">ABA-DER</string>
+    <string name="label_fps_size">Tamaño del contador</string>
+    <string name="size_small">PEQUEÑO</string>
+    <string name="size_medium">MEDIANO</string>
+    <string name="size_large">GRANDE</string>
+    <string name="label_fps_opacity">Opacidad del contador</string>
+    <string name="label_fps_detail">El contador muestra</string>
+    <string name="fps_detail_basic">IN / OUT</string>
+    <string name="fps_detail_full">+ MS / PERD.</string>
+    <string name="label_fps_interval">Refresco del contador</string>
+    <string name="label_fps_only_menu">Solo con el menú abierto</string>
+    <string name="fps_only_menu_description">El contador aparece únicamente mientras el menú flotante está abierto.</string>
+    <string name="label_fps_lost">Avisar de frames perdidos</string>
+    <string name="fps_lost_description">El contador se pone en rojo cuando la salida se queda muy por debajo de la entrada durante unos segundos.</string>
+    <string name="label_fps_cap">Tope de FPS de salida</string>
+    <string name="fps_cap_description">Descarta los frames de captura que llegan antes de tiempo, para ahorrar batería. No se aplica en modo Glass.</string>
+    <string name="fps_cap_none">SIN TOPE</string>
+    <string name="label_capture_scale">Captura reducida</string>
+    <string name="capture_scale_description">Con una resolución de consola, la pantalla se captura solo al tamaño que necesita el shader: menos trabajo para el sistema y la GPU. CALIDAD da 4 píxeles de captura por píxel retro (la misma imagen); RENDIMIENTO da 2 (bordes de los píxeles algo más suaves). COMPLETA captura siempre la pantalla entera.</string>
+    <string name="capture_scale_full">COMPLETA</string>
+    <string name="capture_scale_quality">CALIDAD</string>
+    <string name="capture_scale_performance">RENDIMIENTO</string>
+    <string name="label_fps_cap_menu">TOPE FPS</string>
+    <string name="label_button_size">Tamaño del botón flotante</string>
+    <string name="label_button_opacity">Opacidad del botón flotante</string>
+    <string name="label_fps_ui">Mostrar el refresco de pantalla (UI)</string>
+    <string name="fps_ui_description">Añade UI al contador: el refresco al que va realmente la pantalla, para compararlo con IN. Es el refresco del display, no los fotogramas de la app de debajo, que Android no expone.</string>
+
+    <!-- T70 (azulejo), T71 (modo batería), T72 (atajos) -->
+    <string name="tile_label">Shader</string>
+    <string name="tile_on">Activo</string>
+    <string name="tile_off">Apagado</string>
+    <string name="shortcut_last_short">Último shader</string>
+    <string name="shortcut_last_long">Activar el último shader</string>
+    <string name="shortcut_settings_short">Ajustes</string>
+    <string name="shortcut_settings_long">Ajustes de la app</string>
+    <string name="label_battery_mode">Modo batería</string>
+    <string name="battery_mode_description">Por debajo del nivel de batería elegido (y sin cargar) ahorra energía; vuelve a la normalidad al cargar o cuando la batería se recupera.</string>
+    <string name="label_battery_threshold">Nivel de batería</string>
+    <string name="label_battery_action">Qué hace el modo batería</string>
+    <string name="battery_action_reduce">REDUCIR</string>
+    <string name="battery_action_cap">30 FPS</string>
+    <string name="battery_action_pause">PAUSAR</string>
+    <string name="toast_battery_on">Modo batería activado: ahorrando energía</string>
+    <string name="toast_battery_off">Modo batería desactivado: vuelta a la normalidad</string>
+
+    <!-- T63 (guía integrada), T74 (favoritos) -->
+    <string name="guide_index_title">> GUIA</string>
+    <string name="guide_welcome_title">> BIENVENIDA</string>
+    <string name="guide_welcome_body">ShaderVulkan dibuja un shader retro (CRT, scanlines...) sobre cualquier app.\n\n1. Dos modos. CAPTURA procesa la imagen real; GLASS dibuja una capa sin capturar, funciona en apps protegidas y es el más ligero.\n\n2. Dos permisos. Accesibilidad, para dibujar encima dejando pasar los toques; y, en Captura, tu OK para compartir la pantalla. Nada sale del móvil.\n\n3. El punto flotante abre el menú. Lo demás está en la guía, en AJUSTES.</string>
+    <string name="guide_open">ABRIR GUIA</string>
+    <string name="btn_skip">SALTAR</string>
+    <string name="btn_accept">ACEPTAR</string>
+    <string name="btn_got_it">ENTENDIDO</string>
+    <string name="btn_guide">GUIA</string>
+    <string name="btn_welcome">BIENVENIDA</string>
+    <!-- Acerca de / licencias (T94) -->
+    <string name="btn_about">ACERCA DE</string>
+    <string name="btn_licenses">LICENCIAS</string>
+    <!-- Canales y Play (T95/T96) -->
+    <string name="btn_source_code">CODIGO FUENTE</string>
+    <string name="btn_support">APOYAR EL PROYECTO</string>
+    <string name="access_restricted_hint">Si el interruptor sale gris ("Ajuste restringido"), ve a Ajustes > Aplicaciones > ShaderVulkan, abre el menú de tres puntos y elige "Permitir ajustes restringidos". Luego vuelve y actívalo.</string>
+    <string name="about_title">> ACERCA DE</string>
+    <string name="licenses_title">> LICENCIAS</string>
+    <string name="about_body">ShaderVulkan %1$s\nCopyright (C) 2026 Eduardo Sanabria\n\nEste programa es software libre: puedes redistribuirlo y/o modificarlo según los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, versión 3 o (a tu elección) cualquier versión posterior.\n\nSe distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTIA; ni siquiera la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPOSITO PARTICULAR. El texto completo está en LICENCIAS.\n\nIncluye glslang y SPIRV-Cross (The Khronos Group y otros), AndroidX, Material Components y Kotlin, cada uno con su propia licencia (ver LICENCIAS).\n\nLos shaders que cargas (.slang, .slangp) no forman parte de la app y conservan sus propias licencias.
+
+ShaderVulkan no tiene permiso de internet: nada sale de tu dispositivo.
+
+Compatible con los presets slang de RetroArch. Sin relación con RetroArch ni libretro.</string>
+    <string name="guide_modes_title">CAPTURA vs GLASS</string>
+    <string name="guide_modes_body">CAPTURA copia la pantalla y aplica el shader sobre la imagen real (color, desenfoque, curvatura); Android pide compartir la pantalla cada vez, y las apps con DRM (Netflix, Disney+) la bloquean. GLASS dibuja encima una capa transparente sin capturar: no pide permiso, funciona en apps protegidas y no pierde fotogramas, así que también es el modo de rendimiento. El precio: solo puede oscurecer la imagen, así que van bien las scanlines y las máscaras, y no los efectos de color o desenfoque.</string>
+    <string name="guide_access_title">POR QUE ACCESIBILIDAD</string>
+    <string name="guide_access_body">ShaderVulkan usa un servicio de accesibilidad solo para tres cosas: dibujar el shader encima dejando pasar los toques, saber qué app está delante (perfiles por app) y notar cuándo se abre la barra de notificaciones, para pausar. No lee ni guarda el contenido de tus apps, y no se recoge ni se envía nada.</string>
+    <string name="guide_access_confirm">ShaderVulkan necesita su servicio de accesibilidad para dibujar el shader encima dejando pasar los toques, saber qué app está delante (perfiles por app) y notar la barra de notificaciones, para pausar. No lee ni guarda el contenido de tus apps, y no se recoge ni se envía nada.\n\nAhora irás a los ajustes de Accesibilidad de Android: activa ShaderVulkan Overlay Service.</string>
+    <string name="guide_zone_title">ZONA Y BARRAS</string>
+    <string name="guide_zone_body">La ZONA es la parte de la pantalla donde se aplica el shader; el resto queda intacto. Elige un aspecto, dibújala a mano o deja que AUTO detecte las bandas negras del contenido. BARRAS pinta de negro los lados fuera de la zona, y DUAL reparte la pantalla en dos zonas (estilo DS o 3DS).</string>
+    <string name="guide_combine_title">COMBINAR SHADERS</string>
+    <string name="guide_combine_body">COMBINAR añade otro shader al activo. La lista se ejecuta de arriba abajo: AÑADIR ENCIMA pone un shader antes (procesa primero la captura) y AÑADIR DEBAJO lo pone después (procesa el resultado anterior, por ejemplo una viñeta sobre un CRT). Pulsa APLICAR para cargar el conjunto; cada carga recompila todos los pases.</string>
+    <string name="guide_params_title">PARAMETROS Y FAVORITOS</string>
+    <string name="guide_params_body">Cada shader tiene parámetros que puedes cambiar en vivo desde PARAMS o desde AJUSTES. Guarda los valores actuales como un PERFIL para recuperarlos luego. Marca con [ ] los que más usas y activa SOLO FAVORITOS en el menú para ocultar el resto.</string>
+    <string name="guide_fps_title">CONTADOR DE FPS</string>
+    <string name="guide_fps_body">UI es el refresco al que va la pantalla, IN los fotogramas por segundo que llegan de la captura y OUT los que renderiza el shader. IN y OUT parecidos es lo sano; IN alto y OUT bajo significa que la GPU o el shader no dan la talla; IN bajo significa que el límite es el origen o la captura, no el shader. El contador se pone en rojo si la salida se queda muy por debajo de la entrada.</string>
+    <string name="guide_apps_title">PERFILES POR APP</string>
+    <string name="guide_apps_body">Un perfil por app recuerda el shader, los ajustes, la zona y el modo de esa app. Al abrirla el shader se enciende solo (Glass directo, Captura pidiendo compartir pantalla); al salir pregunta si pausar o cerrar. El perfil TODAS LAS DEMAS APPS vale para toda app sin el suyo.</string>
+    <string name="guide_quick_title">INICIO RAPIDO Y BATERIA</string>
+    <string name="guide_quick_body">Añade el azulejo Shader a los ajustes rápidos, o mantén pulsado el icono de la app, para encender el último shader sin abrir la app. En AJUSTES, el modo batería baja la carga por debajo de un nivel de batería y el tope de FPS limita la salida para ahorrar energía.</string>
+    <string name="btn_fav_only">SOLO FAVORITOS</string>
+    <string name="menu_no_favorites">Aún no hay favoritos. Marca parámetros con [ ] y aparecerán aquí.</string>
+
+    <!-- T93 (matices de las consolas y de los aspectos, traducibles) -->
+    <string name="res_q_low">baja</string>
+    <string name="res_q_high">alta</string>
+    <string name="res_q_hires">alta resolución</string>
+    <string name="res_q_each">cada pantalla</string>
+    <string name="res_q_top">pantalla superior</string>
+    <string name="res_q_bottom">pantalla inferior</string>
+    <string name="res_q_both">las dos pantallas</string>
+    <string name="aspect_square">Cuadrado</string>
+    <string name="aspect_ultrawide">Ultrapanorámico</string>
+    <string name="aspect_portrait43">Vertical 4:3</string>
+    <string name="aspect_retro">Retro</string>
+    <string name="aspect_mobile">Móvil actual</string>
+    <string name="aspect_mobile_portrait">Móvil actual, vertical</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Acción con aviso (restaurar valores, pantalla completa): igual que el botón normal, en ámbar -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="?attr/crtWarn38">
+    <item>
+        <selector>
+            <item android:state_focused="true">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <stroke android:width="1dp" android:color="?attr/crtWarn66" />
+                            <corners android:radius="3dp" />
+                        </shape>
+                    </item>
+                    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+                        <shape android:shape="rectangle">
+                            <solid android:color="?attr/crtWarn33" />
+                            <stroke android:width="@dimen/crt_stroke" android:color="?attr/crtWarnSoft" />
+                            <corners android:radius="@dimen/crt_corner" />
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+            <item>
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <stroke android:width="1dp" android:color="?attr/crtWarn26" />
+                            <corners android:radius="3dp" />
+                        </shape>
+                    </item>
+                    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+                        <shape android:shape="rectangle">
+                            <solid android:color="?attr/crtWarn14" />
+                            <stroke android:width="@dimen/crt_stroke" android:color="?attr/crtWarn" />
+                            <corners android:radius="@dimen/crt_corner" />
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </selector>
+    </item>
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFFFF" />
+            <corners android:radius="@dimen/crt_corner" />
+        </shape>
+    </item>
+</ripple>

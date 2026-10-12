@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texto de interruptor: tinta sobre la barra cuando está encendido, fósforo atenuado cuando no -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:color="?attr/crtInk" />
+    <item android:state_focused="true" android:color="?attr/crtHot" />
+    <item android:color="?attr/crtDim" />
+</selector>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texto del selector cerrado: deja sitio a la flecha de bg_crt_spinner -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="@style/CrtText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:paddingStart="@dimen/crt_space_m"
+    android:paddingTop="@dimen/crt_space_s"
+    android:paddingEnd="36dp"
+    android:paddingBottom="@dimen/crt_space_s"
+    android:singleLine="true" />

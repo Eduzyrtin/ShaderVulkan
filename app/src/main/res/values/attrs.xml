@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Atributos de tema que no son de color (los de color los declara crt_palettes.xml, generado). -->
+<resources>
+    <!--
+        Radio del glow del texto, en píxeles físicos (android:shadowRadius no admite dp). Tres tamaños que los estilos CrtText.* usan
+        según su jerarquía; la intensidad del glow de Ajustes (apagado, suave, fuerte) los redefine con CrtGlow_Off/Soft/Strong.
+    -->
+    <attr name="crtGlowS" format="float" />
+    <attr name="crtGlowM" format="float" />
+    <attr name="crtGlowL" format="float" />
+</resources>

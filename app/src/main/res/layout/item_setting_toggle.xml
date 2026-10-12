@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fila de ajuste con interruptor ON/OFF: etiqueta y descripción a la izquierda, botón de dos estados a la derecha -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/crt_space_s"
+    android:paddingBottom="@dimen/crt_space_s">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_setting_label"
+            style="@style/CrtText.Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txt_setting_desc"
+            style="@style/CrtText.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_setting_toggle"
+        style="@style/CrtButton.Toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/crt_space_m"
+        android:minWidth="72dp" />
+</LinearLayout>

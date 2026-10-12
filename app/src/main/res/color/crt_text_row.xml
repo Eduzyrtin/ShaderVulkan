@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nombre en la lista de shaders: el activo y el enfocado brillan más -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_activated="true" android:color="?attr/crtHot" />
+    <item android:state_focused="true" android:color="?attr/crtHot" />
+    <item android:color="?attr/crtPhosphor" />
+</selector>

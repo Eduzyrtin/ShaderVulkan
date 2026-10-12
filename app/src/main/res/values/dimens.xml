@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Medidas de la interfaz CRT. Escala de texto corta (la fuente es una VGA 8x16 de ancho fijo: con pocos tamaños se ve como
+    una terminal y no como un collage), espaciado en múltiplos de 4 dp y objetivos táctiles de 48 dp (40 en los overlays).
+-->
+<resources>
+    <!-- Texto -->
+    <dimen name="crt_text_caption">11sp</dimen>
+    <dimen name="crt_text_label">12sp</dimen>
+    <dimen name="crt_text_body">14sp</dimen>
+    <dimen name="crt_text_title">16sp</dimen>
+    <dimen name="crt_text_display">20sp</dimen>
+
+    <!-- Espaciado -->
+    <dimen name="crt_space_xs">4dp</dimen>
+    <dimen name="crt_space_s">8dp</dimen>
+    <dimen name="crt_space_m">12dp</dimen>
+    <dimen name="crt_space_l">16dp</dimen>
+    <dimen name="crt_space_xl">24dp</dimen>
+    <dimen name="crt_gutter">16dp</dimen>
+
+    <!-- Componentes -->
+    <dimen name="crt_corner">2dp</dimen>
+    <dimen name="crt_stroke">1dp</dimen>
+    <dimen name="crt_touch">48dp</dimen>
+    <dimen name="crt_touch_compact">40dp</dimen>
+    <dimen name="crt_label_column">104dp</dimen>
+    <dimen name="crt_progress_height">10dp</dimen>
+</resources>

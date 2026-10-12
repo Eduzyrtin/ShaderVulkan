@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Superficies flotantes (menú del overlay, HUD de carga, editor de zona): un trozo de tubo CRT casi opaco, para leerse
+    encima de cualquier juego, con el mismo resplandor, grano y viñeta que las pantallas de la app.
+    Radios en dp: estas ventanas van de una franja (HUD) a media pantalla (menú).
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/crtPanelSolid" />
+            <corners android:radius="@dimen/crt_corner" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="50%"
+                android:centerY="40%"
+                android:gradientRadius="380dp"
+                android:startColor="?attr/crtPhosphor1A"
+                android:centerColor="?attr/crtPhosphor0A"
+                android:endColor="?attr/crtPhosphor00" />
+            <corners android:radius="@dimen/crt_corner" />
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/bmp_noise" />
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="50%"
+                android:centerY="45%"
+                android:gradientRadius="480dp"
+                android:startColor="#00000000"
+                android:centerColor="#00000000"
+                android:endColor="?attr/crtVig80" />
+            <corners android:radius="@dimen/crt_corner" />
+        </shape>
+    </item>
+
+    <!-- Marco: halo exterior tenue + filo de fósforo -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke android:width="1dp" android:color="?attr/crtPhosphor26" />
+            <corners android:radius="3dp" />
+        </shape>
+    </item>
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="1dp" android:color="?attr/crtFaint" />
+            <corners android:radius="@dimen/crt_corner" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    El tubo CRT de las pantallas de la app: oliva oscuro, centro iluminado por el fósforo, grano de señal y viñeta del
+    cristal curvo. Las scanlines van aparte, en el foreground de cada pantalla (bmp_scanlines), para que también crucen el texto.
+    Radios en %p (fracción del lado corto) para que el tubo se vea igual en vertical, horizontal y en el Thor.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/crtBg" />
+        </shape>
+    </item>
+
+    <!-- Resplandor del fósforo: el centro sube hasta ~#2D3A21, como en la referencia -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="50%"
+                android:centerY="42%"
+                android:gradientRadius="115%p"
+                android:startColor="?attr/crtPhosphor1C"
+                android:centerColor="?attr/crtPhosphor0A"
+                android:endColor="?attr/crtPhosphor00" />
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/bmp_noise" />
+
+    <!-- Viñeta: bordes y esquinas hundidos -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="50%"
+                android:centerY="45%"
+                android:gradientRadius="125%p"
+                android:startColor="#00000000"
+                android:centerColor="#00000000"
+                android:endColor="?attr/crtVig99" />
+        </shape>
+    </item>
+</layer-list>

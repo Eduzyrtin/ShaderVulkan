@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- T72: atajos de la pulsación larga sobre el icono de la app -->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="last_shader"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_last_short"
+        android:shortcutLongLabel="@string/shortcut_last_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.sanabria.shadervulkan"
+            android:targetClass="com.sanabria.shadervulkan.QuickStartActivity" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="settings"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_settings_short"
+        android:shortcutLongLabel="@string/shortcut_settings_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.sanabria.shadervulkan"
+            android:targetClass="com.sanabria.shadervulkan.AppSettingsActivity" />
+    </shortcut>
+</shortcuts>

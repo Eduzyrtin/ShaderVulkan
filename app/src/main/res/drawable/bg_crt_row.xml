@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Fila de la lista de shaders. Activa (isActivated): relleno tenue y barra de fósforo a la izquierda, como el cursor de una
+    terminal. Con foco (mando): filo encendido. Pulsada: ripple.
+-->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="?attr/crtGhostStrong">
+    <item>
+        <selector>
+            <item android:state_focused="true">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <solid android:color="?attr/crtGhostStrong" />
+                            <stroke android:width="@dimen/crt_stroke" android:color="?attr/crtHot" />
+                            <corners android:radius="@dimen/crt_corner" />
+                        </shape>
+                    </item>
+                    <item android:width="3dp" android:gravity="start">
+                        <shape android:shape="rectangle">
+                            <solid android:color="?attr/crtHot" />
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+            <item android:state_activated="true">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <solid android:color="?attr/crtGhost" />
+                            <corners android:radius="@dimen/crt_corner" />
+                        </shape>
+                    </item>
+                    <item android:width="7dp" android:gravity="start">
+                        <shape android:shape="rectangle">
+                            <solid android:color="?attr/crtHot26" />
+                        </shape>
+                    </item>
+                    <item android:width="3dp" android:gravity="start">
+                        <shape android:shape="rectangle">
+                            <solid android:color="?attr/crtHot" />
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+            <item>
+                <color android:color="@android:color/transparent" />
+            </item>
+        </selector>
+    </item>
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFFFF" />
+            <corners android:radius="@dimen/crt_corner" />
+        </shape>
+    </item>
+</ripple>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Parámetro informativo (etiqueta/separador de #pragma parameter): cabecera de grupo sin control, como "NAME" en una manpage -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/crt_space_l"
+    android:paddingBottom="@dimen/crt_space_xs">
+
+    <TextView
+        android:id="@+id/txt_param_info"
+        style="@style/CrtText.Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/divider_param_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/crt_stroke"
+        android:layout_marginTop="@dimen/crt_space_xs"
+        android:background="?attr/crtFaint"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Panel dentro de una pantalla (controles, perfiles): algo más hundido que el tubo, con el filo de fósforo tenue -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="?attr/crtPanel" />
+    <stroke android:width="@dimen/crt_stroke" android:color="?attr/crtFaint" />
+    <corners android:radius="@dimen/crt_corner" />
+</shape>

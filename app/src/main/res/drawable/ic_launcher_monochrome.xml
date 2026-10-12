@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icono temático (Android 13+): solo la silueta del prompt, Android la tiñe con el color del tema del usuario -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group android:pivotX="54" android:pivotY="54" android:scaleX="1.12" android:scaleY="1.12" android:translateX="1.5">
+    <path android:pathData="M34,35L53,54L34,73" android:strokeColor="#FF000000" android:strokeWidth="9.5" android:strokeLineJoin="miter" android:strokeMiterLimit="4" />
+    <path android:pathData="M56,67h20v8h-20z" android:fillColor="#FF000000" />
+    </group>
+
+</vector>

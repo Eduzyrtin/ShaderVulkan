@@ -1,0 +1,28 @@
+# Add project specific R8 rules here.
+# AGP will combine all keep rule files in src/main/keepRules to pass to R8
+#
+# For more details, see
+#   https://d.android.com/r/tools/r8/keep-rules
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+# T91: los registros de información, depuración y detalle no existen en release (con R8 activado, T90). Los de aviso y error se conservan.
+-assumenosideeffects class android.util.Log {
+    public static int v(...);
+    public static int d(...);
+    public static int i(...);
+}
+
+# T90: el motor nativo busca por nombre (FindClass/GetStaticMethodID/GetMethodID en native-lib.cpp) el puente y la clase de parámetros,
+# y las funciones JNI se enlazan por el nombre de la clase y del método: sin estas reglas R8 los renombra o los quita.
+-keepclasseswithmembernames,includedescriptorclasses class * {
+    native <methods>;
+}
+-keep class com.sanabria.shadervulkan.native.VulkanEngineBridge { *; }
+-keep class com.sanabria.shadervulkan.model.ShaderParameter {
+    <init>(java.lang.String, java.lang.String, float, float, float, float, float);
+}
