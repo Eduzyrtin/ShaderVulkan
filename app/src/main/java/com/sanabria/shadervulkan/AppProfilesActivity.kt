@@ -13,6 +13,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -48,7 +49,7 @@ class AppProfilesActivity : CrtActivity() {
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setBackgroundResource(R.drawable.crt_background)
-            foreground = getDrawable(R.drawable.bmp_scanlines)
+            foreground = AppCompatResources.getDrawable(this@AppProfilesActivity, R.drawable.bmp_scanlines)
         }
         val gutter = resources.getDimensionPixelSize(R.dimen.crt_gutter)
         ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->

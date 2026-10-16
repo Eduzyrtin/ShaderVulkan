@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:duplicateParentState="true"
         android:gravity="center"
-        android:text="►"
+        android:text="@string/shader_marker"
         android:textColor="?attr/crtHot"
         android:shadowColor="?attr/crtGlowHot"
         android:visibility="invisible" />

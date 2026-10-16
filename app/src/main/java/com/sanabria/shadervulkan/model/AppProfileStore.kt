@@ -2,6 +2,7 @@ package com.sanabria.shadervulkan.model
 
 import android.content.Context
 import org.json.JSONObject
+import androidx.core.content.edit
 
 /**
  * Perfiles por app (T61): qué hacer cuando una app concreta pasa a primer plano. Cada perfil dice el modo (Captura, Glass o sin
@@ -84,7 +85,7 @@ object AppProfileStore {
         p.zoneBShaderName?.let { j.put("zb_name", it) }
         p.zoneBProfile?.let { j.put("zb_profile", it) }
         root.put(p.packageName, j)
-        prefs(ctx).edit().putString(KEY_ALL, root.toString()).apply()
+        prefs(ctx).edit { putString(KEY_ALL, root.toString()) }
     }
 
     /** Se renombró un perfil de ajustes de un shader (T60): los perfiles de app que lo usaban pasan a usar el nombre nuevo. */
@@ -96,12 +97,12 @@ object AppProfileStore {
             if (j.optString("shader") == shaderId && j.optString("profile") == oldName) { j.put("profile", newName); changed = true }
             if (j.optString("zb_shader") == shaderId && j.optString("zb_profile") == oldName) { j.put("zb_profile", newName); changed = true }
         }
-        if (changed) prefs(ctx).edit().putString(KEY_ALL, root.toString()).apply()
+        if (changed) prefs(ctx).edit { putString(KEY_ALL, root.toString()) }
     }
 
     fun delete(ctx: Context, packageName: String) {
         val root = readAll(ctx)
         root.remove(packageName)
-        prefs(ctx).edit().putString(KEY_ALL, root.toString()).apply()
+        prefs(ctx).edit { putString(KEY_ALL, root.toString()) }
     }
 }

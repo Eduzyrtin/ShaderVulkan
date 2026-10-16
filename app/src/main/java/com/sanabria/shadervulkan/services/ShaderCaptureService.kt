@@ -19,8 +19,8 @@ import android.hardware.display.VirtualDisplay
 import android.media.ImageReader
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
-import android.net.Uri
 import android.os.Build
+import androidx.core.net.toUri
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.IBinder
@@ -253,6 +253,16 @@ class ShaderCaptureService : Service(), SensorEventListener {
                 action = ACTION_LOAD_SHADER
                 putExtra(EXTRA_SHADER_PATH, path)
             })
+        }
+
+        /**
+         * Aviso antes del diálogo del sistema de compartir pantalla: el único modo admitido es compartir UNA app. Compartir la pantalla
+         * entera captura el propio overlay (retroalimentación) y se ve en negro; Android no deja a las apps quitar esa opción.
+         * Android 13 y anteriores solo ofrecen la pantalla entera: ahí la Captura no sirve y el aviso manda a Glass.
+         */
+        fun showShareHint(context: Context) {
+            Toast.makeText(context, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) R.string.toast_share_one_app
+                else R.string.toast_capture_legacy, Toast.LENGTH_LONG).show()
         }
 
         /** El servicio en marcha (para los avisos de R14 desde el servicio de accesibilidad). */
@@ -735,7 +745,7 @@ class ShaderCaptureService : Service(), SensorEventListener {
         val isExternal = assetPath.startsWith("content://") || assetPath.startsWith("file://")
         val content = (if (isExternal) {
             Log.d("DEBUG-LOG-JAVA", "Detectado URI externo. Abriendo stream...")
-            contentResolver.openInputStream(Uri.parse(assetPath))?.bufferedReader()?.use { it.readText() }
+            contentResolver.openInputStream(assetPath.toUri())?.bufferedReader()?.use { it.readText() }
         } else {
             assets.open(assetPath).bufferedReader().use { it.readText() }
         }) ?: return null
@@ -814,11 +824,7 @@ class ShaderCaptureService : Service(), SensorEventListener {
     // R06: 4 imágenes (antes 3): una queda retenida por el motor mientras se procesa la siguiente y acquireLatestImage necesita
     // tener dos a la vez para saltarse las atrasadas
     private fun newImageReader(width: Int, height: Int): ImageReader =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            ImageReader.newInstance(width, height, PixelFormat.RGBA_8888, MAX_IMAGES, HardwareBuffer.USAGE_GPU_SAMPLED_IMAGE)
-        } else {
-            ImageReader.newInstance(width, height, PixelFormat.RGBA_8888, MAX_IMAGES)
-        }
+        ImageReader.newInstance(width, height, PixelFormat.RGBA_8888, MAX_IMAGES, HardwareBuffer.USAGE_GPU_SAMPLED_IMAGE)
 
     private var totalFramesArrived = 0
 

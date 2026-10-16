@@ -16,7 +16,6 @@
     <dimen name="crt_space_s">8dp</dimen>
     <dimen name="crt_space_m">12dp</dimen>
     <dimen name="crt_space_l">16dp</dimen>
-    <dimen name="crt_space_xl">24dp</dimen>
     <dimen name="crt_gutter">16dp</dimen>
 
     <!-- Componentes -->

@@ -21,7 +21,7 @@ import com.sanabria.shadervulkan.ui.CrtUi
  */
 class GuideDialog(private val context: Context, private val overlay: Boolean = false) {
 
-    class Topic(val id: String, @StringRes val title: Int, @StringRes val body: Int)
+    class Topic(val id: String, @param:StringRes val title: Int, @param:StringRes val body: Int)
 
     private var dialog: AlertDialog? = null
 

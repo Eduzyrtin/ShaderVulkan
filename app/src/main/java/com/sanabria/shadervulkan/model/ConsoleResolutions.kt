@@ -31,7 +31,7 @@ object ConsoleResolutions {
     class Entry(val index: Int, val maker: String, val name: String, val w: Int, val h: Int, val aspect: Float,
                 val w2: Int = 0, val h2: Int = 0,
                 /** Matiz del nombre que sí se traduce ("alta", "pantalla superior"...); 0 = ninguno. Marcas y modelos no se traducen. */
-                @StringRes val qualifier: Int = 0) {
+                @param:StringRes val qualifier: Int = 0) {
         private val size: String get() = if (w2 > 0 && h2 > 0) "${w}x$h + ${w2}x$h2" else "${w}x$h"
         private fun fullName(ctx: Context) = if (qualifier != 0) "$name (${ctx.getString(qualifier)})" else name
 

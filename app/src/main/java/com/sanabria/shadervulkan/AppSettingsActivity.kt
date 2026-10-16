@@ -183,14 +183,15 @@ class AppSettingsActivity : CrtActivity() {
     }
 
     /**
-     * Idioma de la app: SISTEMA (el del móvil) o uno de los seis. Usa el idioma por app de AppCompat: Android lo recuerda y recrea
+     * Idioma de la app: SISTEMA (el del móvil) o uno de los nueve. Usa el idioma por app de AppCompat: Android lo recuerda y recrea
      * las pantallas abiertas al cambiarlo. Los nombres van en su propio idioma, para encontrarlos aunque la app esté en otro.
      */
     private fun addLanguageRow(container: LinearLayout) {
         val gap = CrtUi.dimen(this, R.dimen.crt_space_xs)
         val options = listOf(
             "" to getString(R.string.language_system), "en" to "English", "es" to "Español",
-            "fr" to "Français", "de" to "Deutsch", "it" to "Italiano", "pt" to "Português"
+            "fr" to "Français", "de" to "Deutsch", "it" to "Italiano", "pt" to "Português",
+            "ca" to "Català", "eu" to "Euskara", "gl" to "Galego"
         )
         val current = AppCompatDelegate.getApplicationLocales().toLanguageTags().substringBefore(',').substringBefore('-')
         val panel = LinearLayout(this).apply {

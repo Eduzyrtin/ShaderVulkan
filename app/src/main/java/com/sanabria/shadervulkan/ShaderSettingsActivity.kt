@@ -22,10 +22,10 @@ import com.sanabria.shadervulkan.services.ShaderCaptureService
 import com.sanabria.shadervulkan.ui.CrtActivity
 import com.sanabria.shadervulkan.ui.CrtUi
 import android.content.Intent
-import android.net.Uri
 import android.provider.DocumentsContract
 import androidx.documentfile.provider.DocumentFile
 import androidx.activity.enableEdgeToEdge
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -58,8 +58,11 @@ class ShaderSettingsActivity : CrtActivity() {
         showToast(getString(R.string.toast_loading_settings))
 
         findViewById<TextView>(R.id.txt_settings_shader).apply {
-            text = "MODULE: ${ShaderPreferences.getEditShaderName(this@ShaderSettingsActivity)?.uppercase() ?: "NONE"}" +
-                (if (ShaderPreferences.editsZoneB(this@ShaderSettingsActivity)) getString(R.string.zone_tag_b) else "")
+            text = getString(
+                R.string.settings_module,
+                ShaderPreferences.getEditShaderName(this@ShaderSettingsActivity)?.uppercase() ?: "NONE",
+                if (ShaderPreferences.editsZoneB(this@ShaderSettingsActivity)) getString(R.string.zone_tag_b) else "",
+            )
             com.sanabria.shadervulkan.ui.AutoScroll.attach(this)
         }
 
@@ -192,7 +195,7 @@ class ShaderSettingsActivity : CrtActivity() {
         val input = EditText(this).apply {
             hint = getString(R.string.hint_export_name)
             setSingleLine()
-            setText("MyCustomPreset")
+            setText(R.string.export_default_name)
         }
 
         AlertDialog.Builder(this)
@@ -223,10 +226,10 @@ class ShaderSettingsActivity : CrtActivity() {
                 showToast(getString(R.string.toast_export_only_external))
                 return
             }
-            val treeUri = Uri.parse(treeUriString)
+            val treeUri = treeUriString.toUri()
 
             // Carpeta del preset original = su documento padre dentro del árbol concedido
-            val origDocId = DocumentsContract.getDocumentId(Uri.parse(originalShaderPath))
+            val origDocId = DocumentsContract.getDocumentId(originalShaderPath.toUri())
             val slash = origDocId.lastIndexOf('/')
             val colon = origDocId.indexOf(':')
             val origName = origDocId.substring(maxOf(slash, colon) + 1)

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Pantalla principal en vertical: cabecera, lista de presets y panel de control abajo -->
+<!-- Pantalla principal en vertical: cabecera, lista de presets y panel de control abajo.
+     InconsistentLayout: los ajustes plegables (row_settings_toggle, group_settings...) solo existen en vertical; en horizontal
+     los selectores van siempre a la vista y MainActivity.setupSettingsToggle lo tiene en cuenta. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="InconsistentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/crt_background"
@@ -332,6 +336,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/btn_run_system" />
+
+            <Button
+                android:id="@+id/btn_restart_system"
+                style="@style/CrtButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crt_space_s"
+                android:layout_weight="1"
+                android:text="@string/btn_restart_system"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_close_system"

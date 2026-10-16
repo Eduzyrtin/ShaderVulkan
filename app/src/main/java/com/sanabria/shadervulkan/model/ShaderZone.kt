@@ -27,7 +27,7 @@ object ShaderZone {
     const val BY_RESOLUTION = -1f
 
     /** [labelRes] != 0: el texto está en strings.xml (traducido); si no, [label] vale tal cual (4:3, 16:9...). */
-    class AspectOption(val label: String, val ratio: Float, @StringRes val labelRes: Int = 0) {
+    class AspectOption(val label: String, val ratio: Float, @param:StringRes val labelRes: Int = 0) {
         fun text(ctx: Context): String = if (labelRes != 0) ctx.getString(labelRes) else label
     }
 

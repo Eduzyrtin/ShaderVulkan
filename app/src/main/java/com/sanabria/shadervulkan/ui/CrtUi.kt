@@ -36,7 +36,7 @@ object CrtUi {
     }
 
     /** Variantes de botón: estilo para crearlo y, para cambiarlo en caliente, fondo, color de texto (lista de estados) y atributo del color del glow (0 = sin glow). */
-    enum class Btn(val style: Int, val background: Int, val textColor: Int, @AttrRes val glow: Int) {
+    enum class Btn(val style: Int, val background: Int, val textColor: Int, @param:AttrRes val glow: Int) {
         NORMAL(R.style.CrtButton_Small, R.drawable.bg_crt_button, R.color.crt_text_button, R.attr.crtGlow),
         PRIMARY(R.style.CrtButton_Primary, R.drawable.bg_crt_button_primary, R.color.crt_text_on_hot, 0),
         ALERT(R.style.CrtButton_Alert, R.drawable.bg_crt_button_alert, R.color.crt_text_alert, R.attr.crtGlowAlert),

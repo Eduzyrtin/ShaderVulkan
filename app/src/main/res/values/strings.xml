@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    UI texts. This file is the default language (English); translations live in values-es, values-fr, values-de, values-it and
-    values-pt (every key must exist in all of them, except the ones marked translatable="false").
+    UI texts. This file is the default language (English); translations live in values-es, values-fr, values-de, values-it,
+    values-pt, values-ca, values-eu and values-gl (every key must exist in all of them, except the ones marked translatable="false").
     Conventions:
       - Titles, labels, buttons and terminal status codes: CAPITAL LETTERS. In the translations, no accents or special letters in
         capitals (the VGA font lacks several accented capitals; lowercase has them all).
@@ -10,8 +10,8 @@
       - No emojis: the CRT font doesn't have them.
     Console names in the resolution profiles (Game Boy, NES...) are proper names and stay in the code.
 -->
-<resources>
-    <string name="app_name" translatable="false">ShaderVulkan</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">Shader Vulkan</string>
     <string name="accessibility_service_description">Accessibility service that draws the CRT shader overlay without blocking touch input.</string>
 
     <!-- Main screen -->
@@ -33,6 +33,7 @@
     <string name="btn_pause_system">PAUSE</string>
     <string name="btn_resume_system">RESUME</string>
     <string name="btn_close_system">CLOSE</string>
+    <string name="btn_restart_system">RESTART</string>
     <string name="tag_dir" translatable="false">&lt;DIR&gt;</string>
     <string name="list_external_folder">External folder</string>
     <string name="list_external_folder_note">Browse external files</string>
@@ -48,6 +49,8 @@
     <string name="toast_list_refreshed">List refreshed</string>
     <string name="toast_selected">Selected: %1$s</string>
     <string name="toast_capture_denied">Screen capture permission denied</string>
+    <string name="toast_share_one_app">Choose \"Share one app\" in the next dialog. The entire screen is not supported (everything turns black).</string>
+    <string name="toast_capture_legacy">Android 13 can only share the entire screen: Capture stays black here. Use Glass.</string>
     <string name="toast_notifications_needed">Notifications are needed for the foreground service</string>
     <string name="toast_enable_accessibility">Turn on \'ShaderVulkan Overlay Service\' in the Accessibility settings</string>
     <string name="toast_capture_failed">Could not start the capture</string>
@@ -63,16 +66,15 @@
     <string name="toast_mode_glass">Glass mode: layer without screen capture (compatible and lossless)</string>
     <string name="toast_mode_capture">Capture mode</string>
     <string name="toast_res_console">Console: %1$s</string>
-    <string name="grid_info_glass_auto">Glass: one virtual line every 4 screen px (%1$dx%2$d grid in a %3$dx%4$d zone)</string>
+    <string name="grid_info_glass_auto" tools:ignore="PluralsCandidate">Glass: one virtual line every 4 screen px (%1$dx%2$d grid in a %3$dx%4$d zone)</string>
     <string name="grid_info_auto">Shader at the zone\'s resolution: %1$dx%2$d</string>
-    <string name="grid_info_fixed">Shader %1$dx%2$d in a %3$dx%4$d zone · pixel %5$sx%6$s</string>
+    <string name="grid_info_fixed" tools:ignore="PluralsCandidate">Shader %1$dx%2$d in a %3$dx%4$d zone · pixel %5$sx%6$s</string>
     <string name="grid_info_adapted_suffix"> · adapted grid</string>
     <string name="grid_info_distorted">(!) distorted pixel</string>
     <string name="aspect_full">Full screen (no zone)</string>
     <string name="aspect_auto_resolution">Auto (by resolution)</string>
     <string name="aspect_manual">Manual (drawn zone)</string>
     <string name="aspect_auto_detect">Auto (detect black bars)</string>
-    <string name="toast_res_profile">Profile: %1$s</string>
     <string name="toast_zone">Zone: %1$s</string>
     <string name="toast_scale">Scale %1$d%%: %2$dx%3$d</string>
     <string name="toast_custom">Custom: %1$dx%2$d</string>
@@ -84,7 +86,7 @@
     <string name="hint_height">HEIGHT</string>
     <string name="btn_apply">APPLY</string>
     <string name="btn_set">SET</string>
-    <string name="btn_cancel">CANCEL</string>
+    <string name="btn_cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="btn_save">SAVE</string>
     <string name="btn_export">EXPORT</string>
     <string name="btn_delete">DELETE</string>
@@ -94,7 +96,7 @@
     <string name="label_profile">PROFILE</string>
     <string name="label_parameters">PARAMETERS</string>
     <string name="btn_format_all" translatable="false">FORMAT_ALL</string>
-    <string name="toast_loading_settings">Loading settings...</string>
+    <string name="toast_loading_settings">Loading settings…</string>
     <string name="toast_profile_changed">Profile changed to: %1$s</string>
     <string name="toast_profile_saved">Profile \'%1$s\' saved (parameters, resolution and aspect)</string>
     <string name="toast_profile_deleted">Profile deleted</string>
@@ -124,6 +126,7 @@
     <string name="menu_sec_shader">SHADER</string>
     <string name="menu_sec_session">SESSION</string>
     <string name="menu_sec_zone">ZONE</string>
+    <string name="menu_sec_resolution">GRID</string>
     <string name="btn_overwrite" translatable="false">OVERWRITE</string>
     <string name="btn_save_as" translatable="false">SAVE_AS</string>
     <string name="btn_restore_defaults" translatable="false">RESTORE_DEFAULTS</string>
@@ -145,7 +148,7 @@
     <string name="toast_params_reset" translatable="false">PARAMS_RESET_TO_INITIAL</string>
     <string name="toast_bars_no_zone">BARS: no zone (pick an aspect or edit the shader zone)</string>
     <string name="toast_detect_hint">DETECT: press AUTO to turn detection on</string>
-    <string name="hint_name">NAME...</string>
+    <string name="hint_name">NAME…</string>
     <string name="dialog_input_profile_title" translatable="false">&gt; INPUT_PROFILE_ID</string>
 
     <!-- Shader zone editor -->
@@ -173,7 +176,7 @@
     <string name="screens_single_hint">Only one screen found.</string>
     <string name="label_app">APP</string>
     <string name="label_app_profiles">PER-APP PROFILES</string>
-    <string name="app_profiles_description">When you open an app that has a profile, the shader turns on by itself: Glass straight away, Capture asking to share the screen. When you leave it asks whether to pause or close.</string>
+    <string name="app_profiles_description">When you open an app that has a profile, the shader turns on by itself: Glass straight away, Capture asking to share the screen. When you leave it asks whether to pause or close. Share a single app, never the entire screen (not supported: everything turns black).</string>
     <string name="btn_app_profiles">AUTO APPS</string>
     <string name="apps_title">AUTO APPS</string>
     <string name="apps_subtitle">What the shader does in each app. Save what you see now with SAVE APP in the floating menu.</string>
@@ -188,7 +191,7 @@
     <string name="apps_profile_active">the shader\'s active profile</string>
     <string name="apps_profile_title">Shader settings</string>
     <string name="apps_hint_none">Pick what the shader does in this app.</string>
-    <string name="apps_hint_capture">When the app opens it asks to share the screen and puts the shader on top.</string>
+    <string name="apps_hint_capture">When the app opens it asks to share the screen and puts the shader on top. Share a single app, never the entire screen (not supported: everything turns black).</string>
     <string name="apps_hint_glass">When the app opens it puts the shader on top without asking anything. Good for apps with DRM. It also avoids capture lag: no frames are lost.</string>
     <string name="apps_hint_off">While this app is in front, the shader is hidden.</string>
     <string name="label_app_front">In front: %1$s</string>
@@ -310,13 +313,13 @@
     <string name="toast_profile_exists">A profile named \'%1$s\' already exists</string>
     <string name="toast_default_unrenamable">The Default profile can\'t be renamed</string>
 
-    <!-- T45 (combinar presets: añadir encima / debajo) -->
+    <!-- T45 (combinar presets: anteponer / anexar, como RetroArch) -->
     <string name="btn_combine">COMBINE</string>
     <string name="dialog_stack_title" translatable="false">&gt; COMBINE_SHADERS</string>
     <string name="stack_help">The list runs from top to bottom: the first shader processes the capture and each next one processes the result of the one before. Changes load when you press APPLY.</string>
     <string name="stack_empty">No shader yet. Add one.</string>
-    <string name="btn_stack_above">ADD ABOVE</string>
-    <string name="btn_stack_below">ADD BELOW</string>
+    <string name="btn_stack_prepend">PREPEND</string>
+    <string name="btn_stack_append">APPEND</string>
     <string name="btn_stack_apply">APPLY</string>
 
     <!-- T66 (contador de FPS, tope de FPS, botón flotante) -->
@@ -379,7 +382,7 @@
     <!-- T63 (guía integrada), T74 (favoritos) -->
     <string name="guide_index_title">> GUIDE</string>
     <string name="guide_welcome_title">> WELCOME</string>
-    <string name="guide_welcome_body">ShaderVulkan draws a retro shader (CRT, scanlines...) over any app.\n\n1. Two modes. CAPTURE processes the real image; GLASS draws a layer with no capture, works in protected apps and is the lightest.\n\n2. Two permissions. Accessibility, to draw on top and let your touches through; and, in Capture, your OK to share the screen. Nothing leaves your phone.\n\n3. The floating dot opens the menu. The rest is in the guide, in SETTINGS.</string>
+    <string name="guide_welcome_body">ShaderVulkan draws a retro shader (CRT, scanlines…) over any app.\n\n1. Two modes. CAPTURE processes the real image; GLASS draws a layer with no capture, works in protected apps and is the lightest.\n\n2. Two permissions. Accessibility, to draw on top and let your touches through; and, in Capture, your OK to share the screen. Nothing leaves your phone.\n\n3. The floating dot opens the menu. The rest is in the guide, in SETTINGS.\n\nImportant: in Capture, share a single app. Sharing the entire screen is not supported: the shader would capture itself and everything turns black. Android does not let apps disable that option.</string>
     <string name="guide_open">OPEN GUIDE</string>
     <string name="btn_skip">SKIP</string>
     <string name="btn_accept">ACCEPT</string>
@@ -395,7 +398,7 @@
     <string name="access_restricted_hint">If the switch is greyed out ("Restricted setting"), go to Settings > Apps > ShaderVulkan, open the three-dots menu and choose "Allow restricted settings". Then come back and turn it on.</string>
     <string name="about_title">> ABOUT</string>
     <string name="licenses_title">> LICENSES</string>
-    <string name="about_body">ShaderVulkan %1$s\nCopyright (C) 2026 Eduardo Sanabria\n\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nIt is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The full text is in LICENSES.\n\nIt includes glslang and SPIRV-Cross (The Khronos Group and others), AndroidX, Material Components and Kotlin, each under its own license (see LICENSES).\n\nThe shaders you load (.slang, .slangp) are not part of the app and keep their own licenses.
+    <string name="about_body">ShaderVulkan %1$s\nCopyright © 2026 Eduardo Sanabria\n\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nIt is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The full text is in LICENSES.\n\nIt includes glslang and SPIRV-Cross (The Khronos Group and others), AndroidX, Material Components and Kotlin, each under its own license (see LICENSES).\n\nThe shaders you load (.slang, .slangp) are not part of the app and keep their own licenses.
 
 ShaderVulkan has no internet permission: nothing leaves your device.
 
@@ -405,20 +408,20 @@ Compatible with RetroArch slang presets. Not affiliated with RetroArch or libret
     <string name="license_spirv_cross" translatable="false">SPIRV-Cross (Apache-2.0, MIT)</string>
     <string name="license_androidx" translatable="false">AndroidX, Material Components, Kotlin (Apache-2.0)</string>
     <string name="guide_modes_title">CAPTURE vs GLASS</string>
-    <string name="guide_modes_body">CAPTURE copies the screen and runs the shader on the real image (colour, blur, curvature); Android asks you to share the screen each time, and apps with DRM (Netflix, Disney+) block it. GLASS draws a transparent layer on top with no capture: no permission, it works in protected apps and loses no frames, so it is also the performance mode. The price: it can only darken the image, so scanlines and masks work well and colour or blur effects do not.</string>
+    <string name="guide_modes_body">CAPTURE copies the screen and runs the shader on the real image (colour, blur, curvature); Android asks you to share the screen each time, and apps with DRM (Netflix, Disney+) block it. GLASS draws a transparent layer on top with no capture: no permission, it works in protected apps and loses no frames, so it is also the performance mode. The price: it can only darken the image, so scanlines and masks work well and colour or blur effects do not. Important: in Capture, share a single app. Sharing the entire screen is not supported: the shader would capture itself and everything turns black. Android does not let apps disable that option.</string>
     <string name="guide_access_title">WHY ACCESSIBILITY</string>
     <string name="guide_access_body">ShaderVulkan uses an accessibility service for three things only: drawing the shader on top while letting your touches through, knowing which app is in front (for app profiles) and noticing when the notification shade opens, to pause. It does not read or store the content of your apps, and nothing is collected or sent anywhere.</string>
     <string name="guide_access_confirm">ShaderVulkan needs its accessibility service to draw the shader on top while letting your touches through, to know which app is in front (app profiles) and to notice the notification shade, to pause. It does not read or store the content of your apps, and nothing is collected or sent anywhere.\n\nNext you will go to Android\'s Accessibility settings: turn on ShaderVulkan Overlay Service.</string>
     <string name="guide_zone_title">ZONE AND BARS</string>
     <string name="guide_zone_body">The ZONE is the part of the screen where the shader applies; the rest stays untouched. Pick an aspect ratio, draw it by hand, or let AUTO detect the black bars of the content. BARS paints black over the sides outside the zone, and DUAL splits the screen into two zones (DS or 3DS style).</string>
     <string name="guide_combine_title">COMBINING SHADERS</string>
-    <string name="guide_combine_body">COMBINE adds another shader to the active one. The list runs from top to bottom: ADD ABOVE puts a shader before (it processes the capture first) and ADD BELOW puts it after (it processes the previous result, for example a vignette over a CRT). Press APPLY to load the set; each load recompiles every pass.</string>
+    <string name="guide_combine_body">COMBINE adds another shader to the active one. The list runs from top to bottom: PREPEND puts a shader before the ones already in the list (it processes the capture first) and APPEND puts it after (it processes the previous result). Example: with a colour filter in the list, APPEND a scanlines shader and the colour filter runs first, then the scanlines; PREPEND it and the scanlines run first, then the colour filter. Press APPLY to load the set; each load recompiles every pass.</string>
     <string name="guide_params_title">PARAMETERS AND FAVORITES</string>
     <string name="guide_params_body">Each shader has parameters you can change live from PARAMS or from SETTINGS. Save the current values as a PROFILE to get them back later. Mark the ones you use most with [ ] and turn on FAVORITES ONLY in the menu to hide the rest.</string>
     <string name="guide_fps_title">FPS COUNTER</string>
     <string name="guide_fps_body">UI is the refresh rate the screen is running at, IN the frames per second that arrive from the capture and OUT the ones the shader renders. IN and OUT alike is healthy; IN high and OUT low means the GPU or the shader cannot keep up; IN low means the source or the capture is the limit, not the shader. The counter turns red if the output stays well below the input.</string>
     <string name="guide_apps_title">APP PROFILES</string>
-    <string name="guide_apps_body">An app profile remembers the shader, settings, zone and mode for one app. When you open it the shader turns on by itself (Glass at once, Capture asking to share the screen); when you leave it asks whether to pause or close. The profile ALL OTHER APPS applies to every app without its own.</string>
+    <string name="guide_apps_body">An app profile remembers the shader, settings, zone and mode for one app. When you open it the shader turns on by itself (Glass at once, Capture asking to share the screen); when you leave it asks whether to pause or close. The profile ALL OTHER APPS applies to every app without its own. Share a single app, never the entire screen (not supported: everything turns black).</string>
     <string name="guide_quick_title">QUICK START AND BATTERY</string>
     <string name="guide_quick_body">Add the Shader tile to the quick settings, or long-press the app icon, to turn the last shader on without opening the app. In SETTINGS, battery mode lowers the load below a battery level and the FPS cap limits the output to save power.</string>
     <string name="btn_fav_only">FAVORITES ONLY</string>
@@ -438,4 +441,15 @@ Compatible with RetroArch slang presets. Not affiliated with RetroArch or libret
     <string name="aspect_retro">Retro</string>
     <string name="aspect_mobile">Modern mobile</string>
     <string name="aspect_mobile_portrait">Modern mobile, portrait</string>
+
+    <!-- Códigos de terminal y valores por defecto: no se traducen -->
+    <string name="settings_module" translatable="false">MODULE: %1$s%2$s</string>
+    <string name="export_default_name" translatable="false">MyCustomPreset</string>
+    <string name="preview_active_module" translatable="false">ACTIVE_MODULE: CRT-ROYALE</string>
+    <string name="shader_marker" translatable="false">►</string>
+    <string name="param_fav_off" translatable="false">[ ]</string>
+    <string name="percent_value" translatable="false">%1$d%%</string>
+    <string name="summary_distorted" translatable="false">(!) %1$s</string>
+    <string name="section_open_fmt" translatable="false">[-] %1$s</string>
+    <string name="section_closed_fmt" translatable="false">[+] %1$s</string>
 </resources>

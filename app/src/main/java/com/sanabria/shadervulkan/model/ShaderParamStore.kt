@@ -2,6 +2,7 @@ package com.sanabria.shadervulkan.model
 
 import android.content.Context
 import org.json.JSONObject
+import androidx.core.content.edit
 
 /**
  * Persistencia de perfiles de ajustes específicos para cada shader.
@@ -87,7 +88,7 @@ object ShaderParamStore {
             root.put(KEY_PROFILES, profiles)
             root.put(KEY_ACTIVE, profileName)
             
-            prefs.edit().putString(shaderId, root.toString()).apply()
+            prefs.edit { putString(shaderId, root.toString()) }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -209,7 +210,7 @@ object ShaderParamStore {
             } else {
                 root.put(KEY_ACTIVE, profileName)
             }
-            prefs.edit().putString(shaderId, root.toString()).apply()
+            prefs.edit { putString(shaderId, root.toString()) }
         } catch (e: Exception) { e.printStackTrace() }
     }
 
@@ -228,7 +229,7 @@ object ShaderParamStore {
             profiles.put(newName, data)
             profiles.remove(oldName)
             if (root.optString(KEY_ACTIVE) == oldName) root.put(KEY_ACTIVE, newName)
-            prefs.edit().putString(shaderId, root.toString()).apply()
+            prefs.edit { putString(shaderId, root.toString()) }
             true
         } catch (e: Exception) { e.printStackTrace(); false }
     }
@@ -248,7 +249,7 @@ object ShaderParamStore {
                 root.remove(KEY_ACTIVE)
             }
             
-            prefs.edit().putString(shaderId, root.toString()).apply()
+            prefs.edit { putString(shaderId, root.toString()) }
         } catch (e: Exception) { e.printStackTrace() }
     }
 
@@ -257,9 +258,9 @@ object ShaderParamStore {
      */
     fun clearAllProfiles(ctx: Context, shaderId: String) {
         ctx.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            .edit()
-            .remove(shaderId)
-            .apply()
+            .edit {
+                remove(shaderId)
+            }
     }
 
 }

@@ -1,8 +1,6 @@
 <!--
   TODO before going public:
-  - Replace OWNER with the GitHub user/organisation (all links below).
-  - Record the media: docs/media/hero.gif (before/after, ~10 s), the four screenshots in docs/media/.
-  - Fill in the Ko-fi link in "Support the project" and uncomment the Play Store line once it is published, or delete them.
+  - Optional: record docs/media/hero.gif (before/after, ~10 s) and uncomment it below.
 -->
 
 <div align="center">
@@ -12,17 +10,19 @@
 ### Real-time retro shaders over *any* Android app.
 
 CRT scanlines, shadow masks, LCD grids and Game Boy screens on top of your emulators, games and videos.<br>
-It runs the RetroArch **`.slangp`** shader presets you already know, on a Vulkan engine written for this app.
+It runs the RetroArch **`.slangp`** shader presets you already know, on a Vulkan engine written for this app: **Capture** mode applies the real shader chain to your screen, and **Glass** is a lightweight overlay for protected apps.
 
 [![Android 10+](https://img.shields.io/badge/Android-10%2B-3DDC84?logo=android&logoColor=white)](#requirements)
 [![Vulkan 1.1](https://img.shields.io/badge/Vulkan-1.1-AC162C?logo=vulkan&logoColor=white)](#requirements)
 [![License: GPLv3](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
 [![No internet permission](https://img.shields.io/badge/Internet%20permission-none-C6F28E)](#privacy)
-[![Latest release](https://img.shields.io/github/v/release/OWNER/ShaderVulkan?color=C6F28E&label=download)](https://github.com/OWNER/ShaderVulkan/releases/latest)
+[![Latest release](https://img.shields.io/github/v/release/Eduzyrtin/ShaderVulkan?color=C6F28E&label=download)](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)
 
-<img src="docs/media/hero.gif" alt="Before and after: a 2D game on an Android handheld, raw and with a CRT shader" width="720">
+<!-- <img src="docs/media/hero.gif" alt="Before and after: a 2D game on an Android handheld, raw and with a CRT shader" width="720"> -->
 
-**[Download the APK](https://github.com/OWNER/ShaderVulkan/releases/latest)** · [Getting started](#getting-started) · [Capture vs Glass](#two-modes-capture-and-glass) · [FAQ](#faq)
+**[Download the APK](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)** · [Getting started](#getting-started) · [How it works](#how-it-works-two-very-different-modes) · [FAQ](#faq)
+
+> **Free here, paid on Google Play.** The APK on GitHub is completely free. If you'd rather install from the Play Store, that edition is the **paid version, as a way of donating** to the project: **[ShaderVulkan on Google Play](https://play.google.com/store/apps/details?id=com.sanabria.shadervulkan)**. Same app either way.
 
 </div>
 
@@ -32,16 +32,16 @@ It runs the RetroArch **`.slangp`** shader presets you already know, on a Vulkan
 
 RetroArch has hundreds of excellent shaders, but they only work **inside RetroArch**. On Android, most people actually play on standalone emulators (Dolphin, PPSSPP, DuckStation, NetherSX2, melonDS, Azahar, Eden…), on native ports, or on retro-style games from the Play Store, and none of those can run the slang presets.
 
-ShaderVulkan sits on top of the whole system instead. It takes whatever is on screen, runs it through the shader chain you choose and draws the result on top, **while your touches and controller input still reach the app underneath as usual**. You don't need root, and the app you're shading doesn't have to support anything.
+ShaderVulkan sits on top of the whole system instead. In **Capture** mode it takes whatever is on screen, runs it through the real slang shader chain you choose and draws the result on top, **while your touches and controller input still reach the app underneath as usual**. You don't need root, and the app you're shading doesn't have to support anything.
 
 And it has **no internet access at all**. It doesn't even request Android's internet permission, so the system won't let it connect to anything: nothing you see or do ever leaves your device.
 
 <table>
   <tr>
-    <td align="center"><img src="docs/media/shot-crt.png" width="200"><br><sub>CRT on a standalone emulator</sub></td>
-    <td align="center"><img src="docs/media/shot-gameboy.png" width="200"><br><sub>Game Boy LCD with a custom zone</sub></td>
-    <td align="center"><img src="docs/media/shot-dual.png" width="200"><br><sub>Dual zone for DS emulators</sub></td>
-    <td align="center"><img src="docs/media/shot-ui.png" width="200"><br><sub>The phosphor-terminal UI</sub></td>
+    <td align="center"><img src="docs/media/shot-retro-video.gif" width="200"><br><sub>Preset, zone and Capture on a retro video</sub></td>
+    <td align="center"><img src="docs/media/shot-gameboy.gif" width="200"><br><sub>Game Boy LCD with a custom zone</sub></td>
+    <td align="center"><img src="docs/media/shot-dual.gif" width="200"><br><sub>Dual zone for DS emulators</sub></td>
+    <td align="center"><img src="docs/media/shot-ui.gif" width="200"><br><sub>The phosphor-terminal UI</sub></td>
   </tr>
 </table>
 
@@ -64,6 +64,12 @@ And it has **no internet access at all**. It doesn't even request Android's inte
 - More than 50 **console resolution profiles** (NES, SNES, Game Boy, Mega Drive, PS1, Neo Geo…), so the shader works at the original pixel grid.
 - **One zone per orientation**, so portrait and landscape each keep their own.
 
+### 🧱 Downscale the whole picture to the shader's grid
+- In **Capture** mode the shader works at the **content resolution** you choose (CONTENT RES): Auto, a percentage of the screen (**Scale**, 10–100 %), a custom size, or a console grid.
+- The whole captured picture is brought down to that grid before the shader runs, **not only the emulator's image**. For example, a 4K YouTube video with CONTENT RES at **25 %** is downscaled to a quarter of the screen, so it gets the same pixel look as the game, with the same aspect.
+- Changes apply **live**, from the overlay menu (**OPTIONS → GRID**) or from the main screen, with no need to stop the session.
+- Capture only reads the pixels the shader needs: with **Quality** or **Performance** capture, the system captures no more than the grid requires, which saves GPU and battery.
+
 ### 🎮 Made for Android handhelds
 - **Dual mode**: two shader zones at once, for DS and 3DS emulators with both screens on one display.
 - **Second-screen support**: on dual-screen handhelds such as the **AYN Thor**, the bottom screen gets its own shader, with its own zone editor and pixel-precise adjustment.
@@ -79,19 +85,39 @@ And it has **no internet access at all**. It doesn't even request Android's inte
 ### 🟢 A UI that looks the part
 - A phosphor-terminal interface with **73 colour palettes**, adjustable glow and film grain.
 - An **in-app guide** explaining every permission and every mode in plain words.
-- Available in **English, Spanish, French, German, Italian and Portuguese**.
+- Available in **English, Spanish, French, German, Italian, Portuguese, Catalan, Basque and Galician**.
+
+## How it works: two very different modes
+
+ShaderVulkan has **two modes, and they are not the same thing**. Pick the one that fits what you're doing.
+
+### 📸 Capture: the real shader, like in RetroArch
+This is the main mode, and the one that runs the **actual RetroArch slang shader**:
+
+1. Android lets the app **capture the screen** (you choose which app to share).
+2. Every captured frame goes into the **full `.slangp` pipeline** on the GPU: all the passes of the preset, its LUT textures, frame history and feedback, with your parameters. It's the same idea as RetroArch's shader chain, except the input is the screen instead of an emulator core's output.
+3. The processed frame is drawn **on top of the original app**, while touches and controller keep going to the app underneath.
+
+Because the shader gets the real image, it can do **anything a slang preset can do**: colour, blur, bloom, curvature, NTSC… That is what lets crt-royale, crt-guest-advanced or koko-aio look as they do in RetroArch.
+
+### 🪟 Glass: a lightweight overlay, no capture
+Glass **does not capture the screen and does not run the shader on the image**. It draws a transparent layer on top of the app that imitates the structure of the preset: scanlines, shadow masks, LCD grids. Since it never sees the picture, a transparent layer can only **darken** it; it can't blur, bloom or recolour. In exchange it works where capture can't (Netflix, Disney+ and other DRM apps), asks for no screen-sharing permission and adds no delay, because the game image isn't touched.
+
+> In short: **Capture is the full shader engine; Glass is the lightweight, compatible alternative.** Glass is not "the app", it's one of its two modes.
 
 ## Two modes: Capture and Glass
 
-|  | **Capture** (default) | **Glass** |
+|  | **Capture** (default, full shader) | **Glass** |
 |---|---|---|
-| How it works | Copies the screen and runs the shader on the real image | Draws a transparent shader layer on top, **without capturing anything** |
+| How it works | Captures the screen and runs the **full slang shader chain** on the real image, as RetroArch would | Draws a transparent layer imitating the preset's scanlines, masks and grids, **without capturing anything** |
 | What it can do | Everything: colour, blur, bloom, curvature, NTSC… | It can only **darken** the image, so scanlines, masks and grids look great; colour and blur effects don't apply |
 | Netflix, Disney+ and other DRM apps | ❌ They block screen capture (black screen) | ✅ Works |
 | Performance | Depends on the shader and the GPU | **Lossless**: runs at the display's own refresh rate |
-| Permission prompt | Android asks you to share the screen each session | None |
+| Permission prompt | Android asks you to share **one app** each session | None |
 
 > **Rule of thumb:** use **Capture** when you want the full shader, and **Glass** for protected apps, for maximum smoothness, or on devices where capture misbehaves.
+
+> **Capture only supports sharing a single app.** When Android asks what to share, choose **"Share one app"**, never "Share entire screen". Sharing the entire screen is **not supported**: the shader ends up capturing itself and everything turns black. Android does not let apps remove that option, so all ShaderVulkan can do is warn you. (On Android 13 and earlier Android only offers the entire screen, so use **Glass** there.)
 
 ## Getting started
 
@@ -100,7 +126,7 @@ And it has **no internet access at all**. It doesn't even request Android's inte
 - A copy of the **slang shaders**. They aren't bundled with the app; see step 4.
 
 ### 1 · Install the APK
-Download the latest `ShaderVulkan-*.apk` from **[Releases](https://github.com/OWNER/ShaderVulkan/releases/latest)** and open it. Android will ask you to allow installs from your browser or file manager; allow it.
+Download the latest `ShaderVulkan-*.apk` from **[Releases](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)** and open it. Android will ask you to allow installs from your browser or file manager; allow it.
 
 ### 2 · Allow restricted settings (Android 13 and newer)
 Android doesn't let sideloaded apps turn on an accessibility service until you allow it once:
@@ -146,7 +172,7 @@ If you play inside RetroArch, you don't need this: RetroArch already applies its
 
 The goal is to behave like RetroArch, and most presets look the same. It isn't guaranteed to be pixel-identical, though. The input is the captured screen rather than the emulator core's own output, so the emulator's scaling matters (use integer or nearest-neighbour scaling). A few preset features aren't supported yet, such as the `$PRESET_DIR$` wildcards in `#reference` paths.
 
-If a preset looks different from RetroArch, that's a bug I want to hear about: [open an issue](https://github.com/OWNER/ShaderVulkan/issues) with the preset and a side-by-side screenshot.
+If a preset looks different from RetroArch, that's a bug I want to hear about: [open an issue](https://github.com/Eduzyrtin/ShaderVulkan/issues) with the preset and a side-by-side screenshot.
 </details>
 
 <details>
@@ -170,7 +196,7 @@ Android only lets touches pass through a full-screen layer if that layer belongs
 <details>
 <summary><b>Why does Android ask me to share the screen every time?</b></summary>
 
-That's Android's rule for screen capture, and only Capture mode needs it. On Android 14+ you can choose to share the whole screen. If you'd rather never see the prompt, use **Glass** mode.
+That's Android's rule for screen capture, and only Capture mode needs it. **Always choose "Share one app"** (Android 14+), never the entire screen: sharing the entire screen is not supported, the shader would capture itself and everything turns black. Android doesn't let apps disable that option, which is why ShaderVulkan can only warn you. If you'd rather never see the prompt, or you are on Android 13 or earlier, use **Glass** mode.
 </details>
 
 <details>
@@ -206,7 +232,7 @@ No, that's the hard limit of Glass. Without capturing the screen it can't see th
 <details>
 <summary><b>Will you add &lt;feature&gt;? What about iOS?</b></summary>
 
-Ideas are welcome: [open an issue](https://github.com/OWNER/ShaderVulkan/issues) so they don't get lost in a comment thread. iOS doesn't allow apps to draw over other apps, so an iOS version isn't possible.
+Ideas are welcome: [open an issue](https://github.com/Eduzyrtin/ShaderVulkan/issues) so they don't get lost in a comment thread. iOS doesn't allow apps to draw over other apps, so an iOS version isn't possible.
 </details>
 
 <details>
@@ -223,14 +249,14 @@ They are signed with different keys, so one can't update the other. Uninstall fi
 
 ## Found a bug? Have an idea?
 
-Please open an **[issue](https://github.com/OWNER/ShaderVulkan/issues)** and include your device, Android version, the preset you were using and the mode (Capture or Glass). A screenshot of the FPS counter helps a lot with performance problems.
+Please open an **[issue](https://github.com/Eduzyrtin/ShaderVulkan/issues)** and include your device, Android version, the preset you were using and the mode (Capture or Glass). A screenshot of the FPS counter helps a lot with performance problems.
 
 ## Support the project
 
 ShaderVulkan is a passion project and the APK here is **free**. If it brought your old games back to life and you'd like to give something back:
 
-- ☕ **[Buy me a coffee on Ko-fi](https://ko-fi.com/OWNER)**
-<!-- - ▶️ Get the **[Play Store edition](https://play.google.com/store/apps/details?id=com.sanabria.shadervulkan)**. It's the same app, with automatic updates and no restricted-settings step. -->
+- ☕ **[Buy me a coffee on Ko-fi](https://ko-fi.com/Eduzyrtin)**
+- ▶️ Get the **[Play Store edition](https://play.google.com/store/apps/details?id=com.sanabria.shadervulkan)**. It's the same app, offered there as a **paid version in donation format**, with automatic updates and no restricted-settings step.
 - ⭐ Star the repo and share a screenshot or a clip. That helps as much as anything.
 
 ## Credits
@@ -242,7 +268,7 @@ ShaderVulkan is a passion project and the APK here is **free**. If it brought yo
 ## Building from source
 
 ```bash
-git clone --recursive https://github.com/OWNER/ShaderVulkan.git
+git clone --recursive https://github.com/Eduzyrtin/ShaderVulkan.git
 ```
 
 Open the folder in **Android Studio** (it installs the NDK and the CMake 3.22.1 it asks for) and run the `debug` variant. `--recursive` matters because glslang is a git submodule. If you already cloned without it, run `git submodule update --init`.
@@ -254,5 +280,5 @@ Copyright (C) 2026 Eduardo Sanabria.
 ShaderVulkan is free software released under the **[GNU General Public License v3.0](LICENSE)**. You can use, study, share and modify it, and any modified version you distribute has to stay under the same licence. glslang and SPIRV-Cross keep their own licences (see the *About* screen in the app). The slang shaders aren't part of this repository; each one keeps its own licence.
 
 <div align="center">
-<sub>"RetroArch" and "libretro" are trademarks of their respective owners. ShaderVulkan is not affiliated with them.</sub>
+<sub>"RetroArch" and "libretro" are trademarks of their respective Eduzyrtins. ShaderVulkan is not affiliated with them.</sub>
 </div>

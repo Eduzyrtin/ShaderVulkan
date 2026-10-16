@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.view.Surface
 import android.hardware.HardwareBuffer
-import android.net.Uri
 import android.util.Log
+import androidx.core.net.toUri
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.sanabria.shadervulkan.model.ShaderParamStore
@@ -199,7 +199,7 @@ object VulkanEngineBridge {
         Log.d("DEBUG-LOG-BRIDGE", "C++ solicita contenido de: $fullPath")
         return try {
             if (fullPath.startsWith("content://")) {
-                var uriToOpen = Uri.parse(fullPath)
+                var uriToOpen = fullPath.toUri()
                 
                 // REPARACIÓN DE URI SAF (Robusta):
                 // C++ concatena rutas usando '/', pero SAF espera Document IDs con '%2F' codificado.
@@ -208,7 +208,7 @@ object VulkanEngineBridge {
                     if (parts.size == 2) {
                         val base = parts[0] + "/document/"
                         val docIdWithSubPath = parts[1].replace("/", "%2F")
-                        uriToOpen = Uri.parse(base + docIdWithSubPath)
+                        uriToOpen = (base + docIdWithSubPath).toUri()
                         Log.d("DEBUG-LOG-BRIDGE", "URI Reparada para SAF: $uriToOpen")
                     }
                 }
@@ -245,13 +245,13 @@ object VulkanEngineBridge {
         Log.d("DEBUG-LOG-BRIDGE", "C++ solicita textura de: $fullPath")
         return try {
             val inputStream: InputStream? = if (fullPath.startsWith("content://")) {
-                var uriToOpen = Uri.parse(fullPath)
+                var uriToOpen = fullPath.toUri()
                 if (fullPath.contains("/document/") && fullPath.count { it == '/' } > 4) {
                     val parts = fullPath.split("/document/")
                     if (parts.size == 2) {
                         val base = parts[0] + "/document/"
                         val docIdWithSubPath = parts[1].replace("/", "%2F")
-                        uriToOpen = Uri.parse(base + docIdWithSubPath)
+                        uriToOpen = (base + docIdWithSubPath).toUri()
                         Log.d("DEBUG-LOG-BRIDGE", "URI Reparada para SAF (Textura): $uriToOpen")
                     }
                 }

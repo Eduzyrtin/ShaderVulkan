@@ -19,6 +19,7 @@
     <string name="btn_pause_system">PAUSAR</string>
     <string name="btn_resume_system">REANUDAR</string>
     <string name="btn_close_system">CERRAR</string>
+    <string name="btn_restart_system">REINICIAR</string>
     <string name="list_external_folder">Carpeta externa</string>
     <string name="list_external_folder_note">Explorar archivos externos</string>
     <string name="list_folder_up_note">Carpeta superior</string>
@@ -31,6 +32,8 @@
     <string name="toast_list_refreshed">Lista refrescada</string>
     <string name="toast_selected">Seleccionado: %1$s</string>
     <string name="toast_capture_denied">Permiso de captura de pantalla denegado</string>
+    <string name="toast_share_one_app">En el diálogo siguiente elige \"Compartir una app\". La pantalla entera no está soportada (todo se ve en negro).</string>
+    <string name="toast_capture_legacy">Android 13 solo permite compartir la pantalla entera: aquí Captura sale en negro. Usa Glass.</string>
     <string name="toast_notifications_needed">Se necesitan notificaciones para el servicio en primer plano</string>
     <string name="toast_enable_accessibility">Activa \'ShaderVulkan Overlay Service\' en los ajustes de Accesibilidad</string>
     <string name="toast_capture_failed">No se pudo iniciar la captura</string>
@@ -55,7 +58,6 @@
     <string name="aspect_auto_resolution">Auto (según resolución)</string>
     <string name="aspect_manual">Manual (zona dibujada)</string>
     <string name="aspect_auto_detect">Auto (detectar bandas negras)</string>
-    <string name="toast_res_profile">Perfil: %1$s</string>
     <string name="toast_zone">Zona: %1$s</string>
     <string name="toast_scale">Escala %1$d%%: %2$dx%3$d</string>
     <string name="toast_custom">Personalizada: %1$dx%2$d</string>
@@ -71,7 +73,7 @@
     <!-- Parámetros y perfiles del preset -->
     <string name="label_profile">PERFIL</string>
     <string name="label_parameters">PARAMETROS</string>
-    <string name="toast_loading_settings">Cargando ajustes...</string>
+    <string name="toast_loading_settings">Cargando ajustes…</string>
     <string name="toast_profile_changed">Perfil cambiado a: %1$s</string>
     <string name="toast_profile_saved">Perfil \'%1$s\' guardado (parámetros, resolución y aspecto)</string>
     <string name="toast_profile_deleted">Perfil eliminado</string>
@@ -96,6 +98,7 @@
     <string name="menu_sec_shader">SHADER</string>
     <string name="menu_sec_session">SESION</string>
     <string name="menu_sec_zone">ZONA</string>
+    <string name="menu_sec_resolution">REJILLA</string>
     <string name="btn_pause">&gt;&gt; PAUSAR</string>
     <string name="btn_resume">&gt;&gt; REANUDAR</string>
     <string name="btn_shader_pick">SHADER: %1$s</string>
@@ -111,7 +114,7 @@
     <string name="side_bottom">ABA</string>
     <string name="toast_bars_no_zone">BARRAS: no hay zona (elige un aspecto o edita la zona del shader)</string>
     <string name="toast_detect_hint">DETECTAR: pulsa AUTO para activar la detección</string>
-    <string name="hint_name">NOMBRE...</string>
+    <string name="hint_name">NOMBRE…</string>
 
     <!-- Editor de la zona del shader -->
     <string name="zone_hint_landscape">ZONA HORIZONTAL · arrastra esquinas, bordes o el interior</string>
@@ -137,7 +140,7 @@
     <string name="screens_single_hint">Solo hay una pantalla.</string>
     <string name="label_app">APP</string>
     <string name="label_app_profiles">PERFILES POR APP</string>
-    <string name="app_profiles_description">Al abrir una app con perfil, el shader se pone solo: Glass directo, Captura pidiendo compartir pantalla. Al salir pregunta si pausar o cerrar.</string>
+    <string name="app_profiles_description">Al abrir una app con perfil, el shader se pone solo: Glass directo, Captura pidiendo compartir pantalla. Al salir pregunta si pausar o cerrar. Comparte una sola app, nunca la pantalla entera (no está soportado: todo se ve en negro).</string>
     <string name="btn_app_profiles">APPS AUTOMATICAS</string>
     <string name="apps_title">APPS AUTOMATICAS</string>
     <string name="apps_subtitle">Qué hace el shader en cada app. Guarda lo que ves ahora con GUARDAR APP en el menú flotante.</string>
@@ -152,7 +155,7 @@
     <string name="apps_profile_active">perfil activo del shader</string>
     <string name="apps_profile_title">Ajustes del shader</string>
     <string name="apps_hint_none">Elige qué hace el shader en esta app.</string>
-    <string name="apps_hint_capture">Al abrir la app pide compartir pantalla y pone el shader encima.</string>
+    <string name="apps_hint_capture">Al abrir la app pide compartir pantalla y pone el shader encima. Comparte una sola app, nunca la pantalla entera (no está soportado: todo se ve en negro).</string>
     <string name="apps_hint_glass">Al abrir la app pone el shader encima, sin pedir nada. Sirve para apps con DRM. Además evita el retardo de la captura: no se pierden fotogramas.</string>
     <string name="apps_hint_off">Mientras esta app esté delante, el shader se oculta.</string>
     <string name="label_app_front">Delante: %1$s</string>
@@ -260,12 +263,12 @@
     <string name="toast_profile_exists">Ya existe un perfil llamado \'%1$s\'</string>
     <string name="toast_default_unrenamable">No se puede renombrar el perfil Default</string>
 
-    <!-- T45 (combinar presets: añadir encima / debajo) -->
+    <!-- T45 (combinar presets: anteponer / anexar, como RetroArch) -->
     <string name="btn_combine">COMBINAR</string>
     <string name="stack_help">La lista se ejecuta de arriba abajo: el primer shader procesa la captura y cada siguiente procesa el resultado del anterior. Los cambios se cargan al pulsar APLICAR.</string>
     <string name="stack_empty">Todavía no hay ningún shader. Añade uno.</string>
-    <string name="btn_stack_above">AÑADIR ENCIMA</string>
-    <string name="btn_stack_below">AÑADIR DEBAJO</string>
+    <string name="btn_stack_prepend">ANTEPONER</string>
+    <string name="btn_stack_append">ANEXAR</string>
     <string name="btn_stack_apply">APLICAR</string>
 
     <!-- T66 (contador de FPS, tope de FPS, botón flotante) -->
@@ -328,7 +331,7 @@
     <!-- T63 (guía integrada), T74 (favoritos) -->
     <string name="guide_index_title">> GUIA</string>
     <string name="guide_welcome_title">> BIENVENIDA</string>
-    <string name="guide_welcome_body">ShaderVulkan dibuja un shader retro (CRT, scanlines...) sobre cualquier app.\n\n1. Dos modos. CAPTURA procesa la imagen real; GLASS dibuja una capa sin capturar, funciona en apps protegidas y es el más ligero.\n\n2. Dos permisos. Accesibilidad, para dibujar encima dejando pasar los toques; y, en Captura, tu OK para compartir la pantalla. Nada sale del móvil.\n\n3. El punto flotante abre el menú. Lo demás está en la guía, en AJUSTES.</string>
+    <string name="guide_welcome_body">ShaderVulkan dibuja un shader retro (CRT, scanlines…) sobre cualquier app.\n\n1. Dos modos. CAPTURA procesa la imagen real; GLASS dibuja una capa sin capturar, funciona en apps protegidas y es el más ligero.\n\n2. Dos permisos. Accesibilidad, para dibujar encima dejando pasar los toques; y, en Captura, tu OK para compartir la pantalla. Nada sale del móvil.\n\n3. El punto flotante abre el menú. Lo demás está en la guía, en AJUSTES.\n\nImportante: en Captura, comparte una sola app. Compartir la pantalla entera no está soportado: el shader se capturaría a sí mismo y todo se ve en negro. Android no permite a las apps desactivar esa opción.</string>
     <string name="guide_open">ABRIR GUIA</string>
     <string name="btn_skip">SALTAR</string>
     <string name="btn_accept">ACEPTAR</string>
@@ -344,26 +347,26 @@
     <string name="access_restricted_hint">Si el interruptor sale gris ("Ajuste restringido"), ve a Ajustes > Aplicaciones > ShaderVulkan, abre el menú de tres puntos y elige "Permitir ajustes restringidos". Luego vuelve y actívalo.</string>
     <string name="about_title">> ACERCA DE</string>
     <string name="licenses_title">> LICENCIAS</string>
-    <string name="about_body">ShaderVulkan %1$s\nCopyright (C) 2026 Eduardo Sanabria\n\nEste programa es software libre: puedes redistribuirlo y/o modificarlo según los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, versión 3 o (a tu elección) cualquier versión posterior.\n\nSe distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTIA; ni siquiera la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPOSITO PARTICULAR. El texto completo está en LICENCIAS.\n\nIncluye glslang y SPIRV-Cross (The Khronos Group y otros), AndroidX, Material Components y Kotlin, cada uno con su propia licencia (ver LICENCIAS).\n\nLos shaders que cargas (.slang, .slangp) no forman parte de la app y conservan sus propias licencias.
+    <string name="about_body">ShaderVulkan %1$s\nCopyright © 2026 Eduardo Sanabria\n\nEste programa es software libre: puedes redistribuirlo y/o modificarlo según los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, versión 3 o (a tu elección) cualquier versión posterior.\n\nSe distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTIA; ni siquiera la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPOSITO PARTICULAR. El texto completo está en LICENCIAS.\n\nIncluye glslang y SPIRV-Cross (The Khronos Group y otros), AndroidX, Material Components y Kotlin, cada uno con su propia licencia (ver LICENCIAS).\n\nLos shaders que cargas (.slang, .slangp) no forman parte de la app y conservan sus propias licencias.
 
 ShaderVulkan no tiene permiso de internet: nada sale de tu dispositivo.
 
 Compatible con los presets slang de RetroArch. Sin relación con RetroArch ni libretro.</string>
     <string name="guide_modes_title">CAPTURA vs GLASS</string>
-    <string name="guide_modes_body">CAPTURA copia la pantalla y aplica el shader sobre la imagen real (color, desenfoque, curvatura); Android pide compartir la pantalla cada vez, y las apps con DRM (Netflix, Disney+) la bloquean. GLASS dibuja encima una capa transparente sin capturar: no pide permiso, funciona en apps protegidas y no pierde fotogramas, así que también es el modo de rendimiento. El precio: solo puede oscurecer la imagen, así que van bien las scanlines y las máscaras, y no los efectos de color o desenfoque.</string>
+    <string name="guide_modes_body">CAPTURA copia la pantalla y aplica el shader sobre la imagen real (color, desenfoque, curvatura); Android pide compartir la pantalla cada vez, y las apps con DRM (Netflix, Disney+) la bloquean. GLASS dibuja encima una capa transparente sin capturar: no pide permiso, funciona en apps protegidas y no pierde fotogramas, así que también es el modo de rendimiento. El precio: solo puede oscurecer la imagen, así que van bien las scanlines y las máscaras, y no los efectos de color o desenfoque. Importante: en Captura, comparte una sola app. Compartir la pantalla entera no está soportado: el shader se capturaría a sí mismo y todo se ve en negro. Android no permite a las apps desactivar esa opción.</string>
     <string name="guide_access_title">POR QUE ACCESIBILIDAD</string>
     <string name="guide_access_body">ShaderVulkan usa un servicio de accesibilidad solo para tres cosas: dibujar el shader encima dejando pasar los toques, saber qué app está delante (perfiles por app) y notar cuándo se abre la barra de notificaciones, para pausar. No lee ni guarda el contenido de tus apps, y no se recoge ni se envía nada.</string>
     <string name="guide_access_confirm">ShaderVulkan necesita su servicio de accesibilidad para dibujar el shader encima dejando pasar los toques, saber qué app está delante (perfiles por app) y notar la barra de notificaciones, para pausar. No lee ni guarda el contenido de tus apps, y no se recoge ni se envía nada.\n\nAhora irás a los ajustes de Accesibilidad de Android: activa ShaderVulkan Overlay Service.</string>
     <string name="guide_zone_title">ZONA Y BARRAS</string>
     <string name="guide_zone_body">La ZONA es la parte de la pantalla donde se aplica el shader; el resto queda intacto. Elige un aspecto, dibújala a mano o deja que AUTO detecte las bandas negras del contenido. BARRAS pinta de negro los lados fuera de la zona, y DUAL reparte la pantalla en dos zonas (estilo DS o 3DS).</string>
     <string name="guide_combine_title">COMBINAR SHADERS</string>
-    <string name="guide_combine_body">COMBINAR añade otro shader al activo. La lista se ejecuta de arriba abajo: AÑADIR ENCIMA pone un shader antes (procesa primero la captura) y AÑADIR DEBAJO lo pone después (procesa el resultado anterior, por ejemplo una viñeta sobre un CRT). Pulsa APLICAR para cargar el conjunto; cada carga recompila todos los pases.</string>
+    <string name="guide_combine_body">COMBINAR añade otro shader al activo. La lista se ejecuta de arriba abajo: ANTEPONER pone un shader antes de los que ya hay (procesa primero la captura) y ANEXAR lo pone después (procesa el resultado anterior). Ejemplo: con un filtro de color en la lista, si ANEXAS unas scanlines se aplica primero el color y luego las scanlines; si las ANTEPONES, primero las scanlines y luego el color. Pulsa APLICAR para cargar el conjunto; cada carga recompila todos los pases.</string>
     <string name="guide_params_title">PARAMETROS Y FAVORITOS</string>
     <string name="guide_params_body">Cada shader tiene parámetros que puedes cambiar en vivo desde PARAMS o desde AJUSTES. Guarda los valores actuales como un PERFIL para recuperarlos luego. Marca con [ ] los que más usas y activa SOLO FAVORITOS en el menú para ocultar el resto.</string>
     <string name="guide_fps_title">CONTADOR DE FPS</string>
     <string name="guide_fps_body">UI es el refresco al que va la pantalla, IN los fotogramas por segundo que llegan de la captura y OUT los que renderiza el shader. IN y OUT parecidos es lo sano; IN alto y OUT bajo significa que la GPU o el shader no dan la talla; IN bajo significa que el límite es el origen o la captura, no el shader. El contador se pone en rojo si la salida se queda muy por debajo de la entrada.</string>
     <string name="guide_apps_title">PERFILES POR APP</string>
-    <string name="guide_apps_body">Un perfil por app recuerda el shader, los ajustes, la zona y el modo de esa app. Al abrirla el shader se enciende solo (Glass directo, Captura pidiendo compartir pantalla); al salir pregunta si pausar o cerrar. El perfil TODAS LAS DEMAS APPS vale para toda app sin el suyo.</string>
+    <string name="guide_apps_body">Un perfil por app recuerda el shader, los ajustes, la zona y el modo de esa app. Al abrirla el shader se enciende solo (Glass directo, Captura pidiendo compartir pantalla); al salir pregunta si pausar o cerrar. El perfil TODAS LAS DEMAS APPS vale para toda app sin el suyo. Comparte una sola app, nunca la pantalla entera (no está soportado: todo se ve en negro).</string>
     <string name="guide_quick_title">INICIO RAPIDO Y BATERIA</string>
     <string name="guide_quick_body">Añade el azulejo Shader a los ajustes rápidos, o mantén pulsado el icono de la app, para encender el último shader sin abrir la app. En AJUSTES, el modo batería baja la carga por debajo de un nivel de batería y el tope de FPS limita la salida para ahorrar energía.</string>
     <string name="btn_fav_only">SOLO FAVORITOS</string>

@@ -16,7 +16,7 @@ import com.sanabria.shadervulkan.ui.CrtUi
 
 /**
  * Editor de conjuntos de presets (T45): lista los shaders que forman el activo de la zona en edición, en orden de ejecución, y
- * deja añadir otro encima (se ejecuta antes) o debajo (después), subir, bajar y quitar piezas. Los cambios se acumulan y solo se
+ * deja anteponer otro (se ejecuta antes) o anexarlo (después), subir, bajar y quitar piezas. Los cambios se acumulan y solo se
  * cargan al pulsar APLICAR (cada carga recompila todos los pases). Con `overlay = true` la ventana va sobre las demás
  * (menú flotante); desde la pantalla principal es un diálogo normal.
  */
@@ -48,8 +48,8 @@ class StackEditor(private val context: Context, private val overlay: Boolean) {
             picker.show { item -> add(item.path, atStart) }
         }
 
-        val aboveBtn = CrtUi.button(dialogCtx, context.getString(R.string.btn_stack_above)).apply { setOnClickListener { pick(true) } }
-        val belowBtn = CrtUi.button(dialogCtx, context.getString(R.string.btn_stack_below)).apply { setOnClickListener { pick(false) } }
+        val prependBtn = CrtUi.button(dialogCtx, context.getString(R.string.btn_stack_prepend)).apply { setOnClickListener { pick(true) } }
+        val appendBtn = CrtUi.button(dialogCtx, context.getString(R.string.btn_stack_append)).apply { setOnClickListener { pick(false) } }
 
         rebuild = {
             list.removeAllViews()
@@ -80,8 +80,8 @@ class StackEditor(private val context: Context, private val overlay: Boolean) {
             }
             if (parts.isEmpty()) list.addView(CrtUi.text(dialogCtx, CrtUi.Text.CAPTION, context.getString(R.string.stack_empty)))
             val full = parts.size >= ShaderStack.MAX_PARTS
-            aboveBtn.isEnabled = !full
-            belowBtn.isEnabled = !full
+            prependBtn.isEnabled = !full
+            appendBtn.isEnabled = !full
             applyBtn.isEnabled = parts.isNotEmpty() && parts != original
             applyBtn.alpha = if (applyBtn.isEnabled) 1f else 0.5f
         }
@@ -94,8 +94,8 @@ class StackEditor(private val context: Context, private val overlay: Boolean) {
             addView(CrtUi.divider(dialogCtx))
             addView(LinearLayout(dialogCtx).apply {
                 orientation = LinearLayout.HORIZONTAL
-                addView(aboveBtn, LinearLayout.LayoutParams(0, -2, 1f))
-                addView(belowBtn, LinearLayout.LayoutParams(0, -2, 1f).apply { marginStart = gap })
+                addView(prependBtn, LinearLayout.LayoutParams(0, -2, 1f))
+                addView(appendBtn, LinearLayout.LayoutParams(0, -2, 1f).apply { marginStart = gap })
                 addView(CrtUi.button(dialogCtx, "?", CrtUi.Btn.TOGGLE).apply { setOnClickListener { guide.show(GuideDialog.COMBINE) } },
                     LinearLayout.LayoutParams(-2, -2).apply { marginStart = gap })
             })

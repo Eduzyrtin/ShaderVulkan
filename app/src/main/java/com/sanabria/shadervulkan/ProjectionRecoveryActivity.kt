@@ -51,6 +51,7 @@ class ProjectionRecoveryActivity : ComponentActivity() {
         // Tras una rotación la actividad se recrea y el diálogo del sistema sigue abierto: no pedirlo dos veces
         if (savedInstanceState != null) return
 
+        ShaderCaptureService.showShareHint(this) // solo se admite compartir una app
         val manager = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             manager.createScreenCaptureIntent(MediaProjectionConfig.createConfigForUserChoice())

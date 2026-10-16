@@ -1,1763 +1,224 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="5" by="lint Rabbit 1 | 2026.2.1">
-
-    <issue
-        id="SuspiciousImport"
-        message="Don&apos;t include `android.R` here; use a fully qualified name for each usage instead">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="3"/>
-    </issue>
-
-    <issue
-        id="SuspiciousImport"
-        message="Don&apos;t include `android.R` here; use a fully qualified name for each usage instead">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/ShaderCaptureService.kt"
-            line="3"/>
-    </issue>
-
-    <issue
-        id="ScopedStorage"
-        message="READ_EXTERNAL_STORAGE is deprecated (and is not granted) when targeting Android 13+. If you need to query or interact with MediaStore or media files on the shared storage, you should instead use one or more new storage permissions: `READ_MEDIA_IMAGES`, `READ_MEDIA_VIDEO` or `READ_MEDIA_AUDIO`.">
-        <location
-            file="src/main/AndroidManifest.xml"
-            line="9"/>
-    </issue>
-
-    <issue
-        id="DefaultLocale"
-        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/ShaderSettingsActivity.kt"
-            line="244"/>
-    </issue>
-
-    <issue
-        id="NewApi"
-        message="Call requires API level 30 (current min is 29): `android.view.WindowManager#getMaximumWindowMetrics`">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/ShadeDetector.kt"
-            line="82"/>
-    </issue>
-
-    <issue
-        id="NewApi"
-        message="Call requires API level 30 (current min is 29): `android.view.WindowMetrics#getBounds`">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/ShadeDetector.kt"
-            line="82"/>
-    </issue>
+<issues format="6" by="lint 9.4.1" type="baseline" client="gradle" dependencies="false" name="AGP (9.4.1)" variant="all" version="9.4.1">
 
     <issue
         id="OldTargetApi"
-        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.">
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        errorLine1="        targetSdk = 36"
+        errorLine2="        ~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="13"/>
-    </issue>
-
-    <issue
-        id="RedundantLabel"
-        message="Redundant label can be removed">
-        <location
-            file="src/main/AndroidManifest.xml"
-            line="34"/>
-    </issue>
-
-    <issue
-        id="AndroidGradlePluginVersion"
-        message="A newer version of Gradle than 9.6.0 is available: 9.8.1">
-        <location
-            file="gradle/wrapper/gradle-wrapper.properties"
-            line="5"/>
+            line="28"
+            column="9"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of `compileSdk` than 36 is available: 37">
+        message="A newer version of `compileSdk` than 36 is available: 37"
+        errorLine1="    compileSdk = 36"
+        errorLine2="    ~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="8"/>
+            line="23"
+            column="5"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.1">
+        message="A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.1"
+        errorLine1="        implementation(&quot;androidx.core:core-ktx:1.15.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="59"/>
+            line="129"
+            column="24"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.8.0">
+        message="A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.8.0"
+        errorLine1="        implementation(&quot;androidx.appcompat:appcompat:1.7.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="60"/>
+            line="130"
+            column="24"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.recyclerview:recyclerview than 1.3.2 is available: 1.4.0">
+        message="A newer version of androidx.recyclerview:recyclerview than 1.3.2 is available: 1.4.0"
+        errorLine1="        implementation(&quot;androidx.recyclerview:recyclerview:1.3.2&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="61"/>
+            line="131"
+            column="24"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.constraintlayout:constraintlayout than 2.2.0 is available: 2.2.2">
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.2.0 is available: 2.2.2"
+        errorLine1="        implementation(&quot;androidx.constraintlayout:constraintlayout:2.2.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="63"/>
+            line="133"
+            column="24"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0">
+        message="A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0"
+        errorLine1="        implementation(&quot;com.google.android.material:material:1.12.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="64"/>
+            line="134"
+            column="24"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.11.0">
+        message="A newer version of androidx.documentfile:documentfile than 1.0.1 is available: 1.1.0"
+        errorLine1="        implementation(&quot;androidx.documentfile:documentfile:1.0.1&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="65"/>
+            line="137"
+            column="24"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.activity:activity-compose than 1.9.3 is available: 1.13.0">
+        message="A newer version of androidx.core:core-ktx than 1.19.0 is available: 1.19.1"
+        errorLine1="coreKtx = &quot;1.19.0&quot;"
+        errorLine2="          ~~~~~~~~">
         <location
-            file="build.gradle.kts"
-            line="66"/>
+            file="$HOME/AndroidStudioProjects/ShaderVulkan/gradle/libs.versions.toml"
+            line="3"
+            column="11"/>
     </issue>
 
     <issue
         id="GradleDependency"
-        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.8.7 is available: 2.11.0">
+        message="A newer version of androidx.compose:compose-bom than 2026.02.01 is available: 2026.09.00"
+        errorLine1="composeBom = &quot;2026.02.01&quot;"
+        errorLine2="             ~~~~~~~~~~~~">
         <location
-            file="build.gradle.kts"
-            line="67"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.documentfile:documentfile than 1.0.1 is available: 1.1.0">
-        <location
-            file="build.gradle.kts"
-            line="70"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.core:core-ktx than 1.19.0 is available: 1.19.1">
-        <location
-            file="gradle/libs.versions.toml"
-            line="3"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.compose:compose-bom than 2026.02.01 is available: 2026.09.00">
-        <location
-            file="gradle/libs.versions.toml"
-            line="10"/>
+            file="$HOME/AndroidStudioProjects/ShaderVulkan/gradle/libs.versions.toml"
+            line="10"
+            column="14"/>
     </issue>
 
     <issue
         id="NewerVersionAvailable"
-        message="A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-android than 1.9.0 is available: 1.11.0">
-        <location
-            file="build.gradle.kts"
-            line="68"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        message="A newer version of com.github.bumptech.glide:glide than 4.16.0 is available: 5.0.9">
-        <location
-            file="build.gradle.kts"
-            line="69"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        message="A newer version of org.jetbrains.kotlin.plugin.compose than 2.2.10 is available: 2.4.21">
-        <location
-            file="gradle/libs.versions.toml"
-            line="9"/>
-    </issue>
-
-    <issue
-        id="WrongGradleMethod"
-        message="Suspicious receiver type; this does not apply to the current receiver of type `ApplicationExtension`. This will apply to a receiver of type `Project`, found in one of the enclosing lambdas. Make sure it&apos;s declared in the right place in the file.">
-        <location
-            file="build.gradle.kts"
-            line="58"/>
-    </issue>
-
-    <issue
-        id="AccessibilityPolicy"
-        message="AccessibilityService API usage must align with the API policy guidelines.  It must not be used to bypass privacy controls or change settings without consent. ">
-        <location
-            file="src/main/AndroidManifest.xml"
-            line="70"/>
-    </issue>
-
-    <issue
-        id="AccessibilityPolicy"
-        message="AccessibilityService API usage must align with the API policy guidelines.  It must not be used to bypass privacy controls or change settings without consent. ">
-        <location
-            file="src/main/AndroidManifest.xml"
-            line="83"/>
-    </issue>
-
-    <issue
-        id="AccessibilityPolicy"
-        message="AccessibilityService API usage must align with the API policy guidelines.  It must not be used to bypass privacy controls or change settings without consent. ">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/AppDetectionService.kt"
-            line="8"/>
-    </issue>
-
-    <issue
-        id="AccessibilityPolicy"
-        message="AccessibilityService API usage must align with the API policy guidelines.  It must not be used to bypass privacy controls or change settings without consent. ">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/ShaderOverlayAccessibilityService.kt"
-            line="19"/>
-    </issue>
-
-    <issue
-        id="ForegroundServicesPolicy"
-        message="Android 14+ requires Foreground Service types declaration and justification. ">
-        <location
-            file="src/main/AndroidManifest.xml"
-            line="13"/>
-    </issue>
-
-    <issue
-        id="ForegroundServicesPolicy"
-        message="Android 14+ requires Foreground Service types declaration and justification. ">
-        <location
-            file="src/main/AndroidManifest.xml"
-            line="13"/>
-    </issue>
-
-    <issue
-        id="NotifyDataSetChanged"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="346"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 29">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/ShaderCaptureService.kt"
-            line="310"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 29">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/ShaderCaptureService.kt"
-            line="529"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 29">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/ShaderCaptureService.kt"
-            line="684"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 23">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="10"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 23">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="10"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 23">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="10"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 23">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="10"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 29. Merge all the resources in this folder into `mipmap-anydpi`.">
-        <location
-            file="src/main/res/mipmap-anydpi-v26"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 23">
-        <location
-            file="src/main/res/values/themes.xml"
-            line="19"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is always >= 23">
-        <location
-            file="src/main/res/values/themes.xml"
-            line="19"/>
-    </issue>
-
-    <issue
-        id="Overdraw"
-        message="Possible overdraw: Root element paints background `#1a1a1a` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
-        <location
-            file="src/main/res/layout/activity_shader_gallery.xml"
-            line="8"/>
-    </issue>
-
-    <issue
-        id="Overdraw"
-        message="Possible overdraw: Root element paints background `#1a0f1729` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
-        <location
-            file="src/main/res/layout/item_shader_card.xml"
-            line="9"/>
-    </issue>
-
-    <issue
-        id="Overdraw"
-        message="Possible overdraw: Root element paints background `#3a3a3a` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
-        <location
-            file="src/main/res/layout/item_shader_card_vertical.xml"
-            line="8"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.layout.activity_shader_gallery` appears to be unused">
-        <location
-            file="src/main/res/layout/activity_shader_gallery.xml"
-            line="4"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.purple_500` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="5"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.purple_700` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="6"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.teal_200` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="8"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.teal_700` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="9"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.crt_glow` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="14"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.white` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="17"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.black` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="18"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.background_dark` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="20"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.surface_light` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="21"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.surface_medium` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="22"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.text_primary` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="24"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.text_secondary` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="25"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.text_tertiary` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="26"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.accent` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="28"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.success_green` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="30"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.success_light` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="31"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.error_red` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="33"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.warning_yellow` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="34"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.shader_bg_inactive` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="36"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.shader_bg_active` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="37"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.shader_text_inactive` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="38"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.shader_text_active` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="39"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.shader_text_accent` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="40"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.shader_text_dimmed` appears to be unused">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="41"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.drawable.crt_noise` appears to be unused">
-        <location
-            file="src/main/res/drawable/crt_noise.xml"
-            line="2"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.drawable.crt_scanlines` appears to be unused">
-        <location
-            file="src/main/res/drawable/crt_scanlines.xml"
-            line="2"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.drawable.ic_file_code` appears to be unused">
-        <location
-            file="src/main/res/drawable/ic_file_code.xml"
-            line="3"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.drawable.ic_menu` appears to be unused">
-        <location
-            file="src/main/res/drawable/ic_menu.xml"
-            line="3"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.layout.item_shader_card` appears to be unused">
-        <location
-            file="src/main/res/layout/item_shader_card.xml"
-            line="4"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.layout.item_shader_card_vertical` appears to be unused">
-        <location
-            file="src/main/res/layout/item_shader_card_vertical.xml"
-            line="3"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.app_name` appears to be unused">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="3"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.shader_active_on` appears to be unused">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="4"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.shader_inactive_off` appears to be unused">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="5"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.import_shader` appears to be unused">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="6"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.no_shaders_found` appears to be unused">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="7"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.select_folder` appears to be unused">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="8"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.shader_selected` appears to be unused">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="9"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.string.permission_denied` appears to be unused">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="10"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.Theme_ShaderVulkan_MaterialComponents` appears to be unused">
-        <location
-            file="src/main/res/values/styles.xml"
-            line="5"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.Theme_ShaderVulkan_AppCompat` appears to be unused">
-        <location
-            file="src/main/res/values/styles.xml"
-            line="19"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.MaterialButton_Primary` appears to be unused">
-        <location
-            file="src/main/res/values/styles.xml"
-            line="30"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.MaterialButton_Outline` appears to be unused">
-        <location
-            file="src/main/res/values/styles.xml"
-            line="36"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.MaterialButton_Text` appears to be unused">
-        <location
-            file="src/main/res/values/styles.xml"
-            line="43"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.MaterialButton_Icon` appears to be unused">
-        <location
-            file="src/main/res/values/styles.xml"
-            line="49"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.MaterialButton_Icon_Outline` appears to be unused">
-        <location
-            file="src/main/res/values/styles.xml"
-            line="56"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.MaterialButton_Icon_Text` appears to be unused">
-        <location
-            file="src/main/res/values/styles.xml"
-            line="63"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.CrtText_Status` appears to be unused">
-        <location
-            file="src/main/res/values/themes.xml"
-            line="69"/>
-    </issue>
-
-    <issue
-        id="IconLauncherShape"
-        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
-        <location
-            file="src/main/res/mipmap-xxxhdpi/ic_launcher.jpg"/>
-    </issue>
-
-    <issue
-        id="MonochromeLauncherIcon"
-        message="The application adaptive icon is missing a monochrome tag">
-        <location
-            file="src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
-            line="2"/>
-    </issue>
-
-    <issue
-        id="MonochromeLauncherIcon"
-        message="The application adaptive roundIcon is missing a monochrome tag">
-        <location
-            file="src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
-            line="2"/>
-    </issue>
-
-    <issue
-        id="IconDuplicates"
-        message="The following unrelated icon files have identical contents: ic_launcher.jpg, ic_launcher_foreground.jpg">
-        <location
-            file="src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.jpg"/>
-        <location
-            file="src/main/res/mipmap-xxxhdpi/ic_launcher.jpg"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `10sp`">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="38"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `10sp`">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="50"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `10sp`">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="52"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `10sp`">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="85"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `10sp`">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="88"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `10sp`">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="134"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `9sp`">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="153"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `10sp`">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="157"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `9sp`">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="168"/>
-    </issue>
-
-    <issue
-        id="SmallSp"
-        message="Avoid using sizes smaller than `11sp`: `10sp`">
-        <location
-            file="src/main/res/layout/item_shader.xml"
-            line="39"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/LoadingHud.kt"
-            line="37"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/LoadingHud.kt"
-            line="38"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/LoadingHud.kt"
-            line="95"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/LoadingHud.kt"
-            line="113"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/LoadingHud.kt"
-            line="113"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="195"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="202"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="336"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="490"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="491"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="494"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="495"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX function `createBitmap` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="1014"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `Bitmap.toDrawable` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="1034"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="160"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="345"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="487"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="488"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="501"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="576"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/services/ShaderCaptureService.kt"
-            line="480"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/adapters/ShaderItemAdapter.kt"
-            line="44"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/adapters/ShaderItemAdapter.kt"
-            line="44"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/adapters/ShaderItemAdapter.kt"
-            line="48"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toColorInt` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/adapters/ShaderItemAdapter.kt"
-            line="48"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderParamStore.kt"
-            line="60"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderParamStore.kt"
-            line="162"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderParamStore.kt"
-            line="181"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderParamStore.kt"
-            line="189"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="29"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="42"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="55"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="73"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="86"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="101"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="114"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="126"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `SharedPreferences.edit` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/model/ShaderPreferences.kt"
-            line="138"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/ShaderSettingsActivity.kt"
-            line="251"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/native/VulkanEngineBridge.kt"
-            line="71"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/native/VulkanEngineBridge.kt"
-            line="80"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/native/VulkanEngineBridge.kt"
-            line="111"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/native/VulkanEngineBridge.kt"
-            line="117"/>
+        message="A newer version of org.jetbrains.kotlin.plugin.compose than 2.2.10 is available: 2.4.21"
+        errorLine1="kotlin = &quot;2.2.10&quot;"
+        errorLine2="         ~~~~~~~~">
+        <location
+            file="$HOME/AndroidStudioProjects/ShaderVulkan/gradle/libs.versions.toml"
+            line="9"
+            column="10"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead (androidx.core:core-ktx is already available as `androidx-core-ktx`, but using version 1.19.0 instead)">
+        message="Use version catalog instead (androidx.core:core-ktx is already available as `androidx-core-ktx`, but using version 1.19.0 instead)"
+        errorLine1="        implementation(&quot;androidx.core:core-ktx:1.15.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="59"/>
+            line="129"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead">
+        message="Use version catalog instead"
+        errorLine1="        implementation(&quot;androidx.appcompat:appcompat:1.7.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="60"/>
+            line="130"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead">
+        message="Use version catalog instead"
+        errorLine1="        implementation(&quot;androidx.recyclerview:recyclerview:1.3.2&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="61"/>
+            line="131"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead">
+        message="Use version catalog instead"
+        errorLine1="        implementation(&quot;androidx.cardview:cardview:1.0.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="62"/>
+            line="132"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead">
+        message="Use version catalog instead"
+        errorLine1="        implementation(&quot;androidx.constraintlayout:constraintlayout:2.2.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="63"/>
+            line="133"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead">
+        message="Use version catalog instead"
+        errorLine1="        implementation(&quot;com.google.android.material:material:1.12.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="64"/>
+            line="134"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead (androidx.lifecycle:lifecycle-runtime-ktx is already available as `androidx-lifecycle-runtime-ktx`, but using version 2.11.0 instead)">
+        message="Use version catalog instead"
+        errorLine1="        implementation(&quot;androidx.activity:activity-ktx:1.13.0&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="65"/>
+            line="136"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead (androidx.activity:activity-compose is already available as `androidx-activity-compose`, but using version 1.13.0 instead)">
+        message="Use version catalog instead"
+        errorLine1="        implementation(&quot;androidx.documentfile:documentfile:1.0.1&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="66"/>
+            line="137"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
-        message="Use version catalog instead">
+        message="Use the existing version catalog reference (`libs.junit`) instead"
+        errorLine1="        testImplementation(&quot;junit:junit:4.13.2&quot;)"
+        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
-            line="67"/>
-    </issue>
-
-    <issue
-        id="UseTomlInstead"
-        message="Use version catalog instead">
-        <location
-            file="build.gradle.kts"
-            line="68"/>
-    </issue>
-
-    <issue
-        id="UseTomlInstead"
-        message="Use version catalog instead">
-        <location
-            file="build.gradle.kts"
-            line="69"/>
-    </issue>
-
-    <issue
-        id="UseTomlInstead"
-        message="Use version catalog instead">
-        <location
-            file="build.gradle.kts"
-            line="70"/>
-    </issue>
-
-    <issue
-        id="UseTomlInstead"
-        message="Use the existing version catalog reference (`libs.junit`) instead">
-        <location
-            file="build.gradle.kts"
-            line="71"/>
-    </issue>
-
-    <issue
-        id="ClickableViewAccessibility"
-        message="Custom view ``ImageView`` has `setOnTouchListener` called on it but does not override `performClick`">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="81"/>
-    </issue>
-
-    <issue
-        id="ClickableViewAccessibility"
-        message="`onTouch` lambda should call `View#performClick` when a click is detected">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="81"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image">
-        <location
-            file="src/main/res/layout/item_shader.xml"
-            line="44"/>
-    </issue>
-
-    <issue
-        id="ContentDescription"
-        message="Missing `contentDescription` attribute on image">
-        <location
-            file="src/main/res/layout/item_shader_card_vertical.xml"
-            line="42"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/LoadingHud.kt"
-            line="48"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/LoadingHud.kt"
-            line="48"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/LoadingHud.kt"
-            line="92"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="276"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="276"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="452"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="489"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="493"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="896"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="896"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="917"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/MainActivity.kt"
-            line="917"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="200"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="200"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="277"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="385"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="409"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="428"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/overlay/OverlayControlManager.kt"
-            line="519"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        message="String literal in `setText` can not be translated. Use Android resources instead.">
-        <location
-            file="src/main/java/com/sanabria/shadervulkan/ShaderSettingsActivity.kt"
-            line="218"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;> SHADER_VULKAN&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="26"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;> SHADER_VULKAN&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="26"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Real-time CRT Engine&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="37"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Real-time CRT Engine&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="38"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;ACTIVE_MODULE: NONE&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="49"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;No shader selected&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="51"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;LOAD_DRIVE&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="83"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;FOLDER&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="86"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;CONTENT RES:&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="133"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;[SYSTEM_CONTROL_CONSOLE]&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="143"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;RES_INPUT:&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="152"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;ASPECT RATIO:&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="156"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;ASPECT_LOCK:&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="167"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;IMPORT&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="180"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;PARAMETERS&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="191"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;SETTINGS&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="201"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;RUN SYSTEM&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout-land/activity_main.xml"
-            line="207"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;START OVERLAY&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_main.xml"
-            line="213"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;ShaderVulkan CRT&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_shader_gallery.xml"
-            line="25"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Menú&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_shader_gallery.xml"
-            line="36"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;> SHADER_CONFIG_KERNEL&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_shader_settings.xml"
-            line="19"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Save Profile&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_shader_settings.xml"
-            line="49"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Delete Profile&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_shader_settings.xml"
-            line="58"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Export Preset&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_shader_settings.xml"
-            line="67"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;FORMAT_ALL&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_shader_settings.xml"
-            line="90"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;RETURN&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/activity_shader_settings.xml"
-            line="100"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Parameter Name&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/item_parameter.xml"
-            line="20"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;0.00&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/item_parameter.xml"
-            line="28"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;CRT Default&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/item_shader.xml"
-            line="25"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Scanlines + Chromatic Aberration&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/item_shader.xml"
-            line="38"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Icono del shader&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/item_shader_card_vertical.xml"
-            line="18"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;crt_default&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/item_shader_card_vertical.xml"
-            line="25"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;.SLANGP&quot;, should use `@string` resource">
-        <location
-            file="src/main/res/layout/item_shader_card_vertical.xml"
-            line="37"/>
+            line="138"
+            column="28"/>
     </issue>
 
 </issues>

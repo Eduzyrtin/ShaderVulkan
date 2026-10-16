@@ -2,7 +2,6 @@ package com.sanabria.shadervulkan.overlay
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.graphics.Typeface
 import android.util.TypedValue
 import android.view.WindowManager
@@ -10,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.net.toUri
 import com.sanabria.shadervulkan.BuildConfig
 import com.sanabria.shadervulkan.R
 import com.sanabria.shadervulkan.ui.CrtUi
@@ -21,7 +21,7 @@ import com.sanabria.shadervulkan.ui.CrtUi
  */
 class AboutDialog(private val context: Context) {
 
-    private class License(@StringRes val label: Int, val asset: String)
+    private class License(@param:StringRes val label: Int, val asset: String)
 
     private var dialog: AlertDialog? = null
 
@@ -49,7 +49,7 @@ class AboutDialog(private val context: Context) {
 
     private fun open(url: String) {
         try {
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(Intent(Intent.ACTION_VIEW, url.toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         } catch (_: Exception) {}
     }
 

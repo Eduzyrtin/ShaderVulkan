@@ -22,6 +22,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.sanabria.shadervulkan.ui.CrtTheme
 import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.withSave
 import com.sanabria.shadervulkan.R
 import com.sanabria.shadervulkan.model.ScreenLayout
 import com.sanabria.shadervulkan.model.ShaderPreferences
@@ -82,7 +83,13 @@ class ZoneEditor(private val context: Context) {
         // Si la zona inicial viene de un aspecto o de la resolución, los tiradores mantienen la forma (se suelta con el botón LOCK)
         val storedA = if (second) ShaderPreferences.getSecondZone(context, landscape) != null
                       else ShaderPreferences.getManualZone(context, landscape) != null
-        val aspectLocked = if (dual) !storedA else if (current != null) (if (second) !storedA else !ShaderZone.isManual(context)) else resRect != null
+        // Una zona ya guardada que conserva la forma de la resolución sigue con la proporción bloqueada al reabrir el editor
+        // (si el usuario la soltó con LOCK y la deformó, ya no coincide y se abre libre)
+        fun keepsShape(r: Rect?, rw: Float, rh: Float): Boolean {
+            val asp = ShaderZone.aspectForResolution(resIdx, rw, rh)
+            return r != null && asp > 0f && abs(r.width().toFloat() / r.height() / asp - 1f) < 0.01f
+        }
+        val aspectLocked = if (dual) !storedA else if (current != null) (if (second) !storedA else !ShaderZone.isManual(context)) || keepsShape(current, virtW, virtH) else resRect != null
         var gridAdapt = ShaderPreferences.isGridAdapt(context)
 
         val ui = CrtUi.themed(wctx)
@@ -95,8 +102,8 @@ class ZoneEditor(private val context: Context) {
             val (a, b) = ShaderZone.dualRects(context, sw, sh)
             zoneA.rect.set(RectF(a))
             val storedB = ShaderPreferences.getManualZoneB(context, landscape) != null
-            zoneA.lockRatio = if (storedA) 0f else a.width().toFloat() / a.height()
-            zones.add(Zone("B", RectF(b), if (storedB) 0f else b.width().toFloat() / b.height(), virtWB, virtHB))
+            zoneA.lockRatio = if (storedA && !keepsShape(a, virtW, virtH)) 0f else a.width().toFloat() / a.height()
+            zones.add(Zone("B", RectF(b), if (storedB && !keepsShape(b, virtWB, virtHB)) 0f else b.width().toFloat() / b.height(), virtWB, virtHB))
         }
 
         val zoneView = ZoneView(ui, sw, sh, zones, font, resIdx)
@@ -238,6 +245,24 @@ class ZoneEditor(private val context: Context) {
         placeBar()
         zoneView.onChanged = { placeBar() }
 
+        // Mientras se arrastra una zona el panel se oculta para ver la app real bajo el rectángulo; reaparece poco después de soltar
+        val barHandler = Handler(Looper.getMainLooper())
+        val showBar = Runnable { bar.visibility = View.VISIBLE; bar.animate().alpha(1f).setDuration(150L).start() }
+        zoneView.onDragState = { dragging ->
+            barHandler.removeCallbacks(showBar)
+            if (dragging) {
+                bar.animate().cancel()
+                bar.alpha = 0f
+                bar.visibility = View.INVISIBLE
+            } else {
+                barHandler.postDelayed(showBar, 600L)
+            }
+        }
+        bar.addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+            override fun onViewAttachedToWindow(v: View) {}
+            override fun onViewDetachedFromWindow(v: View) { barHandler.removeCallbacks(showBar) }
+        })
+
         dualBtn.setOnClickListener {
             if (dual) {
                 dual = false
@@ -364,7 +389,8 @@ class ZoneEditor(private val context: Context) {
         b.setOnTouchListener { v, e ->
             when (e.actionMasked) {
                 MotionEvent.ACTION_DOWN -> { v.isPressed = true; n = 0; action(); handler.postDelayed(tick, 400L) }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> { v.isPressed = false; handler.removeCallbacks(tick) }
+                MotionEvent.ACTION_UP -> { v.isPressed = false; handler.removeCallbacks(tick); v.performClick() }
+                MotionEvent.ACTION_CANCEL -> { v.isPressed = false; handler.removeCallbacks(tick) }
             }
             true
         }
@@ -426,6 +452,7 @@ class ZoneEditor(private val context: Context) {
         var gridAdapt = false
         var onChanged: (() -> Unit)? = null
         var onSelected: (() -> Unit)? = null
+        var onDragState: ((Boolean) -> Unit)? = null
 
         private val density = resources.displayMetrics.density
         private val handleR = 11 * density
@@ -543,10 +570,10 @@ class ZoneEditor(private val context: Context) {
 
         override fun onDraw(canvas: Canvas) {
             // Fuera de las zonas, la pantalla real oscurecida: dentro, lo que verá el shader
-            canvas.save()
-            for (z in zones) canvas.clipOutRect(z.rect)
-            canvas.drawColor(outsideDim)
-            canvas.restore()
+            canvas.withSave {
+                for (z in zones) clipOutRect(z.rect)
+                drawColor(outsideDim)
+            }
 
             zones.forEachIndexed { i, z ->
                 val r = z.rect
@@ -587,6 +614,9 @@ class ZoneEditor(private val context: Context) {
             }
         }
 
+        // Sin listener de clic: esto solo avisa a accesibilidad de que hubo un toque al soltar
+        override fun performClick(): Boolean = super.performClick()
+
         private fun corners() = listOf(rect.left to rect.top, rect.right to rect.top, rect.left to rect.bottom, rect.right to rect.bottom)
 
         override fun onTouchEvent(e: MotionEvent): Boolean {
@@ -605,6 +635,7 @@ class ZoneEditor(private val context: Context) {
                     }
                     lastX = e.x; lastY = e.y
                     rawL = rect.left; rawT = rect.top
+                    if (drag != Drag.NONE) onDragState?.invoke(true)
                     return drag != Drag.NONE
                 }
                 MotionEvent.ACTION_MOVE -> {
@@ -619,7 +650,12 @@ class ZoneEditor(private val context: Context) {
                     onChanged?.invoke()
                     return true
                 }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> { drag = Drag.NONE; return true }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    if (drag != Drag.NONE) onDragState?.invoke(false)
+                    drag = Drag.NONE
+                    if (e.actionMasked == MotionEvent.ACTION_UP) performClick()
+                    return true
+                }
             }
             return true
         }

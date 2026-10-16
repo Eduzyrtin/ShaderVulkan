@@ -16,6 +16,8 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.sanabria.shadervulkan.R
+import com.google.android.material.slider.Slider
+import com.sanabria.shadervulkan.model.ConsoleResolutions
 import com.sanabria.shadervulkan.model.ParamFavorites
 import com.sanabria.shadervulkan.model.PerfSettings
 import com.sanabria.shadervulkan.model.ScreenLayout
@@ -80,6 +82,12 @@ class OverlayControlManager(private val context: Context) {
             val r = diameter / 2f
             canvas.drawCircle(width / 2f, height / 2f, r, fill)
             canvas.drawCircle(width / 2f, height / 2f, r, ring)
+        }
+
+        // El toque lo gestiona el listener del botón; esto solo avisa a accesibilidad de que hubo un clic
+        override fun performClick(): Boolean {
+            super.performClick()
+            return true
         }
     }
 
@@ -166,6 +174,7 @@ class OverlayControlManager(private val context: Context) {
                 }
                 MotionEvent.ACTION_UP -> {
                     if (!moved) {
+                        v.performClick()
                         showMenu()
                     } else {
                         ShaderPreferences.setControlButtonPosition(context, p.x, p.y)
@@ -355,7 +364,7 @@ class OverlayControlManager(private val context: Context) {
             fun isOpen() = sectionOpen[key] ?: defaultOpen
             val head = CrtUi.button(ui, "").apply { gravity = Gravity.START or Gravity.CENTER_VERTICAL }
             fun paint() {
-                head.text = (if (isOpen()) "[-] " else "[+] ") + titleText
+                head.text = ui.getString(if (isOpen()) R.string.section_open_fmt else R.string.section_closed_fmt, titleText)
                 body.visibility = if (isOpen()) View.VISIBLE else View.GONE
             }
             paint()
@@ -432,7 +441,7 @@ class OverlayControlManager(private val context: Context) {
                     }
                     body.addView(row(null, shaderBtn, sameBtn))
                 } else body.addView(row(null, shaderBtn))
-                // Combinar presets (T45): añadir otro encima o debajo del activo
+                // Combinar presets (T45): anteponer o anexar otro al activo
                 val combineBtn = CrtUi.button(ui, context.getString(R.string.btn_combine)).apply {
                     setOnClickListener {
                         hideMenu()
@@ -576,6 +585,86 @@ class OverlayControlManager(private val context: Context) {
                     }
                 }
                 if (!dual) body.addView(row(context.getString(R.string.label_detect), autoBtn, *detectButtons.toTypedArray()))
+            }
+
+            // RESOLUTION: rejilla de píxeles del shader (CONTENT RES) y aspecto de la zona, como en la pantalla principal. Se aplican en
+            // caliente: el motor recrea la rejilla y la zona sin cerrar la sesión.
+            section("resolution", context.getString(R.string.menu_sec_resolution), false) { body ->
+                val resIdx = ShaderPreferences.getVirtualResolutionIndex(context)
+                val isConsole = ConsoleResolutions.isConsole(resIdx)
+                val isScale = resIdx == ConsoleResolutions.INDEX_SCALE
+                val isCustom = resIdx == ConsoleResolutions.INDEX_CUSTOM
+                val isAuto = !isConsole && !isScale && !isCustom
+
+                val autoBtn = CrtUi.button(ui, "AUTO", CrtUi.Btn.TOGGLE).apply {
+                    isSelected = isAuto
+                    setOnClickListener {
+                        applyResolution(0f, 0f, ConsoleResolutions.INDEX_AUTO)
+                        rebuild(context.getString(R.string.res_auto))
+                    }
+                }
+                val scaleBtn = CrtUi.button(ui, if (isScale) "SCALE ${(ShaderPreferences.getScaleValue(context) * 100).toInt()}%" else "SCALE", CrtUi.Btn.TOGGLE).apply {
+                    isSelected = isScale
+                    setOnClickListener { showScaleDialog() }
+                }
+                val customBtn = CrtUi.button(ui, if (isCustom) ShaderPreferences.getVirtualResolution(context).let { "${it.first.toInt()}x${it.second.toInt()}" } else "CUSTOM", CrtUi.Btn.TOGGLE).apply {
+                    isSelected = isCustom
+                    setOnClickListener { showCustomDialog() }
+                }
+                val consoleBtn = CrtUi.button(ui, context.getString(R.string.label_console), CrtUi.Btn.TOGGLE).apply {
+                    isSelected = isConsole
+                    setOnClickListener {
+                        // Vuelve a la última consola usada (la primera vez, NES / SNES)
+                        val entry = ConsoleResolutions.byIndex(ShaderPreferences.getLastConsole(context))
+                            ?: ConsoleResolutions.byIndex(ConsoleResolutions.DEFAULT_INDEX)!!
+                        applyConsole(entry)
+                        rebuild(context.getString(R.string.toast_res_console, entry.label(context)))
+                    }
+                }
+                body.addView(row(context.getString(R.string.label_content_res), autoBtn, scaleBtn, top = 0))
+                body.addView(row("", customBtn, consoleBtn))
+
+                if (isConsole) {
+                    val consoleSpinner = Spinner(ui).apply {
+                        val adapter = object : ArrayAdapter<ConsoleResolutions.Entry>(ui, R.layout.crt_spinner_item, ConsoleResolutions.ALL) {
+                            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View =
+                                super.getView(position, convertView, parent).also { (it as? TextView)?.text = getItem(position)?.shortLabel(context) }
+                            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View =
+                                super.getDropDownView(position, convertView, parent).also { (it as? TextView)?.text = getItem(position)?.label(context) }
+                        }
+                        adapter.setDropDownViewResource(R.layout.crt_spinner_dropdown_item)
+                        this.adapter = adapter
+                        ConsoleResolutions.positionOf(resIdx).takeIf { it >= 0 }?.let { setSelection(it) }
+                        onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                                val entry = ConsoleResolutions.ALL.getOrNull(pos) ?: return
+                                if (entry.index == ShaderPreferences.getVirtualResolutionIndex(context)) return // selección inicial
+                                applyConsole(entry)
+                                rebuild(context.getString(R.string.toast_res_console, entry.label(context)))
+                            }
+                            override fun onNothingSelected(p0: AdapterView<*>?) {}
+                        }
+                    }
+                    body.addView(row(context.getString(R.string.label_console), consoleSpinner))
+                }
+
+                val aspectTexts = ShaderZone.ASPECT_OPTIONS.map { it.text(context) }
+                val aspectSpinner = Spinner(ui).apply {
+                    adapter = ArrayAdapter(ui, R.layout.crt_spinner_item, aspectTexts).apply {
+                        setDropDownViewResource(R.layout.crt_spinner_dropdown_item)
+                    }
+                    ShaderPreferences.getAspectRatioIndex(context).takeIf { it in aspectTexts.indices }?.let { setSelection(it) }
+                    onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                            if (pos == ShaderPreferences.getAspectRatioIndex(context)) return // selección inicial
+                            ShaderPreferences.setAspectRatioIndex(context, pos)
+                            VulkanEngineBridge.refreshZone()
+                            rebuild(context.getString(R.string.toast_zone, aspectTexts[pos]))
+                        }
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+                    }
+                }
+                body.addView(row(context.getString(R.string.label_shader_zone), aspectSpinner))
             }
 
             // SCREENS (T17, Thor): el shader arriba, abajo o en las dos. Solo existe con Glass: la captura no llega a la otra
@@ -869,6 +958,96 @@ class OverlayControlManager(private val context: Context) {
         // Sin oscurecer lo de detrás: se sigue viendo el shader mientras se escribe el nombre
         dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         dialog.show()
+    }
+
+    /** Guarda y aplica una resolución virtual (igual que la pantalla principal). Con Auto/Scale, el aspecto "Auto (por resolución)" vuelve a pantalla completa. */
+    private fun applyResolution(w: Float, h: Float, resIdx: Int) {
+        VulkanEngineBridge.setVirtualNativeResolution(w, h)
+        ShaderPreferences.setVirtualResolution(context, w, h)
+        ShaderPreferences.setVirtualResolutionIndex(context, resIdx)
+        val toFullScreen = (resIdx == ConsoleResolutions.INDEX_AUTO || resIdx == ConsoleResolutions.INDEX_SCALE) &&
+            ShaderPreferences.getAspectRatioIndex(context) == ShaderZone.AUTO_INDEX
+        if (toFullScreen) ShaderPreferences.setAspectRatioIndex(context, 0)
+        VulkanEngineBridge.refreshZone()
+    }
+
+    /** Elegir un sistema: su zona toma el aspecto original de la consola ("Auto (por resolución)"). */
+    private fun applyConsole(entry: ConsoleResolutions.Entry) {
+        ShaderPreferences.setAspectRatioIndex(context, ShaderZone.AUTO_INDEX)
+        applyResolution(entry.w.toFloat(), entry.h.toFloat(), entry.index)
+        ShaderPreferences.setLastConsole(context, entry.index)
+    }
+
+    /** Diálogo flotante con el tema CRT; sin oscurecer lo de detrás para seguir viendo el shader. */
+    private fun showOverlayDialog(title: Int, content: View, positive: Int, onPositive: () -> Unit) {
+        val dialog = AlertDialog.Builder(CrtUi.dialogContext(context), R.style.CrtAlertDialog)
+            .setTitle(title)
+            .setView(CrtUi.dialogContent(content))
+            .setPositiveButton(positive) { _, _ -> onPositive() }
+            .setNegativeButton(R.string.btn_cancel, null)
+            .create()
+        dialog.window?.setType(WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY)
+        dialog.window?.setBackgroundDrawableResource(R.drawable.bg_crt_dialog)
+        dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        dialog.show()
+    }
+
+    private fun showScaleDialog() {
+        val dialogCtx = CrtUi.dialogContext(context)
+        val (screenW, screenH) = ShaderZone.screenSize(windowManager)
+        val initial = ShaderPreferences.getScaleValue(context)
+        fun describe(v: Float) = "${(v * 100).toInt()}%  ·  ${(screenW * v).toInt()}x${(screenH * v).toInt()}"
+        val txt = CrtUi.text(dialogCtx, CrtUi.Text.TITLE, describe(initial))
+        val slider = Slider(dialogCtx).apply {
+            valueFrom = 0.1f
+            valueTo = 1.0f
+            stepSize = 0.05f
+            value = initial
+            addOnChangeListener { _, v, _ -> txt.text = describe(v) }
+        }
+        val layout = LinearLayout(dialogCtx).apply {
+            orientation = LinearLayout.VERTICAL
+            addView(txt)
+            addView(slider)
+        }
+        showOverlayDialog(R.string.dialog_scale_title, layout, R.string.btn_apply) {
+            val scale = slider.value
+            ShaderPreferences.setScaleValue(context, scale)
+            applyResolution(screenW * scale, screenH * scale, ConsoleResolutions.INDEX_SCALE)
+            rebuild(context.getString(R.string.toast_scale, (scale * 100).toInt(), (screenW * scale).toInt(), (screenH * scale).toInt()))
+        }
+    }
+
+    private fun showCustomDialog() {
+        val dialogCtx = CrtUi.dialogContext(context)
+        val (curW, curH) = ShaderPreferences.getVirtualResolution(context)
+        fun input(hintText: String, initial: Float) = EditText(dialogCtx).apply {
+            hint = hintText
+            inputType = android.text.InputType.TYPE_CLASS_NUMBER
+            gravity = Gravity.CENTER
+            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+            setText(if (initial > 0f) initial.toInt().toString() else "")
+        }
+        val editW = input(context.getString(R.string.hint_width), curW)
+        val editH = input(context.getString(R.string.hint_height), curH)
+        val layout = LinearLayout(dialogCtx).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            addView(editW)
+            addView(CrtUi.text(dialogCtx, CrtUi.Text.TITLE, "x").apply {
+                val m = CrtUi.dp(dialogCtx, 12f)
+                setPadding(m, 0, m, 0)
+            })
+            addView(editH)
+        }
+        showOverlayDialog(R.string.dialog_custom_title, layout, R.string.btn_set) {
+            val w = editW.text.toString().toFloatOrNull() ?: 0f
+            val h = editH.text.toString().toFloatOrNull() ?: 0f
+            if (w > 0f && h > 0f) {
+                applyResolution(w, h, ConsoleResolutions.INDEX_CUSTOM)
+                rebuild(context.getString(R.string.toast_custom, w.toInt(), h.toInt()))
+            }
+        }
     }
 
     fun hideMenu() {

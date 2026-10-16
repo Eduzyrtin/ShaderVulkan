@@ -11,12 +11,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
-import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Shader
-import android.graphics.drawable.BitmapDrawable
 import android.media.projection.MediaProjectionConfig
 import android.media.projection.MediaProjectionManager
 import android.net.Uri
@@ -45,6 +43,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.drawable.toDrawable
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -214,14 +215,14 @@ class MainActivity : CrtActivity() {
 
         val uriString = ShaderPreferences.getShaderFolderUri(this)
         if (uriString != null) {
-            rootFolder = DocumentFile.fromTreeUri(this, Uri.parse(uriString))
+            rootFolder = DocumentFile.fromTreeUri(this, uriString.toUri())
             currentFolder = rootFolder
             // Al rotar se recrea la actividad: volver a la carpeta en la que estaba el usuario, no a la raíz
             savedInstanceState?.getString(STATE_CURRENT_FOLDER)?.let { saved ->
                 currentFolder = when {
                     saved.isEmpty() -> null
                     saved == rootFolder?.uri?.toString() -> rootFolder
-                    else -> DocumentFile.fromTreeUri(this, Uri.parse(saved)) ?: rootFolder
+                    else -> DocumentFile.fromTreeUri(this, saved.toUri()) ?: rootFolder
                 }
             }
         }
@@ -322,8 +323,9 @@ class MainActivity : CrtActivity() {
         updateActiveShaderLabel()
         refreshScaleResolution()
         // El shader activo pudo cambiarse desde el menú flotante (T65): la marca de la lista lo sigue
+        val changed = allShaders.indices.filter { !allShaders[it].isFolder && allShaders[it].isActive != isShaderActive(allShaders[it].id) }
         allShaders.forEach { if (!it.isFolder) it.isActive = isShaderActive(it.id) }
-        if (::recyclerView.isInitialized) recyclerView.adapter?.notifyDataSetChanged()
+        if (::recyclerView.isInitialized) changed.forEach { recyclerView.adapter?.notifyItemChanged(it) }
         applyGrain() // Ajustes puede haberlo encendido o apagado
         setupModeSpinner() // el modo puede haber cambiado desde el servicio (nueva sesión)
         // La zona puede haberse cambiado desde el editor del menú flotante (pasa el selector a "Manual")
@@ -362,7 +364,7 @@ class MainActivity : CrtActivity() {
                     currentFolder = currentFolder?.parentFile
                 }
             } else {
-                val folderUri = Uri.parse(selectedShader.path)
+                val folderUri = selectedShader.path.toUri()
                 currentFolder = DocumentFile.fromTreeUri(this, folderUri)
             }
             refreshShaderList()
@@ -370,9 +372,11 @@ class MainActivity : CrtActivity() {
         }
 
         ShaderPreferences.setActiveShaderId(this, selectedShader.id, selectedShader.name)
+        // Solo se repinta lo que cambia: la fila que deja de estar activa y la nueva
+        val changed = allShaders.indices.filter { allShaders[it].isActive != (allShaders[it].id == selectedShader.id) }
         allShaders.forEach { it.isActive = (it.id == selectedShader.id) }
         updateActiveShaderLabel()
-        recyclerView.adapter?.notifyDataSetChanged()
+        changed.forEach { recyclerView.adapter?.notifyItemChanged(it) }
 
         showToast(getString(R.string.toast_selected, selectedShader.name))
 
@@ -459,7 +463,7 @@ class MainActivity : CrtActivity() {
                 }
 
                 val shown = pct.coerceAtLeast(0)
-                txtPct.text = "$shown%"
+                txtPct.text = getString(R.string.percent_value, shown)
                 bar.progress = shown
                 val label = try { VulkanEngineBridge.getLoadLabel() } catch (_: Throwable) { "" }
                 txtDetail.text = if (label.isNotBlank()) label else shaderName
@@ -483,6 +487,12 @@ class MainActivity : CrtActivity() {
 
         // CLOSE es el único cierre total; el botón principal nunca cierra la app (T64)
         findViewById<Button>(R.id.btn_close_system)?.setOnClickListener { stopCaptureService() }
+
+        // RESTART: vuelve a empezar la sesión con el shader que haya elegido ahora, como un RUN SYSTEM nuevo (Glass arranca directo;
+        // Captura vuelve a pedir compartir pantalla). El servicio suelta la sesión vieja al recibir la nueva.
+        findViewById<Button>(R.id.btn_restart_system)?.setOnClickListener {
+            if (ShaderCaptureService.state != ServiceState.CLOSING) startCaptureWorkflow()
+        }
 
         btnToggle.setOnClickListener {
             when (ShaderCaptureService.state) {
@@ -515,8 +525,9 @@ class MainActivity : CrtActivity() {
         // Pausar es la acción normal; el rojo queda solo para CLOSE
         CrtUi.applyButton(btn, if (state == ServiceState.ACTIVE) CrtUi.Btn.NORMAL else CrtUi.Btn.PRIMARY)
         // CLOSE aparece mientras hay algo que cerrar (sesión activa, en pausa o interrumpida)
-        findViewById<Button>(R.id.btn_close_system)?.visibility =
-            if (state == ServiceState.IDLE || state == ServiceState.CLOSING) View.GONE else View.VISIBLE
+        val hasSession = state != ServiceState.IDLE && state != ServiceState.CLOSING
+        findViewById<Button>(R.id.btn_close_system)?.visibility = if (hasSession) View.VISIBLE else View.GONE
+        findViewById<Button>(R.id.btn_restart_system)?.visibility = if (hasSession) View.VISIBLE else View.GONE
     }
 
     private fun startCaptureWorkflow() {
@@ -541,6 +552,7 @@ class MainActivity : CrtActivity() {
     }
 
     private fun requestMediaProjection() {
+        ShaderCaptureService.showShareHint(this) // solo se admite compartir una app
         val manager = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             val config = MediaProjectionConfig.createConfigForUserChoice()
@@ -755,7 +767,8 @@ class MainActivity : CrtActivity() {
     }
 
     /**
-     * La zona del shader arranca a pantalla completa ("sin zona") y así se queda al cambiar de modo de CONTENT RES: solo si estaba en
+     * La zona del shader arranca a pantalla completa ("sin zona"); al elegir una consola pasa a "Auto (por resolución)" (applyConsole).
+     * Al cambiar de modo de CONTENT RES se queda como estaba: solo si estaba en
      * "Auto (por resolución)" y se pasa a Auto o Scale (la pantalla tal cual) vuelve a pantalla completa. Cualquier otro aspecto
      * (4:3, zona dibujada, detección de bandas, el de una consola) lo elige el usuario y no se toca.
      */
@@ -767,6 +780,10 @@ class MainActivity : CrtActivity() {
     }
 
     private fun applyConsole(entry: ConsoleResolutions.Entry) {
+        // Al elegir un sistema, su zona del shader toma por defecto el aspecto original de esa consola ("Auto (por resolución)",
+        // que lee ConsoleResolutions.Entry.aspect); el usuario lo cambia después en SHADER ZONE si quiere
+        ShaderPreferences.setAspectRatioIndex(this, ShaderZone.AUTO_INDEX)
+        setupAspectRatioSpinner()
         applyResolution(entry.w.toFloat(), entry.h.toFloat(), entry.index, RES_MODE_CONSOLE)
         ShaderPreferences.setLastConsole(this, entry.index)
         showToast(getString(R.string.toast_res_console, entry.label(this)))
@@ -1051,7 +1068,8 @@ class MainActivity : CrtActivity() {
         val mode = getString(if (ShaderPreferences.getRenderMode(this) == VulkanEngineBridge.MODE_GLASS) R.string.mode_glass_short else R.string.mode_capture)
         val (sw, sh) = ShaderZone.screenSize(windowManager)
         val distorted = ShaderZone.gridInfo(this, sw, sh).distorted
-        tv.text = (if (distorted) "(!) " else "") + listOf(res, zone, mode).joinToString(" · ")
+        val summary = listOf(res, zone, mode).joinToString(" · ")
+        tv.text = if (distorted) getString(R.string.summary_distorted, summary) else summary
         val (color, glow) = if (distorted) R.attr.crtWarn to R.attr.crtGlowWarn else R.attr.crtDim to R.attr.crtGlowDim
         tv.setTextColor(CrtTheme.color(this, color))
         tv.setShadowLayer(tv.shadowRadius, 0f, 0f, CrtTheme.color(this, glow))
@@ -1213,7 +1231,7 @@ class MainActivity : CrtActivity() {
         val overlay = findViewById<View>(R.id.crt_overlay) ?: return
 
         val size = 64
-        val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        val bitmap = createBitmap(size, size)
         val canvas = Canvas(bitmap)
         val paint = Paint()
         val phosphor = CrtTheme.color(this, R.attr.crtPhosphor)
@@ -1225,7 +1243,7 @@ class MainActivity : CrtActivity() {
             canvas.drawRect(x, y, x + 1 + random.nextInt(2), y + 1, paint)
         }
 
-        val drawable = BitmapDrawable(resources, bitmap)
+        val drawable = bitmap.toDrawable(resources)
         drawable.tileModeY = Shader.TileMode.REPEAT
         drawable.tileModeX = Shader.TileMode.REPEAT
 

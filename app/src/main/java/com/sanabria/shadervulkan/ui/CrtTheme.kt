@@ -19,7 +19,7 @@ import com.sanabria.shadervulkan.model.ShaderPreferences
 object CrtTheme {
 
     /** Atajo con nombre en Ajustes; [palette] es el recurso entero con su índice de paleta. */
-    class Preset(@StringRes val label: Int, @IntegerRes val palette: Int)
+    class Preset(@param:StringRes val label: Int, @param:IntegerRes val palette: Int)
 
     val PRESETS = listOf(
         Preset(R.string.preset_classic, R.integer.crt_preset_classic),

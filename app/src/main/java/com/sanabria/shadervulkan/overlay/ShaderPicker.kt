@@ -1,8 +1,6 @@
 package com.sanabria.shadervulkan.overlay
 
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +11,8 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.drawable.toDrawable
+import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import com.sanabria.shadervulkan.R
 import com.sanabria.shadervulkan.model.ShaderItem
@@ -49,12 +49,12 @@ class ShaderPicker(
         // Con carpeta externa elegida, el selector se abre ya dentro de ella (sus presets son los que se quieren casi siempre);
         // ".." en su raíz lleva a los presets internos
         var folder: DocumentFile? = rootUri?.let {
-            try { DocumentFile.fromTreeUri(context, Uri.parse(it)) } catch (_: Exception) { null }
+            try { DocumentFile.fromTreeUri(context, it.toUri()) } catch (_: Exception) { null }
         }
 
         val list = ListView(dialogCtx).apply {
             divider = null
-            selector = ColorDrawable(ColorUtils.setAlphaComponent(CrtUi.color(dialogCtx, R.attr.crtFaint), 90))
+            selector = ColorUtils.setAlphaComponent(CrtUi.color(dialogCtx, R.attr.crtFaint), 90).toDrawable()
         }
         val adapter = object : BaseAdapter() {
             override fun getCount() = items.size
@@ -120,7 +120,7 @@ class ShaderPicker(
             val item = items[position]
             when {
                 item.id == ShaderItem.EXTERNAL_ROOT_ID -> {
-                    folder = DocumentFile.fromTreeUri(context, Uri.parse(item.path))
+                    folder = DocumentFile.fromTreeUri(context, item.path.toUri())
                     stack.clear()
                     fill()
                 }
@@ -130,7 +130,7 @@ class ShaderPicker(
                 }
                 item.isFolder -> {
                     folder?.let { stack.addLast(it) }
-                    folder = DocumentFile.fromTreeUri(context, Uri.parse(item.path)) ?: folder
+                    folder = DocumentFile.fromTreeUri(context, item.path.toUri()) ?: folder
                     fill()
                 }
                 else -> {

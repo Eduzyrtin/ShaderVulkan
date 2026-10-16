@@ -2,6 +2,7 @@ package com.sanabria.shadervulkan.model
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import androidx.core.content.edit
 
 /**
  * Ajustes de rendimiento y de uso (T66): el contador de FPS (esquina, tamaño, opacidad, qué muestra, intervalo, solo con el menú
@@ -25,10 +26,10 @@ object PerfSettings {
 
     private fun prefs(ctx: Context) = ctx.getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
     private fun getInt(ctx: Context, key: String, def: Int, min: Int, max: Int) = prefs(ctx).getInt(key, def).coerceIn(min, max)
-    private fun putInt(ctx: Context, key: String, v: Int, min: Int, max: Int) { prefs(ctx).edit().putInt(key, v.coerceIn(min, max)).apply() }
+    private fun putInt(ctx: Context, key: String, v: Int, min: Int, max: Int) { prefs(ctx).edit { putInt(key, v.coerceIn(min, max)) } }
 
     fun isFpsCounter(ctx: Context) = prefs(ctx).getBoolean("fps_counter", false)
-    fun setFpsCounter(ctx: Context, on: Boolean) { prefs(ctx).edit().putBoolean("fps_counter", on).apply() }
+    fun setFpsCounter(ctx: Context, on: Boolean) { prefs(ctx).edit { putBoolean("fps_counter", on) } }
 
     /** Esquina de la pantalla (TOP_LEFT..BOTTOM_RIGHT). */
     fun getFpsCorner(ctx: Context) = getInt(ctx, "fps_corner", TOP_LEFT, 0, 3)
@@ -52,27 +53,27 @@ object PerfSettings {
 
     /** El contador solo se ve mientras el menú flotante está abierto. */
     fun isFpsOnlyWithMenu(ctx: Context) = prefs(ctx).getBoolean("fps_only_menu", false)
-    fun setFpsOnlyWithMenu(ctx: Context, on: Boolean) { prefs(ctx).edit().putBoolean("fps_only_menu", on).apply() }
+    fun setFpsOnlyWithMenu(ctx: Context, on: Boolean) { prefs(ctx).edit { putBoolean("fps_only_menu", on) } }
 
     /** Añade UI: el refresco al que va realmente la pantalla (Choreographer), para compararlo con la entrada. */
     fun isFpsShowUi(ctx: Context) = prefs(ctx).getBoolean("fps_show_ui", true)
-    fun setFpsShowUi(ctx: Context, on: Boolean) { prefs(ctx).edit().putBoolean("fps_show_ui", on).apply() }
+    fun setFpsShowUi(ctx: Context, on: Boolean) { prefs(ctx).edit { putBoolean("fps_show_ui", on) } }
 
     /** El contador se pone en rojo cuando la salida se queda por debajo de la entrada de forma sostenida. */
     fun isFpsLostWarning(ctx: Context) = prefs(ctx).getBoolean("fps_lost_warn", true)
-    fun setFpsLostWarning(ctx: Context, on: Boolean) { prefs(ctx).edit().putBoolean("fps_lost_warn", on).apply() }
+    fun setFpsLostWarning(ctx: Context, on: Boolean) { prefs(ctx).edit { putBoolean("fps_lost_warn", on) } }
 
     /** Tope de FPS de salida (0 = sin tope). */
     fun getFpsCap(ctx: Context): Int = prefs(ctx).getInt("fps_cap", 0).takeIf { it in FPS_CAPS } ?: 0
-    fun setFpsCap(ctx: Context, fps: Int) { prefs(ctx).edit().putInt("fps_cap", fps).apply() }
+    fun setFpsCap(ctx: Context, fps: Int) { prefs(ctx).edit { putInt("fps_cap", fps) } }
 
     // Modo batería (T71)
     fun isBatteryMode(ctx: Context) = prefs(ctx).getBoolean("battery_mode", false)
-    fun setBatteryMode(ctx: Context, on: Boolean) { prefs(ctx).edit().putBoolean("battery_mode", on).apply() }
+    fun setBatteryMode(ctx: Context, on: Boolean) { prefs(ctx).edit { putBoolean("battery_mode", on) } }
 
     /** Porcentaje de batería por debajo del cual actúa (ver [BATTERY_THRESHOLDS]). */
     fun getBatteryThreshold(ctx: Context): Int = prefs(ctx).getInt("battery_threshold", 20).takeIf { it in BATTERY_THRESHOLDS } ?: 20
-    fun setBatteryThreshold(ctx: Context, pct: Int) { prefs(ctx).edit().putInt("battery_threshold", pct).apply() }
+    fun setBatteryThreshold(ctx: Context, pct: Int) { prefs(ctx).edit { putInt("battery_threshold", pct) } }
 
     /** Qué hace: 0 reducir (mitad de resolución y 30 FPS), 1 solo 30 FPS, 2 pausar el shader. */
     fun getBatteryAction(ctx: Context) = getInt(ctx, "battery_action", 0, 0, 2)

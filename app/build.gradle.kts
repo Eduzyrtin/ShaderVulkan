@@ -96,11 +96,11 @@ android {
     }
 
     sourceSets.getByName("main") {
-        assets.srcDirs("src/main/assets")
+        assets.directories.add("src/main/assets")
     }
     // La documentación del proyecto (src/main/cache) solo viaja en los APK de debug: en una release no tiene que entrar (T92)
     sourceSets.getByName("debug") {
-        assets.srcDirs("src/main/cache")
+        assets.directories.add("src/main/cache")
     }
 
     // src/main/resources/masters (copias de RetroArch y slang-shaders, solo de consulta, fuera del repositorio) no es del programa:
@@ -133,7 +133,7 @@ android {
         implementation("androidx.constraintlayout:constraintlayout:2.2.0")
         implementation("com.google.android.material:material:1.12.0")
         // T90: ComponentActivity, enableEdgeToEdge, OnBackPressedCallback y ActivityResultContracts (antes llegaban por activity-compose)
-        implementation("androidx.activity:activity-ktx:1.9.3")
+        implementation("androidx.activity:activity-ktx:1.13.0")
         implementation("androidx.documentfile:documentfile:1.0.1")
         testImplementation("junit:junit:4.13.2")
     }

@@ -226,9 +226,13 @@ class ShaderOverlayAccessibilityService : AccessibilityService() {
         super.onCreate()
         overlayManager = OverlayManager(this)
         controlManager = OverlayControlManager(this)
-        overlayManager?.onBarsAdded = { controlManager?.bringToFront() } // el menú y el botón siempre sobre las barras negras
         loadingHud = LoadingHud(this)
         fpsCounter = FpsCounter(this) { controlManager?.isMenuShowing == true }
+        // El menú, el botón y el contador de FPS siempre sobre las barras negras
+        overlayManager?.onBarsAdded = {
+            controlManager?.bringToFront()
+            fpsCounter?.bringToFront()
+        }
         zoneEditor = ZoneEditor(this)
         appProfiles = AppProfileManager(this)
         shadeDetector = ShadeDetector(this) { open ->
