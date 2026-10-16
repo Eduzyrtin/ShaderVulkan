@@ -1,6 +1,7 @@
 <!--
   TODO before going public:
-  - Optional: record docs/media/hero.gif (before/after, ~10 s) and uncomment it below.
+  - Publish a first release so the "download" badge and the APK link work.
+  - Add the Google Play link once the app is published.
 -->
 
 <div align="center">
@@ -16,9 +17,10 @@ It runs the RetroArch **`.slangp`** shader presets you already know, on a Vulkan
 [![Vulkan 1.1](https://img.shields.io/badge/Vulkan-1.1-AC162C?logo=vulkan&logoColor=white)](#requirements)
 [![License: GPLv3](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
 [![No internet permission](https://img.shields.io/badge/Internet%20permission-none-C6F28E)](#privacy)
+[![9 languages](https://img.shields.io/badge/languages-9-8E6FD8)](#features)
 [![Latest release](https://img.shields.io/github/v/release/Eduzyrtin/ShaderVulkan?color=C6F28E&label=download)](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)
 
-<!-- <img src="docs/media/hero.gif" alt="Before and after: a 2D game on an Android handheld, raw and with a CRT shader" width="720"> -->
+<img src="docs/media/hero.gif" alt="Before and after: an original pixel-art scene raw and with a CRT shader, then the floating menu and the preset list" width="420">
 
 **[Download the APK](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)** · [Getting started](#getting-started) · [How it works](#how-it-works-two-very-different-modes) · [FAQ](#faq)
 
@@ -38,9 +40,8 @@ And it has **no internet access at all**. It doesn't even request Android's inte
 
 <table>
   <tr>
-    <td align="center"><img src="docs/media/shot-retro-video.gif" width="200"><br><sub>Preset, zone and Capture on a retro video</sub></td>
-    <td align="center"><img src="docs/media/shot-gameboy.gif" width="200"><br><sub>Game Boy LCD with a custom zone</sub></td>
-    <td align="center"><img src="docs/media/shot-dual.gif" width="200"><br><sub>Dual zone for DS emulators</sub></td>
+    <td align="center"><img src="docs/media/shot-crt.gif" width="200"><br><sub>Before and after: fine CRT scanlines</sub></td>
+    <td align="center"><img src="docs/media/shot-glass.gif" width="200"><br><sub>Glass mode over any app</sub></td>
     <td align="center"><img src="docs/media/shot-ui.gif" width="200"><br><sub>The phosphor-terminal UI</sub></td>
   </tr>
 </table>
@@ -156,6 +157,7 @@ Pick a preset (good first picks: `crt/crt-guest-advanced.slangp`, `crt/crt-lotte
 - ShaderVulkan **does not have the Internet permission**. Android itself prevents it from sending anything anywhere. No analytics, no ads, no accounts.
 - The **accessibility service** is used for exactly three things: drawing the shader on top while letting your touches through, knowing which app is in front (for app profiles), and noticing when the notification shade opens (to pause). It does not read or store the content of your apps.
 - In Capture mode the screen image goes straight from Android to the GPU and onto your display. It is never saved or recorded.
+- The full **[privacy policy](https://sites.google.com/view/sanabriaappsprivacypolicies/inicio)** covers every app published by Sanabria Apps.
 
 ## FAQ
 
