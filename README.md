@@ -20,7 +20,7 @@ It runs the RetroArch **`.slangp`** shader presets you already know, on a Vulkan
 [![9 languages](https://img.shields.io/badge/languages-9-8E6FD8)](#features)
 [![Latest release](https://img.shields.io/github/v/release/Eduzyrtin/ShaderVulkan?color=C6F28E&label=download)](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)
 
-<img src="docs/media/hero.gif" alt="Before and after: an original pixel-art scene raw and with a CRT shader, then the floating menu and the preset list" width="420">
+<img src="docs/media/hero.gif" alt="Before and after: an original pixel-art game scene raw and with the Authentic GBC LCD shader, then Glass mode, the floating menu and the preset list" width="420">
 
 **[Download the APK](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)** · [Getting started](#getting-started) · [How it works](#how-it-works-two-very-different-modes) · [FAQ](#faq)
 
@@ -40,7 +40,7 @@ And it has **no internet access at all**. It doesn't even request Android's inte
 
 <table>
   <tr>
-    <td align="center"><img src="docs/media/shot-crt.gif" width="200"><br><sub>Before and after: fine CRT scanlines</sub></td>
+    <td align="center"><img src="docs/media/shot-crt.gif" width="200"><br><sub>Before and after: the Authentic GBC shader</sub></td>
     <td align="center"><img src="docs/media/shot-glass.gif" width="200"><br><sub>Glass mode over any app</sub></td>
     <td align="center"><img src="docs/media/shot-ui.gif" width="200"><br><sub>The phosphor-terminal UI</sub></td>
   </tr>
