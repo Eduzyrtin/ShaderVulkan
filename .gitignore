@@ -47,3 +47,10 @@ local.properties
 keystore.properties
 *.jks
 *.keystore
+
+# Demo videos for Play Console (uploaded to YouTube)
+docs/play-videos/*.mp4
+
+# Salidas de release por sabor (aab/apk, mapping, símbolos nativos): se generan en local y se suben a Play/GitHub a mano
+/app/github/
+/app/play/
