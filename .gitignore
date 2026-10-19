@@ -1,28 +1,54 @@
+# ── Plantilla común (HERRAMIENTAS/plantillas/gitignore). No editar este bloque en el proyecto: se cambia en la plantilla. ──
+
+# Gradle y Android Studio
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+.gradle/
+.kotlin/
+.idea/
+build/
+/captures/
+.externalNativeBuild/
+.cxx/
 local.properties
+.DS_Store
+Thumbs.db
+
+# Claves de firma (nunca al repositorio)
+keystore.properties
+*.jks
+*.keystore
+
+# Salidas de release (aab/apk, mapping, símbolos nativos): se generan en local y se suben a Play/GitHub a mano
+/app/release/
+*.apk
+*.aab
+*.apks
+*.idsig
+native-debug-symbols.zip
+
+# Vídeos de las declaraciones de Play Console (se suben a YouTube)
+*.mp4
+
+# Restos de agentes y herramientas
+/.artifacts/
+
+# Valores locales de prueba
+/test-defaults.properties
+
+# ── Propio de ShaderVulkan ──
+# Shaders y masters descargados o generados en la compilación
 /app/src/main/assets/shaders/crt/
 /app/src/main/assets/shaders/handheld/
 /app/src/main/resources/masters/
-
-# IDE, cachés y restos de herramientas (no son del proyecto)
-/.idea/
-/.kotlin/
-/.artifacts/
 /app/cache/
 /lint-baseline.xml
+
+# Documentación interna (hoja de ruta, análisis de licencia y monetización, textos de promoción): solo en local
+/app/src/main/cache/
+
+# Salidas de release por sabor (github y play)
+/app/github/
+/app/play/
 
 # SPIRV-Cross: pruebas y herramientas de su repositorio original; el motor solo compila sus fuentes (CMake con tests y CLI apagados)
 /app/src/main/cpp/third_party/SPIRV-Cross/reference/
@@ -39,19 +65,3 @@ local.properties
 /app/src/main/cpp/third_party/SPIRV-Cross/Makefile
 /app/src/main/cpp/third_party/SPIRV-Cross/appveyor.yml
 /app/src/main/cpp/third_party/SPIRV-Cross/Package.swift
-
-# Documentación interna (hoja de ruta, análisis de licencia y monetización, textos de promoción): solo en local, no se publica
-/app/src/main/cache/
-
-# T95: claves de firma (nunca al repositorio)
-keystore.properties
-*.jks
-*.keystore
-
-# Demo videos for Play Console (uploaded to YouTube)
-docs/play-videos/*.mp4
-
-# Salidas de release por sabor (aab/apk, mapping, símbolos nativos): se generan en local y se suben a Play/GitHub a mano
-/app/github/
-/app/play/
-/docs/play/
