@@ -1,7 +1,6 @@
 <!--
   TODO before going public:
-  - Publish a first release so the "download" badge and the APK link work.
-  - Add the Google Play link once the app is published.
+  - Make the repository public: the "download" badge (shields.io) can only read public repositories.
 -->
 
 <div align="center">
