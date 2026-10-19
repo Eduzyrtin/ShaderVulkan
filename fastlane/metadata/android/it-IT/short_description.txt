@@ -1,0 +1,1 @@
+Shader retrò CRT e LCD su qualsiasi app. Senza root né internet.

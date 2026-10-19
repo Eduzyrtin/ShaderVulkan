@@ -1,0 +1,1 @@
+First release. Slang shaders over any app: Capture and Glass modes, live parameters, shader zones, per-app profiles, dual mode and nine languages.

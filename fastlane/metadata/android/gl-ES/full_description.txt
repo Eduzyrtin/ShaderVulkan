@@ -1,0 +1,32 @@
+Dálle un aspecto retro a calquera app: liñas de varrido CRT, máscaras de fósforo, grellas LCD e pantallas de consola portátil, debuxadas en tempo real sobre os teus emuladores, xogos e vídeos.
+
+ShaderVulkan executa no seu propio motor Vulkan os presets de shaders slang que quizais xa coñezas. Funciona en todo o sistema, sen root, e os teus toques e o mando seguen chegando directos á app de debaixo.
+
+DOUS MODOS
+• Captura: aplica a cadea completa de shaders á imaxe da app que escollas compartir (efectos de cor, desenfoque, curvatura, NTSC...). Android pídeche compartir a app; escolle sempre "Compartir unha app". Compartir a pantalla enteira non é compatible.
+• Glass: unha capa transparente lixeira, sen captura de pantalla. Funciona sobre apps protexidas, non perde fotogramas e é o mellor modo para liñas de varrido, máscaras e grellas LCD.
+
+FUNCIÓNS
+• Carga presets .slangp desde un cartafol do teu dispositivo: cadeas de varios pases, texturas, historial de fotogramas, retroalimentación e parámetros.
+• Cada parámetro é un control en directo nun pequeno menú flotante. Garda axustes como perfís, marca os teus favoritos e agocha o resto.
+• Zona do shader: aplica o efecto só á parte da pantalla que o precisa, con detección manual ou automática das bandas negras.
+• Combinar presets: amorea varios shaders sen editar ningún ficheiro.
+• Perfís de resolución de consolas, para que o shader traballe coa grella de píxeles orixinal.
+• Modo dual: dúas zonas á vez, para emuladores de dobre pantalla.
+• Perfís por app: o shader actívase só ao abrir a app.
+• Tella de axustes rápidos, atallos da app e aforro de batería.
+• Os shaders compílanse en segundo plano e gárdanse na caché, así que cambiar dun a outro é rápido.
+• Dispoñible en inglés, castelán, francés, alemán, italiano, portugués, catalán, éuscaro e galego.
+
+PRIVACIDADE
+• Sen permiso de internet: a app non pode enviar nada a ningures. Sen anuncios, sen analíticas, sen contas.
+• As imaxes da pantalla procésanse en tempo real no teu dispositivo e nunca se gardan nin se gravan.
+• Software libre baixo a GNU GPL v3 ou posterior; o código fonte está dispoñible desde a pantalla Acerca de.
+
+SERVIZO DE ACCESIBILIDADE
+ShaderVulkan usa un servizo de accesibilidade de Android para tres cousas e nada máis: debuxar o shader enriba deixando pasar os teus toques, saber que app está diante (para os perfís por app) e notar cando se abre o panel de notificacións (para pausar). Non le nin garda o contido das túas apps. Non é unha ferramenta de asistencia para persoas con discapacidade: usa este servizo porque é a única forma de deixar pasar os toques a través dunha capa superposta. Actívalo ti nos axustes de Android, tras unha explicación dentro da app.
+
+REQUISITOS
+Android 10 ou superior e unha GPU con Vulkan 1.1. Os presets de shaders non veñen incluídos: escolle un cartafol cos ficheiros .slangp que queiras usar. Os presets pesados precisan unha GPU potente.
+
+Ao mercar esta versión apoias o desenvolvemento da app.

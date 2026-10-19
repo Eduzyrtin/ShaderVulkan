@@ -1,0 +1,1 @@
+Primeira versión. Shaders slang sobre calquera app: modos Captura e Glass, parámetros en directo, zonas, perfís por app, modo dual e nove idiomas.

@@ -1,0 +1,1 @@
+Shaders retro CRT y LCD sobre cualquier app. Sin root ni internet.

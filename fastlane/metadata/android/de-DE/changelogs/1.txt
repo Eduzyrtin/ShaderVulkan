@@ -1,0 +1,1 @@
+Erste Version. Slang-Shader über jeder App: Modi Aufnahme und Glass, Live-Parameter, Shader-Zonen, Profile pro App, Dual-Modus und neun Sprachen.
