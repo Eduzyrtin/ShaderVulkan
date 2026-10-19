@@ -22,7 +22,7 @@ It runs the RetroArch **`.slangp`** shader presets you already know, on a Vulkan
 
 <img src="docs/media/hero.gif" alt="Before and after: an original pixel-art game scene raw and with the Authentic GBC LCD shader, then Glass mode, the floating menu and the preset list" width="420">
 
-**[Download the APK](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)** · [Getting started](#getting-started) · [How it works](#how-it-works-two-very-different-modes) · [FAQ](#faq)
+**[Get it on Google Play](https://play.google.com/store/apps/details?id=com.sanabria.shadervulkan)** · **[Download the APK](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)** · [Getting started](#getting-started) · [How it works](#how-it-works-two-very-different-modes) · [FAQ](#faq)
 
 > **Free here, paid on Google Play.** The APK on GitHub is completely free. If you'd rather install from the Play Store, that edition is the **paid version, as a way of donating** to the project: **[ShaderVulkan on Google Play](https://play.google.com/store/apps/details?id=com.sanabria.shadervulkan)**. Same app either way.
 

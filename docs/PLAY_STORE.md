@@ -3,6 +3,8 @@
 Paquete `com.sanabria.shadervulkan` (sabor `play`) · móvil y tableta · ficha en [`fastlane/metadata/android/`](../fastlane/metadata/android)
 (formato estándar, ver §8 de `HERRAMIENTAS/GUIA_PROYECTOS.md`). Idiomas: los 9 de la app; `en-US` es el predeterminado.
 
+- **Precio**: de pago en Google Play, en formato donación (la única app de pago). En GitHub (Releases) es gratuita.
+
 ## Qué subir y dónde (Play Console › Crecimiento › Presencia en la tienda › Ficha principal)
 
 1. **Idiomas**: Gestionar idiomas → añade `es-ES`, `fr-FR`, `de-DE`, `it-IT`, `pt-PT`, `ca`, `eu-ES`, `gl-ES`. Pega en cada uno
