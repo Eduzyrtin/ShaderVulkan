@@ -15,6 +15,7 @@ It runs the RetroArch **`.slangp`** shader presets you already know, on a Vulkan
 [![Android 10+](https://img.shields.io/badge/Android-10%2B-3DDC84?logo=android&logoColor=white)](#requirements)
 [![Vulkan 1.1](https://img.shields.io/badge/Vulkan-1.1-AC162C?logo=vulkan&logoColor=white)](#requirements)
 [![License: GPLv3](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20the%20project-FF5E5B?logo=kofi&logoColor=white)](https://ko-fi.com/Eduzyrtin)
 [![No internet permission](https://img.shields.io/badge/Internet%20permission-none-C6F28E)](#privacy)
 [![9 languages](https://img.shields.io/badge/languages-9-8E6FD8)](#features)
 [![Latest release](https://img.shields.io/github/v/release/Eduzyrtin/ShaderVulkan?color=C6F28E&label=download)](https://github.com/Eduzyrtin/ShaderVulkan/releases/latest)
