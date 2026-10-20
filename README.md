@@ -257,7 +257,7 @@ Please open an **[issue](https://github.com/Eduzyrtin/ShaderVulkan/issues)** and
 ShaderVulkan is a passion project and the APK here is **free**. If it brought your old games back to life and you'd like to give something back:
 
 - ☕ **[Buy me a coffee on Ko-fi](https://ko-fi.com/Eduzyrtin)**
-- ▶️ Get the **[Play Store edition](https://play.google.com/store/apps/details?id=com.sanabria.shadervulkan)**. It's the same app, offered there as a **paid version in donation format**, with automatic updates and no restricted-settings step.
+- ▶️ **[Get the Play Store edition](https://play.google.com/store/apps/details?id=com.sanabria.shadervulkan)**: the same app, offered there as a **paid version in donation format**, with automatic updates and no restricted-settings step.
 - ⭐ Star the repo and share a screenshot or a clip. That helps as much as anything.
 
 ## Credits
