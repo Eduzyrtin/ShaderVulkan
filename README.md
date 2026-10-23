@@ -104,7 +104,9 @@ Because the shader gets the real image, it can do **anything a slang preset can 
 ### 🪟 Glass: a lightweight overlay, no capture
 Glass **does not capture the screen and does not run the shader on the image**. It draws a transparent layer on top of the app that imitates the structure of the preset: scanlines, shadow masks, LCD grids. Since it never sees the picture, a transparent layer can only **darken** it; it can't blur, bloom or recolour. In exchange it works where capture can't (Netflix, Disney+ and other DRM apps), asks for no screen-sharing permission and adds no delay, because the game image isn't touched.
 
-> In short: **Capture is the full shader engine; Glass is the lightweight, compatible alternative.** Glass is not "the app", it's one of its two modes.
+> In short: **Capture is the star of the app: it is the full shader engine. Glass is the lightweight, compatible alternative, and you give things up with it.** Glass cannot reproduce every effect, and **not every shader parameter does something in Glass**: with no image underneath, the parameters that act on colour, blur, bloom, curvature or the picture itself have no visible effect there.
+
+> **Android 13 or older: Glass only.** Capture needs **Android 14 or newer** (older versions only let you share the entire screen, and the shader ends up capturing itself). On Android 10 to 13, including handhelds such as the AYN Thor, ShaderVulkan works in **Glass mode only**, with the limits above.
 
 ## Two modes: Capture and Glass
 
@@ -115,6 +117,8 @@ Glass **does not capture the screen and does not run the shader on the image**. 
 | Netflix, Disney+ and other DRM apps | ❌ They block screen capture (black screen) | ✅ Works |
 | Performance | Depends on the shader and the GPU | **Lossless**: runs at the display's own refresh rate |
 | Permission prompt | Android asks you to share **one app** each session | None |
+| Android version | **Android 14 or newer** | Android 10 or newer (the **only** mode on Android 10 to 13) |
+| Shader parameters | All of them | Only those that darken or shape the mask; the rest have no visible effect |
 
 > **Rule of thumb:** use **Capture** when you want the full shader, and **Glass** for protected apps, for maximum smoothness, or on devices where capture misbehaves.
 
@@ -124,6 +128,7 @@ Glass **does not capture the screen and does not run the shader on the image**. 
 
 ### Requirements
 - Android **10** or newer, with a **Vulkan 1.1** GPU (practically any phone or handheld from the last five years).
+- **Android 14 or newer for Capture**, the full shader mode. On Android 10 to 13 only **Glass** is available, and it can only darken the image (scanlines, masks, grids), so some shader parameters do nothing there.
 - A copy of the **slang shaders**. They aren't bundled with the app; see step 4.
 
 ### 1 · Install the APK
@@ -228,7 +233,7 @@ No.
 <details>
 <summary><b>Glass mode doesn't show bloom / colours / blur. Is it broken?</b></summary>
 
-No, that's the hard limit of Glass. Without capturing the screen it can't see the image, it can only lay a mask on top, and a mask can only darken. Scanlines, shadow masks and LCD grids work well; bloom, blur, colour correction and NTSC effects can't. For the full shader, use **Capture**.
+No, that's the hard limit of Glass. Without capturing the screen it can't see the image, it can only lay a mask on top, and a mask can only darken. Scanlines, shadow masks and LCD grids work well; bloom, blur, colour correction and NTSC effects can't, and the shader parameters that control them do nothing in Glass. For the full shader, use **Capture** (Android 14 or newer).
 </details>
 
 <details>

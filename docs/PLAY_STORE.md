@@ -19,6 +19,7 @@ Paquete `com.sanabria.shadervulkan` (sabor `play`) · móvil y tableta · ficha 
 - Sin «RetroArch», «libretro» ni «ShaderGlass» en el título; «compatible con presets slang» solo de forma descriptiva.
 - Sin marcas de consolas, emuladores ni apps con DRM; sin enlaces a pagos externos ni «gratis en GitHub».
 - Sin promesas que la app no cumple: en Captura se comparte **una sola app**.
+- Decir siempre que **Captura requiere Android 14 o superior** y que en Android 10 a 13 solo hay **Glass**, que solo oscurece la imagen: no todos los parámetros del shader hacen algo en Glass (viñetas «Capture» y «Glass» de `full_description.txt`, 9 idiomas).
 
 ## Antes de publicar (lo que Play pedirá)
 
