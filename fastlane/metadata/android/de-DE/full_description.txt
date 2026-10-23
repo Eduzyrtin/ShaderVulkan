@@ -10,8 +10,8 @@ ShaderVulkan verwendet die AccessibilityService-API von Android. Es ist kein Hil
 Der Dienst liest, speichert oder teilt weder Text noch Inhalte deiner Apps, sammelt keine personenbezogenen Daten, führt keine Aktionen aus und ändert keine Einstellungen in deinem Namen, und die App hat keine Internetberechtigung: Nichts verlässt dein Gerät. Du aktivierst ihn selbst unter Einstellungen > Bedienungshilfen, nach einer Erklärung und einem Einwilligungsbildschirm in der App, und kannst ihn jederzeit wieder deaktivieren.
 
 ZWEI MODI
-• Aufnahme: wendet die komplette Shader-Kette auf das Bild der App an, die du teilen möchtest (Farbeffekte, Unschärfe, Krümmung, NTSC...). Android fragt dich, ob du die App teilen willst; wähle immer „Eine App teilen". Das Teilen des ganzen Bildschirms wird nicht unterstützt.
-• Glass: eine leichte, transparente Ebene ohne Bildschirmaufnahme. Sie funktioniert über geschützten Apps, verliert keine Bilder und ist der beste Modus für Scanlines, Masken und LCD-Raster.
+• Aufnahme: wendet die komplette Shader-Kette auf das Bild der App an, die du teilen möchtest (Farbeffekte, Unschärfe, Krümmung, NTSC...). Android fragt dich, ob du die App teilen willst; wähle immer „Eine App teilen". Das Teilen des ganzen Bildschirms wird nicht unterstützt. Erfordert Android 14 oder neuer.
+• Glass: eine leichte, transparente Ebene ohne Bildschirmaufnahme. Sie funktioniert über geschützten Apps und verliert keine Bilder, kann das Bild aber nur abdunkeln: Scanlines, Masken und LCD-Raster funktionieren gut, Farb-, Unschärfe- und Bloom-Effekte (und manche Shader-Parameter) nicht. Unter Android 13 oder älter ist es der einzige verfügbare Modus.
 
 FUNKTIONEN
 • Lädt .slangp-Presets aus einem Ordner auf deinem Gerät: Ketten mit mehreren Durchläufen, Texturen, Bildverlauf, Feedback und Parameter.
@@ -22,8 +22,6 @@ FUNKTIONEN
 • Dual-Modus: zwei Zonen gleichzeitig, für Emulatoren mit zwei Bildschirmen.
 • Profile pro App: Der Shader schaltet sich von selbst ein, wenn du die App öffnest.
 • Schnelleinstellungs-Kachel, App-Verknüpfungen und Energiesparmodus.
-• Shader werden im Hintergrund kompiliert und zwischengespeichert, deshalb geht das Wechseln schnell.
-• Verfügbar auf Englisch, Spanisch, Französisch, Deutsch, Italienisch, Portugiesisch, Katalanisch, Baskisch und Galicisch.
 
 DATENSCHUTZ
 • Keine Internetberechtigung: Die App kann nichts irgendwohin senden. Keine Werbung, keine Analysen, keine Konten.

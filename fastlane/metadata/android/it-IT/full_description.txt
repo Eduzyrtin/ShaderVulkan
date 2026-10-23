@@ -10,8 +10,8 @@ ShaderVulkan usa l'API AccessibilityService di Android. Non è uno strumento di 
 Il servizio non legge, non salva e non condivide il testo né il contenuto delle tue app, non raccoglie dati personali, non esegue azioni né modifica impostazioni al posto tuo, e l'app non ha il permesso internet: nulla lascia il tuo dispositivo. Lo attivi tu in Impostazioni > Accessibilità di Android, dopo una spiegazione e una schermata di consenso nell'app, e puoi disattivarlo in qualsiasi momento.
 
 DUE MODALITÀ
-• Cattura: applica l'intera catena di shader all'immagine dell'app che scegli di condividere (effetti di colore, sfocatura, curvatura, NTSC...). Android ti chiede di condividere l'app; scegli sempre "Condividi un'app". La condivisione dell'intero schermo non è supportata.
-• Glass: uno strato trasparente leggero, senza cattura dello schermo. Funziona sulle app protette, non perde fotogrammi ed è la modalità migliore per linee di scansione, maschere e griglie LCD.
+• Cattura: applica l'intera catena di shader all'immagine dell'app che scegli di condividere (effetti di colore, sfocatura, curvatura, NTSC...). Android ti chiede di condividere l'app; scegli sempre "Condividi un'app". La condivisione dell'intero schermo non è supportata. Richiede Android 14 o successivo.
+• Glass: uno strato trasparente leggero, senza cattura dello schermo. Funziona sulle app protette e non perde fotogrammi, ma può solo scurire l'immagine: linee di scansione, maschere e griglie LCD funzionano bene; gli effetti di colore, sfocatura e bagliore (e alcuni parametri dello shader) no. Su Android 13 o precedente è l'unica modalità disponibile.
 
 FUNZIONI
 • Carica preset .slangp da una cartella del dispositivo: catene a più passaggi, texture, cronologia dei fotogrammi, feedback e parametri.
@@ -22,8 +22,6 @@ FUNZIONI
 • Modalità doppia: due zone insieme, per emulatori a doppio schermo.
 • Profili per app: lo shader si attiva da solo quando apri l'app.
 • Riquadro delle impostazioni rapide, scorciatoie dell'app e risparmio batteria.
-• Gli shader vengono compilati in background e messi in cache, quindi passare dall'uno all'altro è rapido.
-• Disponibile in inglese, spagnolo, francese, tedesco, italiano, portoghese, catalano, basco e galiziano.
 
 PRIVACY
 • Nessun permesso internet: l'app non può inviare nulla da nessuna parte. Niente pubblicità, niente analisi, niente account.

@@ -10,8 +10,8 @@ ShaderVulkan uses Android's AccessibilityService API. It is not an accessibility
 The service does not read, store or share the text or content of your apps, does not collect personal data, does not perform actions or change settings on your behalf, and the app has no internet permission: nothing leaves your device. You turn it on yourself in Android Settings > Accessibility, after an explanation and a consent screen inside the app, and you can turn it off at any time.
 
 TWO MODES
-• Capture: applies the full shader chain to the image of one app you choose to share (colour effects, blur, curvature, NTSC...). Android asks you to share the app; always choose "Share one app". Sharing the entire screen is not supported.
-• Glass: a lightweight transparent layer with no screen capture. It works over protected apps, loses no frames and is the best mode for scanlines, masks and LCD grids.
+• Capture: applies the full shader chain to the image of one app you choose to share (colour effects, blur, curvature, NTSC...). Android asks you to share the app; always choose "Share one app". Sharing the entire screen is not supported. Requires Android 14 or newer.
+• Glass: a lightweight transparent layer with no screen capture. It works over protected apps and loses no frames, but it can only darken the image: scanlines, masks and LCD grids work well, while colour, blur and bloom effects (and some shader parameters) do not. On Android 13 or older it is the only available mode.
 
 FEATURES
 • Loads .slangp presets from a folder on your device: multipass chains, textures, frame history, feedback and parameters.
@@ -22,8 +22,6 @@ FEATURES
 • Dual mode: two zones at once, for dual-screen emulators.
 • Per-app profiles: the shader turns on by itself when you open the app.
 • Quick Settings tile, app shortcuts and battery saver.
-• Shaders are compiled in the background and cached, so switching is quick.
-• Available in English, Spanish, French, German, Italian, Portuguese, Catalan, Basque and Galician.
 
 PRIVACY
 • No internet permission: the app cannot send anything anywhere. No ads, no analytics, no accounts.

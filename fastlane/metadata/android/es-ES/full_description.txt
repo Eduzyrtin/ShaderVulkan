@@ -10,8 +10,8 @@ ShaderVulkan usa la API AccessibilityService de Android. No es una herramienta d
 El servicio no lee, guarda ni comparte el texto ni el contenido de tus apps, no recoge datos personales, no realiza acciones ni cambia ajustes en tu nombre, y la app no tiene permiso de internet: nada sale de tu dispositivo. Lo activas tú en Ajustes > Accesibilidad de Android, tras una explicación y una pantalla de consentimiento dentro de la app, y puedes desactivarlo cuando quieras.
 
 DOS MODOS
-• Captura: aplica la cadena completa de shaders a la imagen de la app que elijas compartir (efectos de color, desenfoque, curvatura, NTSC...). Android te pide compartir la app; elige siempre "Compartir una app". Compartir la pantalla entera no está soportado.
-• Glass: una capa transparente ligera, sin captura de pantalla. Funciona sobre apps protegidas, no pierde fotogramas y es el mejor modo para líneas de barrido, máscaras y rejillas LCD.
+• Captura: aplica la cadena completa de shaders a la imagen de la app que elijas compartir (efectos de color, desenfoque, curvatura, NTSC...). Android te pide compartir la app; elige siempre "Compartir una app". Compartir la pantalla entera no está soportado. Requiere Android 14 o superior.
+• Glass: una capa transparente ligera, sin captura de pantalla. Funciona sobre apps protegidas y no pierde fotogramas, pero solo puede oscurecer la imagen: las líneas de barrido, las máscaras y las rejillas LCD funcionan bien; los efectos de color, desenfoque y brillo (y algunos parámetros del shader) no. En Android 13 o anterior es el único modo disponible.
 
 FUNCIONES
 • Carga presets .slangp desde una carpeta de tu dispositivo: cadenas de varios pases, texturas, historial de fotogramas, retroalimentación y parámetros.
@@ -22,8 +22,6 @@ FUNCIONES
 • Modo dual: dos zonas a la vez, para emuladores de doble pantalla.
 • Perfiles por app: el shader se activa solo al abrir la app.
 • Azulejo de ajustes rápidos, atajos de la app y ahorro de batería.
-• Los shaders se compilan en segundo plano y se guardan en caché, así que cambiar de uno a otro es rápido.
-• Disponible en inglés, español, francés, alemán, italiano, portugués, catalán, euskera y gallego.
 
 PRIVACIDAD
 • Sin permiso de internet: la app no puede enviar nada a ningún sitio. Sin anuncios, sin analíticas, sin cuentas.

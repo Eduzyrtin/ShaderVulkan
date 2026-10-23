@@ -10,8 +10,8 @@ ShaderVulkanek Androideko AccessibilityService APIa erabiltzen du. Ez da desgait
 Zerbitzuak ez ditu zure aplikazioen testua edo edukia irakurtzen, gordetzen edo partekatzen, ez du datu pertsonalik biltzen, ez du ekintzarik egiten ezta ezarpenik aldatzen zure izenean, eta aplikazioak ez du interneteko baimenik: ez da ezer ateratzen zure gailutik. Zuk zeuk aktibatzen duzu Androideko Ezarpenak > Irisgarritasuna atalean, aplikazioaren barruko azalpen eta baimen-pantaila baten ondoren, eta edonoiz desaktibatu dezakezu.
 
 BI MODU
-• Kaptura: shader-kate osoa aplikatzen dio partekatzeko aukeratzen duzun aplikazioaren irudiari (kolore-efektuak, lausotzea, kurbadura, NTSC...). Androidek aplikazioa partekatzeko eskatuko dizu; aukeratu beti "Partekatu aplikazio bat". Pantaila osoa partekatzea ez da onartzen.
-• Glass: geruza garden arin bat, pantaila-kapturarik gabe. Aplikazio babestuen gainean dabil, ez du fotogramarik galtzen eta eskaneatze-lerro, maskara eta LCD sareetarako modurik onena da.
+• Kaptura: shader-kate osoa aplikatzen dio partekatzeko aukeratzen duzun aplikazioaren irudiari (kolore-efektuak, lausotzea, kurbadura, NTSC...). Androidek aplikazioa partekatzeko eskatuko dizu; aukeratu beti "Partekatu aplikazio bat". Pantaila osoa partekatzea ez da onartzen. Android 14 edo berriagoa behar du.
+• Glass: geruza garden arin bat, pantaila-kapturarik gabe. Aplikazio babestuen gainean dabil eta ez du fotogramarik galtzen, baina irudia ilundu baino ezin du egin: eskaneatze-lerroak, maskarak eta LCD sareak ondo doaz; kolore-, lausotze- eta distira-efektuek (eta shaderraren parametro batzuek) ez. Android 13 edo zaharragoan modu erabilgarri bakarra da.
 
 EZAUGARRIAK
 • .slangp presetak kargatzen ditu zure gailuko karpeta batetik: hainbat pasetako kateak, testurak, fotograma-historia, atzeraelikadura eta parametroak.
@@ -22,8 +22,6 @@ EZAUGARRIAK
 • Modu bikoitza: bi eremu aldi berean, pantaila bikoitzeko emuladoreetarako.
 • Aplikazioko profilak: shaderra bakarrik pizten da aplikazioa irekitzean.
 • Ezarpen bizkorretako lauza, aplikazioaren lasterbideak eta bateria-aurrezpena.
-• Shaderrak atzeko planoan konpilatzen eta cachean gordetzen dira, beraz batetik bestera aldatzea azkarra da.
-• Ingelesez, gaztelaniaz, frantsesez, alemanez, italieraz, portugesez, katalanez, euskaraz eta galegoz.
 
 PRIBATUTASUNA
 • Interneteko baimenik ez: aplikazioak ezin du ezer inora bidali. Iragarkirik, analitikarik eta konturik gabe.

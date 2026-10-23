@@ -10,8 +10,8 @@ ShaderVulkan fa servir l'API AccessibilityService d'Android. No és una eina d'a
 El servei no llegeix, no desa ni comparteix el text ni el contingut de les teves apps, no recull dades personals, no fa accions ni canvia ajustos en nom teu, i l'app no té permís d'internet: res no surt del teu dispositiu. L'actives tu a Ajustos > Accessibilitat d'Android, després d'una explicació i una pantalla de consentiment dins de l'app, i el pots desactivar quan vulguis.
 
 DOS MODES
-• Captura: aplica la cadena completa de shaders a la imatge de l'app que triïs compartir (efectes de color, desenfocament, curvatura, NTSC...). Android et demana compartir l'app; tria sempre "Compartir una app". Compartir la pantalla sencera no és compatible.
-• Glass: una capa transparent lleugera, sense captura de pantalla. Funciona sobre apps protegides, no perd fotogrames i és el millor mode per a línies d'escombratge, màscares i graelles LCD.
+• Captura: aplica la cadena completa de shaders a la imatge de l'app que triïs compartir (efectes de color, desenfocament, curvatura, NTSC...). Android et demana compartir l'app; tria sempre "Compartir una app". Compartir la pantalla sencera no és compatible. Requereix Android 14 o posterior.
+• Glass: una capa transparent lleugera, sense captura de pantalla. Funciona sobre apps protegides i no perd fotogrames, però només pot enfosquir la imatge: les línies d'escombratge, les màscares i les graelles LCD funcionen bé; els efectes de color, desenfocament i resplendor (i alguns paràmetres del shader) no. En Android 13 o anterior és l'únic mode disponible.
 
 FUNCIONS
 • Carrega presets .slangp des d'una carpeta del teu dispositiu: cadenes de diverses passades, textures, historial de fotogrames, retroalimentació i paràmetres.
@@ -22,8 +22,6 @@ FUNCIONS
 • Mode dual: dues zones alhora, per a emuladors de doble pantalla.
 • Perfils per app: el shader s'activa sol quan obres l'app.
 • Rajola de configuració ràpida, dreceres de l'app i estalvi de bateria.
-• Els shaders es compilen en segon pla i es desen a la memòria cau, així que canviar d'un a l'altre és ràpid.
-• Disponible en anglès, castellà, francès, alemany, italià, portuguès, català, basc i gallec.
 
 PRIVADESA
 • Sense permís d'internet: l'app no pot enviar res enlloc. Sense anuncis, sense analítiques, sense comptes.
