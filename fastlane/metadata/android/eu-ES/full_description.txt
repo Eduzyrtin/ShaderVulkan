@@ -2,6 +2,13 @@ Eman itxura retroa edozein aplikaziori: CRT eskaneatze-lerroak, fosforo-maskarak
 
 ShaderVulkanek bere Vulkan motorrean exekutatzen ditu agian ezagutzen dituzun slang shader presetak. Sistema osoan dabil, root gabe, eta zure ukituek eta komandoak azpiko aplikaziora iristen jarraitzen dute zuzenean.
 
+IRISGARRITASUN-ZERBITZUAREN APIA
+ShaderVulkanek Androideko AccessibilityService APIa erabiltzen du. Ez da desgaitasuna duten pertsonentzako irisgarritasun-tresna bat: aplikazioak zerbitzua behar du bere oinarrizko funtziorako, eta hiru gauzatarako bakarrik:
+• Gainjartzea: zerbitzuak shader-aren leihoa beste aplikazioen gainean marrazten du, eta zure ukituak eta komandoa azpiko aplikaziora pasatzen uzten ditu. Hura gabe, Androidek partekatutako aplikazioetan ukituak blokeatzen ditu.
+• Aurreko planoko aplikazioa: aurrean dagoen leihoaren pakete-izena bakarrik irakurtzen du, shaderra automatikoki aktibatzeko edo desaktibatzeko (aplikazioko profilak).
+• Jakinarazpen-panela: jakinarazpen-panela noiz irekitzen den antzematen du, efektua pausatzeko.
+Zerbitzuak ez ditu zure aplikazioen testua edo edukia irakurtzen, gordetzen edo partekatzen, ez du datu pertsonalik biltzen, ez du ekintzarik egiten ezta ezarpenik aldatzen zure izenean, eta aplikazioak ez du interneteko baimenik: ez da ezer ateratzen zure gailutik. Zuk zeuk aktibatzen duzu Androideko Ezarpenak > Irisgarritasuna atalean, aplikazioaren barruko azalpen eta baimen-pantaila baten ondoren, eta edonoiz desaktibatu dezakezu.
+
 BI MODU
 • Kaptura: shader-kate osoa aplikatzen dio partekatzeko aukeratzen duzun aplikazioaren irudiari (kolore-efektuak, lausotzea, kurbadura, NTSC...). Androidek aplikazioa partekatzeko eskatuko dizu; aukeratu beti "Partekatu aplikazio bat". Pantaila osoa partekatzea ez da onartzen.
 • Glass: geruza garden arin bat, pantaila-kapturarik gabe. Aplikazio babestuen gainean dabil, ez du fotogramarik galtzen eta eskaneatze-lerro, maskara eta LCD sareetarako modurik onena da.
@@ -22,9 +29,6 @@ PRIBATUTASUNA
 • Interneteko baimenik ez: aplikazioak ezin du ezer inora bidali. Iragarkirik, analitikarik eta konturik gabe.
 • Pantailako irudiak denbora errealean prozesatzen dira zure gailuan, eta ez dira inoiz gordetzen ezta grabatzen ere.
 • Software librea GNU GPL v3 edo ondorengo lizentziapean; iturburu-kodea Honi buruz pantailatik eskura daiteke.
-
-IRISGARRITASUN-ZERBITZUA
-ShaderVulkanek Androideko irisgarritasun-zerbitzu bat erabiltzen du hiru gauzatarako bakarrik: shaderra gainean marrazteko zure ukituak pasatzen utziz, zein aplikazio dagoen aurrean jakiteko (aplikazioko profiletarako) eta jakinarazpen-panela noiz irekitzen den antzemateko (pausatzeko). Ez du zure aplikazioen edukia irakurtzen ezta gordetzen ere. Ez da desgaitasuna duten pertsonentzako laguntza-tresna bat: zerbitzu hau erabiltzen du gainjarritako geruza batean zehar ukituak pasatzen uzteko modu bakarra delako. Zuk zeuk aktibatzen duzu Androideko ezarpenetan, aplikazioaren barruko azalpen baten ondoren.
 
 BETEKIZUNAK
 Android 10 edo berriagoa eta Vulkan 1.1 duen GPU bat. Shader presetak ez daude barne: aukeratu erabili nahi dituzun .slangp fitxategiak dituen karpeta bat. Preset astunek GPU indartsua behar dute.

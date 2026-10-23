@@ -2,6 +2,13 @@ Dai un aspetto retrò a qualsiasi app: linee di scansione CRT, maschere di fosfo
 
 ShaderVulkan esegue sul suo motore Vulkan i preset di shader slang che forse conosci già. Funziona in tutto il sistema, senza root, e i tuoi tocchi e il controller continuano ad arrivare direttamente all'app sottostante.
 
+API DEL SERVIZIO DI ACCESSIBILITÀ
+ShaderVulkan usa l'API AccessibilityService di Android. Non è uno strumento di accessibilità per persone con disabilità: l'app ha bisogno del servizio per la sua funzione principale, e solo per queste tre cose:
+• Overlay: il servizio disegna la finestra dello shader sopra le altre app e lascia passare i tuoi tocchi e il controller verso l'app sottostante. Senza di esso, Android blocca i tocchi sulle app condivise.
+• App in primo piano: legge soltanto il nome del pacchetto della finestra in primo piano, per attivare o disattivare lo shader in automatico (profili per app).
+• Area notifiche: rileva quando si apre l'area notifiche, per mettere in pausa l'effetto.
+Il servizio non legge, non salva e non condivide il testo né il contenuto delle tue app, non raccoglie dati personali, non esegue azioni né modifica impostazioni al posto tuo, e l'app non ha il permesso internet: nulla lascia il tuo dispositivo. Lo attivi tu in Impostazioni > Accessibilità di Android, dopo una spiegazione e una schermata di consenso nell'app, e puoi disattivarlo in qualsiasi momento.
+
 DUE MODALITÀ
 • Cattura: applica l'intera catena di shader all'immagine dell'app che scegli di condividere (effetti di colore, sfocatura, curvatura, NTSC...). Android ti chiede di condividere l'app; scegli sempre "Condividi un'app". La condivisione dell'intero schermo non è supportata.
 • Glass: uno strato trasparente leggero, senza cattura dello schermo. Funziona sulle app protette, non perde fotogrammi ed è la modalità migliore per linee di scansione, maschere e griglie LCD.
@@ -22,9 +29,6 @@ PRIVACY
 • Nessun permesso internet: l'app non può inviare nulla da nessuna parte. Niente pubblicità, niente analisi, niente account.
 • Le immagini dello schermo vengono elaborate in tempo reale sul dispositivo e non vengono mai salvate né registrate.
 • Software libero con licenza GNU GPL v3 o successiva; il codice sorgente è disponibile dalla schermata Informazioni.
-
-SERVIZIO DI ACCESSIBILITÀ
-ShaderVulkan usa un servizio di accessibilità di Android solo per tre cose: disegnare lo shader sopra lasciando passare i tuoi tocchi, sapere quale app è in primo piano (per i profili per app) e accorgersi quando si apre la tendina delle notifiche (per mettere in pausa). Non legge né salva il contenuto delle tue app. Non è uno strumento di assistenza per persone con disabilità: usa questo servizio perché è l'unico modo per far passare i tocchi attraverso un livello sovrapposto. Lo attivi tu nelle impostazioni di Android, dopo una spiegazione nell'app.
 
 REQUISITI
 Android 10 o successivo e una GPU con Vulkan 1.1. I preset degli shader non sono inclusi: scegli una cartella con i file .slangp che vuoi usare. I preset pesanti richiedono una GPU potente.

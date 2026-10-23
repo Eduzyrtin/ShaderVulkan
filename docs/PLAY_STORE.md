@@ -27,6 +27,9 @@ Paquete `com.sanabria.shadervulkan` (sabor `play`) · móvil y tableta · ficha 
   guardan. Se puede declarar «no se recogen datos».
 - **Servicio de accesibilidad**: divulgación destacada dentro de la app con aceptación explícita y formulario de
   declaración con vídeo (`docs/play-videos/1_accessibility_disclosure.mp4`). Contar con un primer rechazo y apelar.
+  Rechazo del 2026-10-21: «la descripción no refleja el uso de AccessibilityService». Por eso `full_description.txt` lleva,
+  justo tras la introducción, el bloque «ACCESSIBILITY SERVICE API» (qué hace, qué no lee, consentimiento, desactivable).
+  Hay que pegar esas descripciones en Play Console (el fastlane no las sube solo) y reenviar con el vídeo actualizado.
 - **Servicio en primer plano** `mediaProjection` (vídeo `2_media_projection_capture.mp4`) y `specialUse` para Glass
   (vídeo `3_special_use_glass.mp4`). Los vídeos están en `docs/play-videos/`, fuera de git: se suben a YouTube.
 - **Clasificación de contenido**: todos los públicos. **Anuncios**: ninguno. Categoría: Herramientas. App de pago.
