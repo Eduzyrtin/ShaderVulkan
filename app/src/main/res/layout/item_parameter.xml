@@ -43,6 +43,16 @@
             android:shadowColor="?attr/crtGlowHot"
             tools:text="0.00"
             android:textColor="?attr/crtHot" />
+
+        <TextView
+            android:id="@+id/txt_param_reset"
+            style="@style/CrtText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/crt_space_s"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:text="@string/param_reset" />
     </LinearLayout>
 
     <com.google.android.material.slider.Slider

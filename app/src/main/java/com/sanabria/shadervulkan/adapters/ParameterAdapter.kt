@@ -23,7 +23,11 @@ class ParameterAdapter(
         val txtValue: TextView = view.findViewById(R.id.txt_param_value)
         val slider: Slider = view.findViewById(R.id.slider_param)
         val txtFav: TextView = view.findViewById(R.id.txt_param_fav)
+        val txtReset: TextView = view.findViewById(R.id.txt_param_reset)
     }
+
+    /** Último valor puesto por el usuario en esta sesión de la lista (por nombre de parámetro). */
+    private val live = HashMap<String, Float>()
 
     /** Fila informativa: etiquetas y separadores del shader (#pragma parameter sin rango editable). */
     class InfoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -81,15 +85,27 @@ class ParameterAdapter(
         holder.slider.valueFrom = 0f
         holder.slider.valueTo = param.stepCount.toFloat()
         holder.slider.stepSize = 1f
-        holder.slider.value = param.indexOf(param.current).toFloat()
-        holder.txtValue.text = param.format(param.valueAt(param.indexOf(param.current)))
+        // 'param' es inmutable: el valor vivo se recuerda aquí para que al reciclar la fila no vuelva al inicial
+        val shown = live[param.name] ?: param.current
+        holder.slider.value = param.indexOf(shown).toFloat()
+        holder.txtValue.text = param.format(param.valueAt(param.indexOf(shown)))
 
         holder.slider.addOnChangeListener { _, value, fromUser ->
             if (fromUser) {
                 val snapped = param.valueAt(value.roundToInt())
                 holder.txtValue.text = param.format(snapped)
+                live[param.name] = snapped
                 onParameterChanged(param.name, snapped)
             }
+        }
+
+        holder.txtReset.setOnClickListener {
+            val idx = param.indexOf(param.initial)
+            val value = param.valueAt(idx)
+            holder.slider.value = idx.toFloat()
+            holder.txtValue.text = param.format(value)
+            live[param.name] = value
+            onParameterChanged(param.name, value)
         }
     }
 

@@ -448,6 +448,7 @@ Compatible with RetroArch slang presets. Not affiliated with RetroArch or libret
     <string name="preview_active_module" translatable="false">ACTIVE_MODULE: CRT-ROYALE</string>
     <string name="shader_marker" translatable="false">►</string>
     <string name="param_fav_off" translatable="false">[ ]</string>
+    <string name="param_reset" translatable="false">[R]</string>
     <string name="percent_value" translatable="false">%1$d%%</string>
     <string name="summary_distorted" translatable="false">(!) %1$s</string>
     <string name="section_open_fmt" translatable="false">[-] %1$s</string>

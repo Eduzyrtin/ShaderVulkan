@@ -52,6 +52,8 @@ class OverlayControlManager(private val context: Context) {
         private const val TAG = "OverlayControlButton"
         private const val PAGE_PARAMS = 0
         private const val PAGE_OPTIONS = 1
+        /** Tiempo con el dedo en una barra de parámetro antes de que el menú se esfume (un gesto rápido no lo dispara). */
+        private const val MENU_FADE_DELAY_MS = 350L
         /** Pestaña con la que se abre el menú (la última usada) y secciones plegadas por el usuario; duran lo que el proceso. */
         private var lastPage = PAGE_PARAMS
         private val sectionOpen = mutableMapOf<String, Boolean>()
@@ -859,29 +861,46 @@ class OverlayControlManager(private val context: Context) {
                 nameRow.addView(pName, LinearLayout.LayoutParams(0, -2, 1f))
                 nameRow.addView(pValue, LinearLayout.LayoutParams(-2, -2).apply { marginStart = gap })
 
+                var lastSent = p.snap(p.current)
+                fun send(valFloat: Float) {
+                    pValue.text = p.format(valFloat)
+                    if (valFloat != lastSent) { // evita re-renderizar mientras el dedo sigue en el mismo paso
+                        lastSent = valFloat
+                        VulkanEngineBridge.updateShaderParameter(p.name, valFloat)
+                        if (p.name == "GLASS_BLUR") com.sanabria.shadervulkan.services.ShaderOverlayAccessibilityService.refreshBlur()
+                    }
+                }
+                // Si el dedo se mantiene en la barra, el menú se esfuma para ver el efecto del ajuste sobre el shader
+                val fadeOut = Runnable { root.animate().alpha(0f).setDuration(150L).start() }
                 val seekBar = CrtUi.seekBar(ui).apply {
                     // Un tick de la barra = un paso del parámetro (los enteros 0,1,2 saltan de uno en uno).
                     max = p.stepCount
                     isEnabled = p.stepCount > 0
 
                     progress = p.indexOf(p.current)
-                    var lastSent = p.snap(p.current)
                     setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                         override fun onProgressChanged(s: SeekBar?, progress: Int, fromUser: Boolean) {
-                            if (fromUser) {
-                                val valFloat = p.valueAt(progress)
-                                pValue.text = p.format(valFloat)
-                                if (valFloat != lastSent) { // evita re-renderizar mientras el dedo sigue en el mismo paso
-                                    lastSent = valFloat
-                                    VulkanEngineBridge.updateShaderParameter(p.name, valFloat)
-                                    if (p.name == "GLASS_BLUR") com.sanabria.shadervulkan.services.ShaderOverlayAccessibilityService.refreshBlur()
-                                }
-                            }
+                            if (fromUser) send(p.valueAt(progress))
                         }
-                        override fun onStartTrackingTouch(s: SeekBar?) {}
-                        override fun onStopTrackingTouch(s: SeekBar?) {}
+                        override fun onStartTrackingTouch(s: SeekBar?) {
+                            root.removeCallbacks(fadeOut)
+                            root.postDelayed(fadeOut, MENU_FADE_DELAY_MS)
+                        }
+                        override fun onStopTrackingTouch(s: SeekBar?) {
+                            root.removeCallbacks(fadeOut)
+                            root.animate().alpha(1f).setDuration(150L).start()
+                        }
                     })
                 }
+                val resetBtn = CrtUi.text(ui, CrtUi.Text.BODY, context.getString(R.string.param_reset)).apply {
+                    minWidth = CrtUi.dp(ui, 40f)
+                    gravity = Gravity.CENTER
+                    setOnClickListener {
+                        seekBar.progress = p.indexOf(p.initial)
+                        send(p.valueAt(p.indexOf(p.initial)))
+                    }
+                }
+                nameRow.addView(resetBtn, LinearLayout.LayoutParams(-2, -2).apply { marginStart = gap })
                 paramsContainer.addView(nameRow)
                 paramsContainer.addView(seekBar)
             }
