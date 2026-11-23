@@ -1,5 +1,6 @@
 package com.sanabria.shadervulkan.services
 
+import com.sanabria.shadervulkan.AppLocale
 import android.accessibilityservice.AccessibilityService
 import android.content.Context
 import android.content.Intent
@@ -25,6 +26,9 @@ import com.sanabria.shadervulkan.overlay.ZoneEditor
  * sin que Android/Samsung bloqueen los toques en las aplicaciones compartidas.
  */
 class ShaderOverlayAccessibilityService : AccessibilityService() {
+
+    // Idioma de la app (no el del sistema) para el menú flotante y el aviso de carga
+    override fun attachBaseContext(base: Context) = super.attachBaseContext(AppLocale.wrap(base))
 
     private var overlayManager: OverlayManager? = null
     // Ventana de la zona B del modo dual (T16, salida 1 del motor). Solo existe mientras el modo dual esté activo.

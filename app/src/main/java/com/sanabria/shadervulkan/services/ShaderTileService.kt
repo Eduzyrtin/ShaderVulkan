@@ -1,5 +1,6 @@
 package com.sanabria.shadervulkan.services
 
+import com.sanabria.shadervulkan.AppLocale
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
@@ -15,6 +16,9 @@ import com.sanabria.shadervulkan.R
  * El arranque pasa por [QuickStartActivity], que es quien puede pedir el permiso de captura.
  */
 class ShaderTileService : TileService() {
+
+    // Idioma de la app (no el del sistema) para el texto del icono de Ajustes rápidos
+    override fun attachBaseContext(base: Context) = super.attachBaseContext(AppLocale.wrap(base))
 
     override fun onStartListening() = update()
 

@@ -2030,7 +2030,7 @@ void VulkanRenderer::discoverParameters(ShaderPreset& preset, AAssetManager* ass
             std::string shortName = pass.alias.empty() ? pass.filename : pass.alias;
             size_t sl = shortName.find_last_of('/');
             if (sl != std::string::npos) shortName = shortName.substr(sl + 1);
-            LoadProgress::setLabel("Analizando pase " + std::to_string(passIdx) + "/" + std::to_string(preset.passes.size()) + ": " + shortName);
+            LoadProgress::setLabel(LoadProgress::code("analyze", {std::to_string(passIdx), std::to_string(preset.passes.size()), shortName}));
         }
         std::string slangPath = pass.filename + ".slang";
         std::string source = SlangCompiler::fullPreprocess(slangPath, assetManager);
@@ -2583,21 +2583,21 @@ void VulkanRenderer::updateSensorUsage(bool needed) {
 void VulkanRenderer::reportFailedPasses(const ShaderPreset& preset, const CompiledPipelineSet& set) {
     if (set.pipelines.size() < preset.passes.size()) return;
     int failed = 0;
-    std::string first;
+    size_t firstIdx = 0;
+    std::string firstName;
     for (size_t i = 0; i < set.pipelines.size(); i++) {
         if (set.pipelines[i]->isValid()) continue;
         if (failed++ == 0) {
             std::string name = preset.passes[i].alias.empty() ? preset.passes[i].filename : preset.passes[i].alias;
             size_t sl = name.find_last_of('/');
             if (sl != std::string::npos) name = name.substr(sl + 1);
-            first = "pase " + std::to_string(i + 1) + " (" + name + ")";
+            firstIdx = i + 1;
+            firstName = name;
         }
     }
     if (failed == 0) return;
-    std::string msg = "Shader sin aplicar, " + first + (failed > 1 ? " y " + std::to_string(failed - 1) + " más" : "") +
-                      " no compiló. Se muestra la captura sin procesar";
-    LOGE("SHADER_ERROR: %s", msg.c_str());
-    LoadProgress::addStatus(msg);
+    LOGE("SHADER_ERROR: pase %zu (%s) y %d más no compilaron; se muestra la captura sin procesar", firstIdx, firstName.c_str(), failed - 1);
+    LoadProgress::addStatus(LoadProgress::code("passfail", {std::to_string(firstIdx), firstName, std::to_string(failed - 1)}));
 }
 
 void VulkanRenderer::disposeCompiledSet(CompiledPipelineSet& set) {
@@ -2685,7 +2685,7 @@ CompiledPipelineSet VulkanRenderer::compilePipelineSet(const ShaderPreset& prese
     // Cargar LUTs definidos en el preset (al set, no a los miembros activos)
     for (const auto& tex : preset.textures) {
         auto t0 = std::chrono::steady_clock::now();
-        LoadProgress::setLabel("Cargando textura: " + tex.id);
+        LoadProgress::setLabel(LoadProgress::code("texture", {tex.id}));
         if (!loadLUT(tex, preset.basePath, set.lutTextures, set.lutIds)) {
             LOGE("Error cargando LUT: %s", tex.id.c_str());
         }
@@ -2730,7 +2730,7 @@ CompiledPipelineSet VulkanRenderer::compilePipelineSet(const ShaderPreset& prese
             std::string shortName = p.alias.empty() ? p.filename : p.alias;
             size_t sl = shortName.find_last_of('/');
             if (sl != std::string::npos) shortName = shortName.substr(sl + 1);
-            LoadProgress::setLabel("Compilando pase " + std::to_string(i + 1) + "/" + std::to_string(preset.passes.size()) + ": " + shortName);
+            LoadProgress::setLabel(LoadProgress::code("compile", {std::to_string(i + 1), std::to_string(preset.passes.size()), shortName}));
         }
         auto pipeline = std::make_unique<VulkanPipeline>(m_device, m_assetManager, props);
         // El pase interno vive en los assets: sin basePath (evita probar rutas SAF que no existen)
@@ -2819,7 +2819,7 @@ bool VulkanRenderer::loadLUT
     if (fallback) {
         srcPixels = kBlackPixel;
         LOGE("loadLUT: no se pudo cargar la LUT '%s' (%s): se usa una textura 1x1 negra", tex.id.c_str(), fullPath.c_str());
-        LoadProgress::addStatus("LUT '" + tex.id + "' no cargó (se usa negro)");
+        LoadProgress::addStatus(LoadProgress::code("lutfail", {tex.id}));
     }
 
     // Crear recursos Vulkan

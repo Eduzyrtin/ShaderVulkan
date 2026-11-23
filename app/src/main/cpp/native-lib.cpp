@@ -691,9 +691,9 @@ static void finishReadPreset(ShaderPreset& preset) {
     AAssetManager* assetManager = g_ctx.assetManager;
     if (!preset.valid) __android_log_print(ANDROID_LOG_ERROR, "SVDIAG_NATIVE", "Preset inválido: %s", preset.error.c_str());
     // Progreso de carga: 1 paso por pase en el análisis + 1 por textura y 1 por pase en la compilación posterior
-    LoadProgress::begin((int)(preset.passes.size() * 2 + preset.textures.size()), true, "Leyendo shaders");
-    if (!preset.valid) LoadProgress::setStatus("Preset no válido: " + preset.error);
-    else if (preset.passes.empty()) LoadProgress::setStatus("El preset no define ningún pase");
+    LoadProgress::begin((int)(preset.passes.size() * 2 + preset.textures.size()), true, LoadProgress::code("reading"));
+    if (!preset.valid) LoadProgress::setStatus(LoadProgress::code("invalid", {preset.error}));
+    else if (preset.passes.empty()) LoadProgress::setStatus(LoadProgress::code("nopasses"));
     // Lo lento (I/O por SAF) va SIN g_ctxMutex y sin tocar el renderer: no bloquea al resto de llamadas JNI (ANR) ni se rompe si
     // ACTION_STOP_FULL destruye el renderer durante la carga.
     VulkanRenderer::discoverParameters(preset, assetManager);
@@ -733,7 +733,7 @@ Java_com_sanabria_shadervulkan_native_VulkanEngineBridge_loadPreset(JNIEnv *env,
 
     auto renderers = getAllRenderers();
     if (renderers.empty()) { LoadProgress::finish(); return JNI_FALSE; }
-    LoadProgress::setLabel("Preparando compilación");
+    LoadProgress::setLabel(LoadProgress::code("preparing"));
     {
         std::lock_guard<std::mutex> rl(g_replayMutex);
         g_lastPreset = preset;
@@ -753,7 +753,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_com_sanabria_shadervulkan_native_VulkanEngineBridge_loadPresetForOutput(JNIEnv *env, jobject thiz, jstring content, jstring basePath, jint output) {
     if (output != 1 || !getRenderer()) return JNI_FALSE;
     ShaderPreset preset = readPreset(env, content, basePath);
-    LoadProgress::setLabel("Preparando compilación");
+    LoadProgress::setLabel(LoadProgress::code("preparing"));
     g_presetB = preset;
     g_hasPresetB.store(true);
     if (auto r = getRenderer(1)) r->setPreset(preset); // si la salida 1 aún no existe, enableOutput usa g_presetB
@@ -767,7 +767,7 @@ Java_com_sanabria_shadervulkan_native_VulkanEngineBridge_loadPresetStack(JNIEnv 
     if (!getRenderer() || (output != 0 && output != 1)) return JNI_FALSE;
     ShaderPreset preset = readPresetStack(env, contents, basePaths);
     if (output == 1) {
-        LoadProgress::setLabel("Preparando compilación");
+        LoadProgress::setLabel(LoadProgress::code("preparing"));
         g_presetB = preset;
         g_hasPresetB.store(true);
         if (auto r = getRenderer(1)) r->setPreset(preset);
@@ -776,7 +776,7 @@ Java_com_sanabria_shadervulkan_native_VulkanEngineBridge_loadPresetStack(JNIEnv 
     }
     auto renderers = getAllRenderers();
     if (renderers.empty()) { LoadProgress::finish(); return JNI_FALSE; }
-    LoadProgress::setLabel("Preparando compilación");
+    LoadProgress::setLabel(LoadProgress::code("preparing"));
     {
         std::lock_guard<std::mutex> rl(g_replayMutex);
         g_lastPreset = preset;

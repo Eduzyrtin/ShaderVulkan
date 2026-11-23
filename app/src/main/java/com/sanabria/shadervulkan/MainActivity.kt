@@ -66,6 +66,7 @@ import com.sanabria.shadervulkan.services.ServiceState
 import com.sanabria.shadervulkan.services.SessionMode
 import com.sanabria.shadervulkan.services.ShaderCaptureService
 import com.google.android.material.slider.Slider
+import com.sanabria.shadervulkan.native.NativeText
 import com.sanabria.shadervulkan.native.VulkanEngineBridge
 import com.sanabria.shadervulkan.services.ShaderOverlayAccessibilityService
 import com.sanabria.shadervulkan.ui.CrtActivity
@@ -455,7 +456,7 @@ class MainActivity : CrtActivity() {
                 val finished = !busy && (seenBusy || elapsed > LOAD_DIALOG_GRACE_MS)
                 if (finished || elapsed > LOAD_DIALOG_TIMEOUT_MS) {
                     dismissShaderLoadingDialog()
-                    val problem = try { VulkanEngineBridge.consumeLoadStatus() } catch (_: Throwable) { "" }
+                    val problem = try { NativeText.format(this@MainActivity, VulkanEngineBridge.consumeLoadStatus()) } catch (_: Throwable) { "" }
                     if (problem.isNotBlank()) showToast(problem)
                     setupResolutionSpinner()
                     setupAspectRatioSpinner()
@@ -465,7 +466,7 @@ class MainActivity : CrtActivity() {
                 val shown = pct.coerceAtLeast(0)
                 txtPct.text = getString(R.string.percent_value, shown)
                 bar.progress = shown
-                val label = try { VulkanEngineBridge.getLoadLabel() } catch (_: Throwable) { "" }
+                val label = try { NativeText.format(this@MainActivity, VulkanEngineBridge.getLoadLabel()) } catch (_: Throwable) { "" }
                 txtDetail.text = if (label.isNotBlank()) label else shaderName
                 loadingHandler.postDelayed(this, LOAD_DIALOG_POLL_MS)
             }
@@ -643,18 +644,19 @@ class MainActivity : CrtActivity() {
         val dir = currentFolder ?: return
         val uriKey = dir.uri.toString()
 
+        // La entrada ".." se monta siempre al momento: la caché (también la guardada en disco) conservaría su texto en el
+        // idioma que tuviera la app cuando se escaneó la carpeta
+        val upNote = getString(if (dir.uri != rootFolder?.uri) R.string.list_folder_up_note else R.string.list_folder_home_note)
+        val upItem = ShaderItem(ShaderItem.FOLDER_UP_ID, "..", "", "", upNote, isFolder = true)
+
         if (!forceRescan && folderCache.containsKey(uriKey)) {
-            allShaders.addAll(folderCache[uriKey]!!)
+            allShaders.add(upItem)
+            allShaders.addAll(folderCache[uriKey]!!.filter { it.id != ShaderItem.FOLDER_UP_ID })
             return
         }
 
         val list = mutableListOf<ShaderItem>()
-
-        if (dir.uri != rootFolder?.uri) {
-            list.add(ShaderItem(ShaderItem.FOLDER_UP_ID, "..", "", "", getString(R.string.list_folder_up_note), isFolder = true))
-        } else {
-            list.add(ShaderItem(ShaderItem.FOLDER_UP_ID, "..", "", "", getString(R.string.list_folder_home_note), isFolder = true))
-        }
+        list.add(upItem)
 
         val files = dir.listFiles().sortedBy { it.name?.lowercase() }
 

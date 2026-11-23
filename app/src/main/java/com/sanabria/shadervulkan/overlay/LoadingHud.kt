@@ -15,6 +15,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.sanabria.shadervulkan.R
+import com.sanabria.shadervulkan.native.NativeText
 import com.sanabria.shadervulkan.native.VulkanEngineBridge
 import com.sanabria.shadervulkan.ui.CrtUi
 
@@ -42,7 +43,7 @@ class LoadingHud(private val context: Context) {
             if (pct < 0) {
                 removeView()
                 // Carga terminada: si falló algún pase (o el preset no vale) se dice cuál, en vez de un fallo mudo
-                val problem = try { VulkanEngineBridge.consumeLoadStatus() } catch (_: Throwable) { "" }
+                val problem = try { NativeText.format(context, VulkanEngineBridge.consumeLoadStatus()) } catch (_: Throwable) { "" }
                 if (problem.isNotBlank()) {
                     Log.w(TAG, "SHADER_ERROR: $problem")
                     Toast.makeText(context, problem, Toast.LENGTH_LONG).show()
@@ -50,7 +51,7 @@ class LoadingHud(private val context: Context) {
             } else {
                 ensureView()
                 title?.text = context.getString(R.string.loading_shader_pct, pct)
-                detail?.text = try { VulkanEngineBridge.getLoadLabel() } catch (_: Throwable) { "" }
+                detail?.text = try { NativeText.format(context, VulkanEngineBridge.getLoadLabel()) } catch (_: Throwable) { "" }
                 bar?.progress = pct
             }
             val fast = pct >= 0 || SystemClock.uptimeMillis() < fastUntil

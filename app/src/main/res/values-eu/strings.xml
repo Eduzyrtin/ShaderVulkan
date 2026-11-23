@@ -382,4 +382,17 @@
     <string name="aspect_retro">Retro</string>
     <string name="aspect_mobile">Uneko telefonoa</string>
     <string name="aspect_mobile_portrait">Uneko telefonoa, bertikala</string>
+
+    <!-- Textos del motor nativo (NativeText.kt) -->
+    <string name="native_load_reading">Shaderrak irakurtzen</string>
+    <string name="native_load_preparing">Konpilazioa prestatzen</string>
+    <string name="native_load_compiling">Shaderrak konpilatzen</string>
+    <string name="native_load_analyze_pass">%1$d/%2$d urratsa aztertzen: %3$s</string>
+    <string name="native_load_compile_pass">%1$d/%2$d urratsa konpilatzen: %3$s</string>
+    <string name="native_load_texture">Testura kargatzen: %1$s</string>
+    <string name="native_status_invalid_preset">Preset baliogabea: %1$s</string>
+    <string name="native_status_no_passes">Presetak ez du urratsik definitzen</string>
+    <string name="native_status_lut_failed">«%1$s» LUTa ez da kargatu (beltza erabiltzen da)</string>
+    <string name="native_status_pass_failed">Shaderra ez da aplikatu: %1$d. urratsa (%2$s) ez da konpilatu. Prozesatu gabeko kaptura erakusten da</string>
+    <string name="native_status_passes_failed">Shaderra ez da aplikatu: %1$d. urratsa (%2$s) eta beste %3$d ez dira konpilatu. Prozesatu gabeko kaptura erakusten da</string>
 </resources>

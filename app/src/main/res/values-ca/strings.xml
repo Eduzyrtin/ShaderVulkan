@@ -382,4 +382,17 @@
     <string name="aspect_retro">Retro</string>
     <string name="aspect_mobile">Mòbil actual</string>
     <string name="aspect_mobile_portrait">Mòbil actual, vertical</string>
+
+    <!-- Textos del motor nativo (NativeText.kt) -->
+    <string name="native_load_reading">Llegint els shaders</string>
+    <string name="native_load_preparing">Preparant la compilació</string>
+    <string name="native_load_compiling">Compilant els shaders</string>
+    <string name="native_load_analyze_pass">Analitzant el pas %1$d/%2$d: %3$s</string>
+    <string name="native_load_compile_pass">Compilant el pas %1$d/%2$d: %3$s</string>
+    <string name="native_load_texture">Carregant la textura: %1$s</string>
+    <string name="native_status_invalid_preset">Preset no vàlid: %1$s</string>
+    <string name="native_status_no_passes">El preset no defineix cap pas</string>
+    <string name="native_status_lut_failed">La LUT «%1$s» no s\'ha carregat (s\'usa negre)</string>
+    <string name="native_status_pass_failed">Shader sense aplicar: el pas %1$d (%2$s) no ha compilat. Es mostra la captura sense processar</string>
+    <string name="native_status_passes_failed">Shader sense aplicar: el pas %1$d (%2$s) i %3$d més no han compilat. Es mostra la captura sense processar</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.sanabria.shadervulkan.services
 
+import com.sanabria.shadervulkan.AppLocale
 import android.content.BroadcastReceiver
 import android.content.ComponentCallbacks
 import android.content.res.Configuration
@@ -64,6 +65,9 @@ enum class SessionMode { CAPTURE, GLASS }
  * y mantiene vivo el overlay de shaders.
  */
 class ShaderCaptureService : Service(), SensorEventListener {
+
+    // Idioma de la app (no el del sistema) para la notificación de la sesión
+    override fun attachBaseContext(base: Context) = super.attachBaseContext(AppLocale.wrap(base))
     private val TAG = "ShaderCaptureService"
 
     private lateinit var mediaProjectionManager: MediaProjectionManager

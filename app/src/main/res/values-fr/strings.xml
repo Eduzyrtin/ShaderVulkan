@@ -386,4 +386,17 @@ Compatible avec les presets slang de RetroArch. Sans lien avec RetroArch ni libr
     <string name="aspect_retro">Rétro</string>
     <string name="aspect_mobile">Mobile actuel</string>
     <string name="aspect_mobile_portrait">Mobile actuel, portrait</string>
+
+    <!-- Textos del motor nativo (NativeText.kt) -->
+    <string name="native_load_reading">Lecture des shaders</string>
+    <string name="native_load_preparing">Préparation de la compilation</string>
+    <string name="native_load_compiling">Compilation des shaders</string>
+    <string name="native_load_analyze_pass">Analyse de la passe %1$d/%2$d : %3$s</string>
+    <string name="native_load_compile_pass">Compilation de la passe %1$d/%2$d : %3$s</string>
+    <string name="native_load_texture">Chargement de la texture : %1$s</string>
+    <string name="native_status_invalid_preset">Preset non valide : %1$s</string>
+    <string name="native_status_no_passes">Le preset ne définit aucune passe</string>
+    <string name="native_status_lut_failed">La LUT « %1$s » n\'a pas pu être chargée (noir utilisé à la place)</string>
+    <string name="native_status_pass_failed">Shader non appliqué : la passe %1$d (%2$s) n\'a pas compilé. Affichage de la capture non traitée</string>
+    <string name="native_status_passes_failed">Shader non appliqué : la passe %1$d (%2$s) et %3$d autres n\'ont pas compilé. Affichage de la capture non traitée</string>
 </resources>

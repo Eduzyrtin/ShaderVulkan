@@ -1,12 +1,22 @@
 #pragma once
 #include <algorithm>
 #include <atomic>
+#include <initializer_list>
 #include <mutex>
 #include <string>
 
 // Progreso de la carga de un preset (análisis de los .slang + compilación de pipelines), consultado desde Kotlin para
 // mostrar "LOADING SHADER xx%". Estado global: la carga se lanza desde hilos distintos y el renderer puede recrearse.
+//
+// Los textos que ve el usuario (etiqueta y avisos) no se escriben aquí en ningún idioma: van como códigos
+// "@clave|arg1|arg2…" que NativeText.kt traduce con las cadenas de la app. Varios avisos se separan con '\x1e'.
 namespace LoadProgress {
+    inline std::string code(const std::string& key, std::initializer_list<std::string> args = {}) {
+        std::string s = "@" + key;
+        for (const auto& a : args) s += "|" + a;
+        return s;
+    }
+
     inline std::atomic<bool> active{false};
     // reserved: la compilación que 'total' ya cuenta (de loadPreset) y aún no ha empezado (0 o 1). running: compilaciones en
     // curso (una por salida del motor, T15). Se tocan con mtx. La barra se cierra cuando no queda ninguna de las dos.
@@ -44,7 +54,7 @@ namespace LoadProgress {
         } else {
             done = 0;
             total = std::max(1, steps);
-            label = "Compilando shaders";
+            label = code("compiling");
             status.clear();
         }
         running++;
@@ -64,7 +74,7 @@ namespace LoadProgress {
     // Añade un aviso al que ya hubiera (varios fallos en una misma carga se muestran juntos)
     inline void addStatus(const std::string& s) {
         std::lock_guard<std::mutex> g(mtx);
-        status = status.empty() ? s : status + " · " + s;
+        status = status.empty() ? s : status + "\x1e" + s;
     }
     inline std::string consumeStatus() {
         std::lock_guard<std::mutex> g(mtx);

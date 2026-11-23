@@ -453,4 +453,17 @@ Compatible with RetroArch slang presets. Not affiliated with RetroArch or libret
     <string name="summary_distorted" translatable="false">(!) %1$s</string>
     <string name="section_open_fmt" translatable="false">[-] %1$s</string>
     <string name="section_closed_fmt" translatable="false">[+] %1$s</string>
+
+    <!-- Textos del motor nativo (NativeText.kt) -->
+    <string name="native_load_reading">Reading shaders</string>
+    <string name="native_load_preparing">Preparing compilation</string>
+    <string name="native_load_compiling">Compiling shaders</string>
+    <string name="native_load_analyze_pass">Analyzing pass %1$d/%2$d: %3$s</string>
+    <string name="native_load_compile_pass">Compiling pass %1$d/%2$d: %3$s</string>
+    <string name="native_load_texture">Loading texture: %1$s</string>
+    <string name="native_status_invalid_preset">Invalid preset: %1$s</string>
+    <string name="native_status_no_passes">The preset does not define any pass</string>
+    <string name="native_status_lut_failed">LUT \'%1$s\' did not load (black is used instead)</string>
+    <string name="native_status_pass_failed">Shader not applied: pass %1$d (%2$s) did not compile. Showing the unprocessed capture</string>
+    <string name="native_status_passes_failed">Shader not applied: pass %1$d (%2$s) and %3$d more did not compile. Showing the unprocessed capture</string>
 </resources>

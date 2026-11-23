@@ -386,4 +386,17 @@ Kompatibel mit den Slang-Presets von RetroArch. Keine Verbindung zu RetroArch od
     <string name="aspect_retro">Retro</string>
     <string name="aspect_mobile">Modernes Handy</string>
     <string name="aspect_mobile_portrait">Modernes Handy, Hochformat</string>
+
+    <!-- Textos del motor nativo (NativeText.kt) -->
+    <string name="native_load_reading">Shader werden gelesen</string>
+    <string name="native_load_preparing">Kompilierung wird vorbereitet</string>
+    <string name="native_load_compiling">Shader werden kompiliert</string>
+    <string name="native_load_analyze_pass">Pass %1$d/%2$d wird analysiert: %3$s</string>
+    <string name="native_load_compile_pass">Pass %1$d/%2$d wird kompiliert: %3$s</string>
+    <string name="native_load_texture">Textur wird geladen: %1$s</string>
+    <string name="native_status_invalid_preset">Ungültiges Preset: %1$s</string>
+    <string name="native_status_no_passes">Das Preset definiert keinen Pass</string>
+    <string name="native_status_lut_failed">LUT „%1$s“ wurde nicht geladen (stattdessen Schwarz)</string>
+    <string name="native_status_pass_failed">Shader nicht angewendet: Pass %1$d (%2$s) ließ sich nicht kompilieren. Du siehst die unbearbeitete Aufnahme</string>
+    <string name="native_status_passes_failed">Shader nicht angewendet: Pass %1$d (%2$s) und %3$d weitere ließen sich nicht kompilieren. Du siehst die unbearbeitete Aufnahme</string>
 </resources>
