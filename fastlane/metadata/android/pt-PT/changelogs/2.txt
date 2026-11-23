@@ -1,0 +1,1 @@
+Cada parâmetro do shader tem um botão para repor o valor predefinido, e o menu afasta-se enquanto ajustas. O menu flutuante, o ecrã de carregamento e os avisos do motor seguem agora o idioma da app.

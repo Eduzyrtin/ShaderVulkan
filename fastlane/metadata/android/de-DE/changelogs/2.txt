@@ -1,0 +1,1 @@
+Jeder Shader-Parameter hat eine Taste, um seinen Standardwert wiederherzustellen, und das Menü weicht beim Einstellen zur Seite. Das schwebende Menü, der Ladebildschirm und die Meldungen der Engine folgen jetzt der Sprache der App.

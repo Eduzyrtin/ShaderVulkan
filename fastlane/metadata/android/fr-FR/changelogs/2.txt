@@ -1,0 +1,1 @@
+Chaque paramètre du shader a un bouton pour revenir à sa valeur par défaut, et le menu s'écarte pendant le réglage. Le menu flottant, l'écran de chargement et les messages du moteur suivent désormais la langue de l'app.

@@ -1,0 +1,1 @@
+Shaderraren parametro bakoitzak botoi bat du balio lehenetsira itzultzeko, eta menua alboratu egiten da doitzen duzun bitartean. Menu flotatzailea, karga-pantaila eta motorraren abisuak aplikazioaren hizkuntzan agertzen dira orain.

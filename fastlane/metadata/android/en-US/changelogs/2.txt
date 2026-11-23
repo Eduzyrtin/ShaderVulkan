@@ -1,0 +1,1 @@
+Each shader parameter has a button to restore its default value, and the menu moves aside while you adjust. The floating menu, the loading screen and the engine messages now follow the app's language.
